@@ -1,0 +1,720 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		766E17452C69C7C7004C0163 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17442C69C7C7004C0163 /* AppDelegate.swift */; };
+		766E17492C69C7C7004C0163 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17482C69C7C7004C0163 /* TabBarController.swift */; };
+		766E174E2C69C7C9004C0163 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 766E174D2C69C7C9004C0163 /* Assets.xcassets */; };
+		766E17512C69C7C9004C0163 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 766E17502C69C7C9004C0163 /* Base */; };
+		766E175C2C69C7C9004C0163 /* KimnJangWatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E175B2C69C7C9004C0163 /* KimnJangWatchTests.swift */; };
+		766E17662C69C7C9004C0163 /* KimnJangWatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17652C69C7C9004C0163 /* KimnJangWatchUITests.swift */; };
+		766E17682C69C7C9004C0163 /* KimnJangWatchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17672C69C7C9004C0163 /* KimnJangWatchUITestsLaunchTests.swift */; };
+		766E177B2C69C9B9004C0163 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E177A2C69C9B9004C0163 /* MainModel.swift */; };
+		766E177D2C69C9CD004C0163 /* MainCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E177C2C69C9CD004C0163 /* MainCommon.swift */; };
+		766E177F2C69C9DE004C0163 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E177E2C69C9DE004C0163 /* MainViewModel.swift */; };
+		766E17822C69C9FB004C0163 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 766E17812C69C9FB004C0163 /* SnapKit */; };
+		766E17852C69CA28004C0163 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 766E17842C69CA28004C0163 /* RxCocoa */; };
+		766E17872C69CA28004C0163 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 766E17862C69CA28004C0163 /* RxRelay */; };
+		766E17892C69CA28004C0163 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 766E17882C69CA28004C0163 /* RxSwift */; };
+		766E178B2C69CA42004C0163 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 766E178A2C69CA42004C0163 /* .gitignore */; };
+		766E178D2C69CA4F004C0163 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 766E178C2C69CA4F004C0163 /* README.md */; };
+		766E178F2C69CBA2004C0163 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E178E2C69CBA2004C0163 /* UIColor+Extensions.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		766E17582C69C7C9004C0163 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 766E17392C69C7C7004C0163 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 766E17402C69C7C7004C0163;
+			remoteInfo = "Kim&JangWatch";
+		};
+		766E17622C69C7C9004C0163 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 766E17392C69C7C7004C0163 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 766E17402C69C7C7004C0163;
+			remoteInfo = "Kim&JangWatch";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		766E17412C69C7C7004C0163 /* KimnJangWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KimnJangWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		766E17442C69C7C7004C0163 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		766E17482C69C7C7004C0163 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		766E174D2C69C7C9004C0163 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		766E17502C69C7C9004C0163 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		766E17522C69C7C9004C0163 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		766E17572C69C7C9004C0163 /* KimnJangWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KimnJangWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		766E175B2C69C7C9004C0163 /* KimnJangWatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KimnJangWatchTests.swift; sourceTree = "<group>"; };
+		766E17612C69C7C9004C0163 /* KimnJangWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KimnJangWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		766E17652C69C7C9004C0163 /* KimnJangWatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KimnJangWatchUITests.swift; sourceTree = "<group>"; };
+		766E17672C69C7C9004C0163 /* KimnJangWatchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KimnJangWatchUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		766E177A2C69C9B9004C0163 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		766E177C2C69C9CD004C0163 /* MainCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCommon.swift; sourceTree = "<group>"; };
+		766E177E2C69C9DE004C0163 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		766E178A2C69CA42004C0163 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		766E178C2C69CA4F004C0163 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		766E178E2C69CBA2004C0163 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		766E173E2C69C7C7004C0163 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				766E17872C69CA28004C0163 /* RxRelay in Frameworks */,
+				766E17852C69CA28004C0163 /* RxCocoa in Frameworks */,
+				766E17892C69CA28004C0163 /* RxSwift in Frameworks */,
+				766E17822C69C9FB004C0163 /* SnapKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		766E17542C69C7C9004C0163 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		766E175E2C69C7C9004C0163 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		766E17382C69C7C7004C0163 = {
+			isa = PBXGroup;
+			children = (
+				766E178C2C69CA4F004C0163 /* README.md */,
+				766E178A2C69CA42004C0163 /* .gitignore */,
+				766E17432C69C7C7004C0163 /* KimnJangWatch */,
+				766E175A2C69C7C9004C0163 /* KimnJangWatchTests */,
+				766E17642C69C7C9004C0163 /* KimnJangWatchUITests */,
+				766E17422C69C7C7004C0163 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		766E17422C69C7C7004C0163 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				766E17412C69C7C7004C0163 /* KimnJangWatch.app */,
+				766E17572C69C7C9004C0163 /* KimnJangWatchTests.xctest */,
+				766E17612C69C7C9004C0163 /* KimnJangWatchUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		766E17432C69C7C7004C0163 /* KimnJangWatch */ = {
+			isa = PBXGroup;
+			children = (
+				766E17782C69C8FC004C0163 /* App */,
+				766E17742C69C8C1004C0163 /* Common */,
+				766E17752C69C8CF004C0163 /* Model */,
+				766E17762C69C8F1004C0163 /* View */,
+				766E17772C69C8F5004C0163 /* ViewModel */,
+				766E174D2C69C7C9004C0163 /* Assets.xcassets */,
+				766E174F2C69C7C9004C0163 /* LaunchScreen.storyboard */,
+				766E17522C69C7C9004C0163 /* Info.plist */,
+			);
+			path = KimnJangWatch;
+			sourceTree = "<group>";
+		};
+		766E175A2C69C7C9004C0163 /* KimnJangWatchTests */ = {
+			isa = PBXGroup;
+			children = (
+				766E175B2C69C7C9004C0163 /* KimnJangWatchTests.swift */,
+			);
+			path = KimnJangWatchTests;
+			sourceTree = "<group>";
+		};
+		766E17642C69C7C9004C0163 /* KimnJangWatchUITests */ = {
+			isa = PBXGroup;
+			children = (
+				766E17652C69C7C9004C0163 /* KimnJangWatchUITests.swift */,
+				766E17672C69C7C9004C0163 /* KimnJangWatchUITestsLaunchTests.swift */,
+			);
+			path = KimnJangWatchUITests;
+			sourceTree = "<group>";
+		};
+		766E17742C69C8C1004C0163 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				766E178E2C69CBA2004C0163 /* UIColor+Extensions.swift */,
+				766E177C2C69C9CD004C0163 /* MainCommon.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		766E17752C69C8CF004C0163 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				766E177A2C69C9B9004C0163 /* MainModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		766E17762C69C8F1004C0163 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				766E17482C69C7C7004C0163 /* TabBarController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		766E17772C69C8F5004C0163 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				766E177E2C69C9DE004C0163 /* MainViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		766E17782C69C8FC004C0163 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				766E17442C69C7C7004C0163 /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		766E17402C69C7C7004C0163 /* KimnJangWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 766E176B2C69C7C9004C0163 /* Build configuration list for PBXNativeTarget "KimnJangWatch" */;
+			buildPhases = (
+				766E173D2C69C7C7004C0163 /* Sources */,
+				766E173E2C69C7C7004C0163 /* Frameworks */,
+				766E173F2C69C7C7004C0163 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KimnJangWatch;
+			packageProductDependencies = (
+				766E17812C69C9FB004C0163 /* SnapKit */,
+				766E17842C69CA28004C0163 /* RxCocoa */,
+				766E17862C69CA28004C0163 /* RxRelay */,
+				766E17882C69CA28004C0163 /* RxSwift */,
+			);
+			productName = "Kim&JangWatch";
+			productReference = 766E17412C69C7C7004C0163 /* KimnJangWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		766E17562C69C7C9004C0163 /* KimnJangWatchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 766E176E2C69C7C9004C0163 /* Build configuration list for PBXNativeTarget "KimnJangWatchTests" */;
+			buildPhases = (
+				766E17532C69C7C9004C0163 /* Sources */,
+				766E17542C69C7C9004C0163 /* Frameworks */,
+				766E17552C69C7C9004C0163 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				766E17592C69C7C9004C0163 /* PBXTargetDependency */,
+			);
+			name = KimnJangWatchTests;
+			productName = "Kim&JangWatchTests";
+			productReference = 766E17572C69C7C9004C0163 /* KimnJangWatchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		766E17602C69C7C9004C0163 /* KimnJangWatchUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 766E17712C69C7C9004C0163 /* Build configuration list for PBXNativeTarget "KimnJangWatchUITests" */;
+			buildPhases = (
+				766E175D2C69C7C9004C0163 /* Sources */,
+				766E175E2C69C7C9004C0163 /* Frameworks */,
+				766E175F2C69C7C9004C0163 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				766E17632C69C7C9004C0163 /* PBXTargetDependency */,
+			);
+			name = KimnJangWatchUITests;
+			productName = "Kim&JangWatchUITests";
+			productReference = 766E17612C69C7C9004C0163 /* KimnJangWatchUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		766E17392C69C7C7004C0163 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					766E17402C69C7C7004C0163 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					766E17562C69C7C9004C0163 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 766E17402C69C7C7004C0163;
+					};
+					766E17602C69C7C9004C0163 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 766E17402C69C7C7004C0163;
+					};
+				};
+			};
+			buildConfigurationList = 766E173C2C69C7C7004C0163 /* Build configuration list for PBXProject "KimnJangWatch" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 766E17382C69C7C7004C0163;
+			packageReferences = (
+				766E17802C69C9FB004C0163 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				766E17832C69CA28004C0163 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
+			productRefGroup = 766E17422C69C7C7004C0163 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				766E17402C69C7C7004C0163 /* KimnJangWatch */,
+				766E17562C69C7C9004C0163 /* KimnJangWatchTests */,
+				766E17602C69C7C9004C0163 /* KimnJangWatchUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		766E173F2C69C7C7004C0163 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				766E174E2C69C7C9004C0163 /* Assets.xcassets in Resources */,
+				766E178B2C69CA42004C0163 /* .gitignore in Resources */,
+				766E178D2C69CA4F004C0163 /* README.md in Resources */,
+				766E17512C69C7C9004C0163 /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		766E17552C69C7C9004C0163 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		766E175F2C69C7C9004C0163 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		766E173D2C69C7C7004C0163 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				766E177F2C69C9DE004C0163 /* MainViewModel.swift in Sources */,
+				766E178F2C69CBA2004C0163 /* UIColor+Extensions.swift in Sources */,
+				766E17492C69C7C7004C0163 /* TabBarController.swift in Sources */,
+				766E177D2C69C9CD004C0163 /* MainCommon.swift in Sources */,
+				766E17452C69C7C7004C0163 /* AppDelegate.swift in Sources */,
+				766E177B2C69C9B9004C0163 /* MainModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		766E17532C69C7C9004C0163 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				766E175C2C69C7C9004C0163 /* KimnJangWatchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		766E175D2C69C7C9004C0163 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				766E17682C69C7C9004C0163 /* KimnJangWatchUITestsLaunchTests.swift in Sources */,
+				766E17662C69C7C9004C0163 /* KimnJangWatchUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		766E17592C69C7C9004C0163 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 766E17402C69C7C7004C0163 /* KimnJangWatch */;
+			targetProxy = 766E17582C69C7C9004C0163 /* PBXContainerItemProxy */;
+		};
+		766E17632C69C7C9004C0163 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 766E17402C69C7C7004C0163 /* KimnJangWatch */;
+			targetProxy = 766E17622C69C7C9004C0163 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		766E174F2C69C7C9004C0163 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				766E17502C69C7C9004C0163 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		766E17692C69C7C9004C0163 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		766E176A2C69C7C9004C0163 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		766E176C2C69C7C9004C0163 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4LTNHNC3S6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KimnJangWatch/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.donghyeon.KimnJangWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		766E176D2C69C7C9004C0163 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4LTNHNC3S6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KimnJangWatch/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.donghyeon.KimnJangWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		766E176F2C69C7C9004C0163 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4LTNHNC3S6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.donghyeon.Kim-JangWatchTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KimnJangWatch.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KimnJangWatch";
+			};
+			name = Debug;
+		};
+		766E17702C69C7C9004C0163 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4LTNHNC3S6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.donghyeon.Kim-JangWatchTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KimnJangWatch.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KimnJangWatch";
+			};
+			name = Release;
+		};
+		766E17722C69C7C9004C0163 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4LTNHNC3S6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.donghyeon.KimnJangWatchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KimnJangWatch;
+			};
+			name = Debug;
+		};
+		766E17732C69C7C9004C0163 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4LTNHNC3S6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.donghyeon.KimnJangWatchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KimnJangWatch;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		766E173C2C69C7C7004C0163 /* Build configuration list for PBXProject "KimnJangWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				766E17692C69C7C9004C0163 /* Debug */,
+				766E176A2C69C7C9004C0163 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		766E176B2C69C7C9004C0163 /* Build configuration list for PBXNativeTarget "KimnJangWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				766E176C2C69C7C9004C0163 /* Debug */,
+				766E176D2C69C7C9004C0163 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		766E176E2C69C7C9004C0163 /* Build configuration list for PBXNativeTarget "KimnJangWatchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				766E176F2C69C7C9004C0163 /* Debug */,
+				766E17702C69C7C9004C0163 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		766E17712C69C7C9004C0163 /* Build configuration list for PBXNativeTarget "KimnJangWatchUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				766E17722C69C7C9004C0163 /* Debug */,
+				766E17732C69C7C9004C0163 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		766E17802C69C9FB004C0163 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		766E17832C69CA28004C0163 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		766E17812C69C9FB004C0163 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 766E17802C69C9FB004C0163 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		766E17842C69CA28004C0163 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 766E17832C69CA28004C0163 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		766E17862C69CA28004C0163 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 766E17832C69CA28004C0163 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		766E17882C69CA28004C0163 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 766E17832C69CA28004C0163 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 766E17392C69C7C7004C0163 /* Project object */;
+}
