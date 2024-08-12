@@ -11,7 +11,12 @@ class TabBarController: UITabBarController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
+    
+    let worldTimeVC = UINavigationController(rootViewController: WorldTimeViewController())
+    
+    worldTimeVC.tabBarItem = UITabBarItem(title: "세계 시간", image: UIImage(systemName: "globe"), selectedImage: UIImage(systemName: "globe"))
+    
+    self.setViewControllers([worldTimeVC], animated: true)
   }
 
 
