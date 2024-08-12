@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		765E85342C69CFC900F928D7 /* CodeConvention.md in Resources */ = {isa = PBXBuildFile; fileRef = 765E85332C69CFC900F928D7 /* CodeConvention.md */; };
+		765E85362C69CFD900F928D7 /* CommitConvention.md in Resources */ = {isa = PBXBuildFile; fileRef = 765E85352C69CFD900F928D7 /* CommitConvention.md */; };
 		766E17452C69C7C7004C0163 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17442C69C7C7004C0163 /* AppDelegate.swift */; };
 		766E17492C69C7C7004C0163 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17482C69C7C7004C0163 /* TabBarController.swift */; };
 		766E174E2C69C7C9004C0163 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 766E174D2C69C7C9004C0163 /* Assets.xcassets */; };
@@ -44,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		765E85332C69CFC900F928D7 /* CodeConvention.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CodeConvention.md; sourceTree = "<group>"; };
+		765E85352C69CFD900F928D7 /* CommitConvention.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CommitConvention.md; sourceTree = "<group>"; };
 		766E17412C69C7C7004C0163 /* KimnJangWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KimnJangWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		766E17442C69C7C7004C0163 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		766E17482C69C7C7004C0163 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				766E178C2C69CA4F004C0163 /* README.md */,
+				765E85332C69CFC900F928D7 /* CodeConvention.md */,
+				765E85352C69CFD900F928D7 /* CommitConvention.md */,
 				766E178A2C69CA42004C0163 /* .gitignore */,
 				766E17432C69C7C7004C0163 /* KimnJangWatch */,
 				766E175A2C69C7C9004C0163 /* KimnJangWatchTests */,
@@ -304,6 +310,8 @@
 				766E174E2C69C7C9004C0163 /* Assets.xcassets in Resources */,
 				766E178B2C69CA42004C0163 /* .gitignore in Resources */,
 				766E178D2C69CA4F004C0163 /* README.md in Resources */,
+				765E85342C69CFC900F928D7 /* CodeConvention.md in Resources */,
+				765E85362C69CFD900F928D7 /* CommitConvention.md in Resources */,
 				766E17512C69C7C9004C0163 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
