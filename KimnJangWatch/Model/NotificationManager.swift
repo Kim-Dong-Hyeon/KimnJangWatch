@@ -13,6 +13,16 @@ class NotificationManager {
   private init() {}
   
   func scheduleNotification(at date: Date, with message: String) {
+    let content = UNMutableNotificationContent()
+    content.title = "Kim&Jang"
+    content.body = message
+    content.sound = UNNotificationSound.default
     
+    let triggerDate = Calendar.current.dateComponents([.month,.day,.hour,.minute,.second], from: date)
+    let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
+    
+    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+    
+    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
   }
 }
