@@ -27,4 +27,14 @@ class TimeZoneModalViewModel {
     }.sorted { $0.kor < $1.kor }
     identifiers.remove(at: 0) // GMT 삭제
   }
+  
+  func addTimeZone(id: String) {
+    if UserDefaults.standard.array(forKey: "city") == nil {
+      UserDefaults.standard.set([id], forKey: "city")
+    } else {
+      var currentTimeZone = UserDefaults.standard.array(forKey: "city")
+      currentTimeZone?.append(id)
+      UserDefaults.standard.set(currentTimeZone, forKey: "city")
+    }
+  }
 }

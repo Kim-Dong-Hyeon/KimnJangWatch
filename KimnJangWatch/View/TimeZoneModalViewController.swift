@@ -45,8 +45,11 @@ class TimeZoneModalViewController: UIViewController {
   func tableViewTapped() {
     tableView.rx.itemSelected
       .subscribe(onNext: { [weak self] indexPath in
-        print(self?.viewModel.identifiers[indexPath.row])
-        self?.dismiss(animated: true)
+        guard let self
+        else { return }
+        print(self.viewModel.identifiers[indexPath.row])
+        self.viewModel.addTimeZone(id: self.viewModel.identifiers[indexPath.row].eng)
+        self.dismiss(animated: true)
       })
       .disposed(by: disposeBag)
   }
