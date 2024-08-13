@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+//struct LapModel{
+//  var name: String {
+//    var count = 1
+//    return "랩 \(count)"
+//  }
+//  let time: Date
+//}
