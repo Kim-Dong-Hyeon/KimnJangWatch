@@ -18,11 +18,12 @@ class TabBarController: UITabBarController {
     let stopWatchController = UINavigationController(rootViewController: StopWatchController())
     stopWatchController.tabBarItem = UITabBarItem(title: "스톱워치", image: UIImage(systemName: "stopwatch"), tag: 1)
     
-    self.setViewControllers([worldTimeVC, stopWatchController], animated: true)
+    let testNotificationVC = UINavigationController(rootViewController: TestNotificationViewController())
+    testNotificationVC.tabBarItem = UITabBarItem(title: "알림 Test", image: UIImage(systemName: "globe"), tag: 2)
+    
+    self.setViewControllers([worldTimeVC, stopWatchController, testNotificationVC], animated: true)
     // Do any additional setup after loading the view.
+    
   }
   
-
-
 }
-

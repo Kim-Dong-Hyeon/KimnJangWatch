@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		765E85342C69CFC900F928D7 /* CodeConvention.md in Resources */ = {isa = PBXBuildFile; fileRef = 765E85332C69CFC900F928D7 /* CodeConvention.md */; };
 		765E85362C69CFD900F928D7 /* CommitConvention.md in Resources */ = {isa = PBXBuildFile; fileRef = 765E85352C69CFD900F928D7 /* CommitConvention.md */; };
+		765E853B2C6A87F900F928D7 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765E853A2C6A87F900F928D7 /* NotificationManager.swift */; };
+		765E853D2C6B443500F928D7 /* TestNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765E853C2C6B443500F928D7 /* TestNotificationViewController.swift */; };
+		765E85452C6B5EDD00F928D7 /* hummus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 765E85442C6B5EDD00F928D7 /* hummus.mp3 */; };
 		766E17452C69C7C7004C0163 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17442C69C7C7004C0163 /* AppDelegate.swift */; };
 		766E17492C69C7C7004C0163 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17482C69C7C7004C0163 /* TabBarController.swift */; };
 		766E174E2C69C7C9004C0163 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 766E174D2C69C7C9004C0163 /* Assets.xcassets */; };
@@ -65,6 +68,9 @@
 /* Begin PBXFileReference section */
 		765E85332C69CFC900F928D7 /* CodeConvention.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CodeConvention.md; sourceTree = "<group>"; };
 		765E85352C69CFD900F928D7 /* CommitConvention.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CommitConvention.md; sourceTree = "<group>"; };
+		765E853A2C6A87F900F928D7 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		765E853C2C6B443500F928D7 /* TestNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNotificationViewController.swift; sourceTree = "<group>"; };
+		765E85442C6B5EDD00F928D7 /* hummus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hummus.mp3; sourceTree = "<group>"; };
 		766E17412C69C7C7004C0163 /* KimnJangWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KimnJangWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		766E17442C69C7C7004C0163 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		766E17482C69C7C7004C0163 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -130,6 +136,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		765E85432C6B5EA200F928D7 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				765E85442C6B5EDD00F928D7 /* hummus.mp3 */,
+				766E174D2C69C7C9004C0163 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		766E17382C69C7C7004C0163 = {
 			isa = PBXGroup;
 			children = (
@@ -164,7 +179,7 @@
 				766E17752C69C8CF004C0163 /* Model */,
 				766E17762C69C8F1004C0163 /* View */,
 				766E17772C69C8F5004C0163 /* ViewModel */,
-				766E174D2C69C7C9004C0163 /* Assets.xcassets */,
+				765E85432C6B5EA200F928D7 /* Assets */,
 				766E174F2C69C7C9004C0163 /* LaunchScreen.storyboard */,
 				766E17522C69C7C9004C0163 /* Info.plist */,
 			);
@@ -202,6 +217,7 @@
 			children = (
 				F45957EB2C6B788800AFEB69 /* WorlTime */,
 				766E177A2C69C9B9004C0163 /* MainModel.swift */,
+				765E853A2C6A87F900F928D7 /* NotificationManager.swift */,
 				DD0DC5392C6B4B910090B1DF /* AlarmViewModel.swift */,
 			);
 			path = Model;
@@ -213,6 +229,7 @@
 				F45957EC2C6B789F00AFEB69 /* WorldTime */,
 				E797FDAC2C6B559500D6ABE6 /* TimerView */,
 				766E17482C69C7C7004C0163 /* TabBarController.swift */,
+				765E853C2C6B443500F928D7 /* TestNotificationViewController.swift */,
 				9FE1E0E62C69FE2F003C448E /* StopWatchController.swift */,
 				DDC1F5FB2C69FD36003FCDB3 /* AlarmView.swift */,
 				DDC1F5FD2C69FD45003FCDB3 /* AlarmViewController.swift */,
@@ -386,6 +403,7 @@
 				766E178B2C69CA42004C0163 /* .gitignore in Resources */,
 				766E178D2C69CA4F004C0163 /* README.md in Resources */,
 				765E85342C69CFC900F928D7 /* CodeConvention.md in Resources */,
+				765E85452C6B5EDD00F928D7 /* hummus.mp3 in Resources */,
 				765E85362C69CFD900F928D7 /* CommitConvention.md in Resources */,
 				766E17512C69C7C9004C0163 /* Base in Resources */,
 			);
@@ -424,6 +442,8 @@
 				9FE1E0E92C6B1A48003C448E /* StopWatchViewModel.swift in Sources */,
 				E797FDA92C6ADA9900D6ABE6 /* TimerViewController.swift in Sources */,
 				766E177D2C69C9CD004C0163 /* MainCommon.swift in Sources */,
+				765E853B2C6A87F900F928D7 /* NotificationManager.swift in Sources */,
+				765E853D2C6B443500F928D7 /* TestNotificationViewController.swift in Sources */,
 				F45957E62C69FC4300AFEB69 /* WorldTimeCell.swift in Sources */,
 				766E17452C69C7C7004C0163 /* AppDelegate.swift in Sources */,
 				F45957E82C6A02B900AFEB69 /* TimeZoneModalViewController.swift in Sources */,
@@ -613,6 +633,7 @@
 				DEVELOPMENT_TEAM = 72GVCX2P2A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KimnJangWatch/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Kim&Jang";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -641,6 +662,7 @@
 				DEVELOPMENT_TEAM = 72GVCX2P2A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KimnJangWatch/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Kim&Jang";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
