@@ -17,11 +17,7 @@
 		766E174E2C69C7C9004C0163 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 766E174D2C69C7C9004C0163 /* Assets.xcassets */; };
 		766E17512C69C7C9004C0163 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 766E17502C69C7C9004C0163 /* Base */; };
 		766E175C2C69C7C9004C0163 /* KimnJangWatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E175B2C69C7C9004C0163 /* KimnJangWatchTests.swift */; };
-		766E17662C69C7C9004C0163 /* KimnJangWatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17652C69C7C9004C0163 /* KimnJangWatchUITests.swift */; };
-		766E17682C69C7C9004C0163 /* KimnJangWatchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17672C69C7C9004C0163 /* KimnJangWatchUITestsLaunchTests.swift */; };
-		766E177B2C69C9B9004C0163 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E177A2C69C9B9004C0163 /* MainModel.swift */; };
 		766E177D2C69C9CD004C0163 /* MainCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E177C2C69C9CD004C0163 /* MainCommon.swift */; };
-		766E177F2C69C9DE004C0163 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E177E2C69C9DE004C0163 /* MainViewModel.swift */; };
 		766E17822C69C9FB004C0163 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 766E17812C69C9FB004C0163 /* SnapKit */; };
 		766E17852C69CA28004C0163 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 766E17842C69CA28004C0163 /* RxCocoa */; };
 		766E17872C69CA28004C0163 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 766E17862C69CA28004C0163 /* RxRelay */; };
@@ -29,11 +25,6 @@
 		766E178B2C69CA42004C0163 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 766E178A2C69CA42004C0163 /* .gitignore */; };
 		766E178D2C69CA4F004C0163 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 766E178C2C69CA4F004C0163 /* README.md */; };
 		766E178F2C69CBA2004C0163 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E178E2C69CBA2004C0163 /* UIColor+Extensions.swift */; };
-		F45957E22C69E2F800AFEB69 /* WorldTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E12C69E2F800AFEB69 /* WorldTimeViewController.swift */; };
-		F45957E42C69E37400AFEB69 /* WorldTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E32C69E37400AFEB69 /* WorldTimeViewModel.swift */; };
-		F45957E62C69FC4300AFEB69 /* WorldTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E52C69FC4300AFEB69 /* WorldTimeCell.swift */; };
-		F45957E82C6A02B900AFEB69 /* TimeZoneModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E72C6A02B900AFEB69 /* TimeZoneModalViewController.swift */; };
-		F45957EA2C6A657500AFEB69 /* TimeZoneModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E92C6A657500AFEB69 /* TimeZoneModalViewModel.swift */; };
 		9FE1E0E72C69FE2F003C448E /* StopWatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE1E0E62C69FE2F003C448E /* StopWatchController.swift */; };
 		9FE1E0E92C6B1A48003C448E /* StopWatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE1E0E82C6B1A48003C448E /* StopWatchViewModel.swift */; };
 		DD0DC5362C6B16270090B1DF /* AddAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0DC5352C6B16270090B1DF /* AddAlarmViewController.swift */; };
@@ -46,6 +37,11 @@
 		E797FDAB2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDAA2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift */; };
 		E797FDAE2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDAD2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift */; };
 		E797FDB02C6B67E500D6ABE6 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDAF2C6B67E500D6ABE6 /* TimerViewModel.swift */; };
+		F45957E22C69E2F800AFEB69 /* WorldTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E12C69E2F800AFEB69 /* WorldTimeViewController.swift */; };
+		F45957E42C69E37400AFEB69 /* WorldTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E32C69E37400AFEB69 /* WorldTimeViewModel.swift */; };
+		F45957E62C69FC4300AFEB69 /* WorldTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E52C69FC4300AFEB69 /* WorldTimeCell.swift */; };
+		F45957E82C6A02B900AFEB69 /* TimeZoneModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E72C6A02B900AFEB69 /* TimeZoneModalViewController.swift */; };
+		F45957EA2C6A657500AFEB69 /* TimeZoneModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E92C6A657500AFEB69 /* TimeZoneModalViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,14 +50,14 @@
 			containerPortal = 766E17392C69C7C7004C0163 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 766E17402C69C7C7004C0163;
-			remoteInfo = "Kim&JangWatch";
+			remoteInfo = KimnJangWatch;
 		};
 		766E17622C69C7C9004C0163 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 766E17392C69C7C7004C0163 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 766E17402C69C7C7004C0163;
-			remoteInfo = "Kim&JangWatch";
+			remoteInfo = KimnJangWatch;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -80,19 +76,10 @@
 		766E17572C69C7C9004C0163 /* KimnJangWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KimnJangWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		766E175B2C69C7C9004C0163 /* KimnJangWatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KimnJangWatchTests.swift; sourceTree = "<group>"; };
 		766E17612C69C7C9004C0163 /* KimnJangWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KimnJangWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		766E17652C69C7C9004C0163 /* KimnJangWatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KimnJangWatchUITests.swift; sourceTree = "<group>"; };
-		766E17672C69C7C9004C0163 /* KimnJangWatchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KimnJangWatchUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		766E177A2C69C9B9004C0163 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		766E177C2C69C9CD004C0163 /* MainCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCommon.swift; sourceTree = "<group>"; };
-		766E177E2C69C9DE004C0163 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		766E178A2C69CA42004C0163 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		766E178C2C69CA4F004C0163 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		766E178E2C69CBA2004C0163 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
-		F45957E12C69E2F800AFEB69 /* WorldTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTimeViewController.swift; sourceTree = "<group>"; };
-		F45957E32C69E37400AFEB69 /* WorldTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTimeViewModel.swift; sourceTree = "<group>"; };
-		F45957E52C69FC4300AFEB69 /* WorldTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTimeCell.swift; sourceTree = "<group>"; };
-		F45957E72C6A02B900AFEB69 /* TimeZoneModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneModalViewController.swift; sourceTree = "<group>"; };
-		F45957E92C6A657500AFEB69 /* TimeZoneModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneModalViewModel.swift; sourceTree = "<group>"; };
 		9FE1E0E62C69FE2F003C448E /* StopWatchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchController.swift; sourceTree = "<group>"; };
 		9FE1E0E82C6B1A48003C448E /* StopWatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchViewModel.swift; sourceTree = "<group>"; };
 		DD0DC5352C6B16270090B1DF /* AddAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +92,11 @@
 		E797FDAA2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTimerTableViewCell.swift; sourceTree = "<group>"; };
 		E797FDAD2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTimerTableViewCell.swift; sourceTree = "<group>"; };
 		E797FDAF2C6B67E500D6ABE6 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		F45957E12C69E2F800AFEB69 /* WorldTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTimeViewController.swift; sourceTree = "<group>"; };
+		F45957E32C69E37400AFEB69 /* WorldTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTimeViewModel.swift; sourceTree = "<group>"; };
+		F45957E52C69FC4300AFEB69 /* WorldTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTimeCell.swift; sourceTree = "<group>"; };
+		F45957E72C6A02B900AFEB69 /* TimeZoneModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneModalViewController.swift; sourceTree = "<group>"; };
+		F45957E92C6A657500AFEB69 /* TimeZoneModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneModalViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +137,50 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		765E85462C6B83D500F928D7 /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				DDC1F5FB2C69FD36003FCDB3 /* AlarmView.swift */,
+				DDC1F5FD2C69FD45003FCDB3 /* AlarmViewController.swift */,
+				DDC1F5FF2C6A0EAA003FCDB3 /* AlarmListCell.swift */,
+				DD0DC5352C6B16270090B1DF /* AddAlarmViewController.swift */,
+				DD0DC5372C6B34910090B1DF /* AddAlarmView.swift */,
+			);
+			path = Alarm;
+			sourceTree = "<group>";
+		};
+		765E85472C6B83F100F928D7 /* StopWatch */ = {
+			isa = PBXGroup;
+			children = (
+				9FE1E0E62C69FE2F003C448E /* StopWatchController.swift */,
+			);
+			path = StopWatch;
+			sourceTree = "<group>";
+		};
+		765E85482C6B844900F928D7 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				E797FDAF2C6B67E500D6ABE6 /* TimerViewModel.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		765E85492C6B845500F928D7 /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				DD0DC5392C6B4B910090B1DF /* AlarmViewModel.swift */,
+			);
+			path = Alarm;
+			sourceTree = "<group>";
+		};
+		765E854A2C6B846A00F928D7 /* StopWatch */ = {
+			isa = PBXGroup;
+			children = (
+				9FE1E0E82C6B1A48003C448E /* StopWatchViewModel.swift */,
+			);
+			path = StopWatch;
+			sourceTree = "<group>";
+		};
 		766E17382C69C7C7004C0163 = {
 			isa = PBXGroup;
 			children = (
@@ -154,7 +190,6 @@
 				766E178A2C69CA42004C0163 /* .gitignore */,
 				766E17432C69C7C7004C0163 /* KimnJangWatch */,
 				766E175A2C69C7C9004C0163 /* KimnJangWatchTests */,
-				766E17642C69C7C9004C0163 /* KimnJangWatchUITests */,
 				766E17422C69C7C7004C0163 /* Products */,
 			);
 			indentWidth = 2;
@@ -178,6 +213,7 @@
 				766E17742C69C8C1004C0163 /* Common */,
 				766E17752C69C8CF004C0163 /* Model */,
 				766E17762C69C8F1004C0163 /* View */,
+				765E853C2C6B443500F928D7 /* TestNotificationViewController.swift */,
 				766E17772C69C8F5004C0163 /* ViewModel */,
 				765E85432C6B5EA200F928D7 /* Assets */,
 				766E174F2C69C7C9004C0163 /* LaunchScreen.storyboard */,
@@ -194,15 +230,6 @@
 			path = KimnJangWatchTests;
 			sourceTree = "<group>";
 		};
-		766E17642C69C7C9004C0163 /* KimnJangWatchUITests */ = {
-			isa = PBXGroup;
-			children = (
-				766E17652C69C7C9004C0163 /* KimnJangWatchUITests.swift */,
-				766E17672C69C7C9004C0163 /* KimnJangWatchUITestsLaunchTests.swift */,
-			);
-			path = KimnJangWatchUITests;
-			sourceTree = "<group>";
-		};
 		766E17742C69C8C1004C0163 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,10 +242,7 @@
 		766E17752C69C8CF004C0163 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F45957EB2C6B788800AFEB69 /* WorlTime */,
-				766E177A2C69C9B9004C0163 /* MainModel.swift */,
 				765E853A2C6A87F900F928D7 /* NotificationManager.swift */,
-				DD0DC5392C6B4B910090B1DF /* AlarmViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -226,16 +250,11 @@
 		766E17762C69C8F1004C0163 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F45957EC2C6B789F00AFEB69 /* WorldTime */,
-				E797FDAC2C6B559500D6ABE6 /* TimerView */,
 				766E17482C69C7C7004C0163 /* TabBarController.swift */,
-				765E853C2C6B443500F928D7 /* TestNotificationViewController.swift */,
-				9FE1E0E62C69FE2F003C448E /* StopWatchController.swift */,
-				DDC1F5FB2C69FD36003FCDB3 /* AlarmView.swift */,
-				DDC1F5FD2C69FD45003FCDB3 /* AlarmViewController.swift */,
-				DDC1F5FF2C6A0EAA003FCDB3 /* AlarmListCell.swift */,
-				DD0DC5352C6B16270090B1DF /* AddAlarmViewController.swift */,
-				DD0DC5372C6B34910090B1DF /* AddAlarmView.swift */,
+				F45957EC2C6B789F00AFEB69 /* WorldTime */,
+				765E85462C6B83D500F928D7 /* Alarm */,
+				765E85472C6B83F100F928D7 /* StopWatch */,
+				E797FDAC2C6B559500D6ABE6 /* Timer */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -243,9 +262,10 @@
 		766E17772C69C8F5004C0163 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				766E177E2C69C9DE004C0163 /* MainViewModel.swift */,
-				9FE1E0E82C6B1A48003C448E /* StopWatchViewModel.swift */,
-				E797FDAF2C6B67E500D6ABE6 /* TimerViewModel.swift */,
+				F45957EB2C6B788800AFEB69 /* WorldTime */,
+				765E85492C6B845500F928D7 /* Alarm */,
+				765E854A2C6B846A00F928D7 /* StopWatch */,
+				765E85482C6B844900F928D7 /* Timer */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -258,13 +278,23 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		F45957EB2C6B788800AFEB69 /* WorlTime */ = {
+		E797FDAC2C6B559500D6ABE6 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				E797FDA82C6ADA9900D6ABE6 /* TimerViewController.swift */,
+				E797FDAA2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift */,
+				E797FDAD2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		F45957EB2C6B788800AFEB69 /* WorldTime */ = {
 			isa = PBXGroup;
 			children = (
 				F45957E92C6A657500AFEB69 /* TimeZoneModalViewModel.swift */,
 				F45957E32C69E37400AFEB69 /* WorldTimeViewModel.swift */,
 			);
-			path = WorlTime;
+			path = WorldTime;
 			sourceTree = "<group>";
 		};
 		F45957EC2C6B789F00AFEB69 /* WorldTime */ = {
@@ -275,14 +305,6 @@
 				F45957E52C69FC4300AFEB69 /* WorldTimeCell.swift */,
 			);
 			path = WorldTime;
-		E797FDAC2C6B559500D6ABE6 /* TimerView */ = {
-			isa = PBXGroup;
-			children = (
-				E797FDA82C6ADA9900D6ABE6 /* TimerViewController.swift */,
-				E797FDAA2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift */,
-				E797FDAD2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift */,
-			);
-			path = TimerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,7 +329,7 @@
 				766E17862C69CA28004C0163 /* RxRelay */,
 				766E17882C69CA28004C0163 /* RxSwift */,
 			);
-			productName = "Kim&JangWatch";
+			productName = KimnJangWatch;
 			productReference = 766E17412C69C7C7004C0163 /* KimnJangWatch.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -325,7 +347,7 @@
 				766E17592C69C7C9004C0163 /* PBXTargetDependency */,
 			);
 			name = KimnJangWatchTests;
-			productName = "Kim&JangWatchTests";
+			productName = KimnJangWatchTests;
 			productReference = 766E17572C69C7C9004C0163 /* KimnJangWatchTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -343,7 +365,7 @@
 				766E17632C69C7C9004C0163 /* PBXTargetDependency */,
 			);
 			name = KimnJangWatchUITests;
-			productName = "Kim&JangWatchUITests";
+			productName = KimnJangWatchUITests;
 			productReference = 766E17612C69C7C9004C0163 /* KimnJangWatchUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
@@ -433,7 +455,6 @@
 				9FE1E0E72C69FE2F003C448E /* StopWatchController.swift in Sources */,
 				DDC1F5FE2C69FD45003FCDB3 /* AlarmViewController.swift in Sources */,
 				E797FDB02C6B67E500D6ABE6 /* TimerViewModel.swift in Sources */,
-				766E177F2C69C9DE004C0163 /* MainViewModel.swift in Sources */,
 				766E178F2C69CBA2004C0163 /* UIColor+Extensions.swift in Sources */,
 				F45957E22C69E2F800AFEB69 /* WorldTimeViewController.swift in Sources */,
 				DD0DC5382C6B34910090B1DF /* AddAlarmView.swift in Sources */,
@@ -448,14 +469,12 @@
 				766E17452C69C7C7004C0163 /* AppDelegate.swift in Sources */,
 				F45957E82C6A02B900AFEB69 /* TimeZoneModalViewController.swift in Sources */,
 				F45957E42C69E37400AFEB69 /* WorldTimeViewModel.swift in Sources */,
-				766E177B2C69C9B9004C0163 /* MainModel.swift in Sources */,
 				F45957EA2C6A657500AFEB69 /* TimeZoneModalViewModel.swift in Sources */,
 				DDC1F6002C6A0EAA003FCDB3 /* AlarmListCell.swift in Sources */,
 				DD0DC5362C6B16270090B1DF /* AddAlarmViewController.swift in Sources */,
 				766E17452C69C7C7004C0163 /* AppDelegate.swift in Sources */,
 				DDC1F5FC2C69FD36003FCDB3 /* AlarmView.swift in Sources */,
 				E797FDAB2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift in Sources */,
-				766E177B2C69C9B9004C0163 /* MainModel.swift in Sources */,
 				E797FDAE2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,8 +491,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				766E17682C69C7C9004C0163 /* KimnJangWatchUITestsLaunchTests.swift in Sources */,
-				766E17662C69C7C9004C0163 /* KimnJangWatchUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,7 +650,7 @@
 				DEVELOPMENT_TEAM = 72GVCX2P2A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KimnJangWatch/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Kim&Jang";
+				INFOPLIST_KEY_CFBundleDisplayName = KimnJang;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -662,7 +679,7 @@
 				DEVELOPMENT_TEAM = 72GVCX2P2A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KimnJangWatch/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Kim&Jang";
+				INFOPLIST_KEY_CFBundleDisplayName = KimnJang;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
