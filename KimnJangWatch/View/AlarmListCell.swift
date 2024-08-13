@@ -17,6 +17,7 @@ class AlarmListCell: UITableViewCell {
     let label = UILabel()
     label.font = .boldSystemFont(ofSize: 30)
     label.textColor = .lightGray
+    label.text = "14:30"
     return label
   }()
   
@@ -24,6 +25,7 @@ class AlarmListCell: UITableViewCell {
     let label = UILabel()
     label.font = .systemFont(ofSize: 10)
     label.textColor = .lightGray
+    label.text = "알람"
     return label
   }()
   
@@ -37,7 +39,6 @@ class AlarmListCell: UITableViewCell {
       onOff
     ].forEach { contentView.addSubview($0) }
     setConstraints()
-    self.backgroundColor = .red
   }
   
   required init?(coder: NSCoder) {
@@ -51,13 +52,14 @@ class AlarmListCell: UITableViewCell {
     }
     
     dayLabel.snp.makeConstraints {
-      $0.leading.equalToSuperview()
-      $0.top.equalTo(timeLabel.snp.bottom).inset(5)
+      $0.leading.equalTo(timeLabel)
+      $0.top.equalTo(timeLabel.snp.bottom).offset(5)
+      $0.bottom.equalToSuperview().inset(10)
     }
     
     onOff.snp.makeConstraints {
-      $0.trailing.equalToSuperview()
+      $0.trailing.equalToSuperview().inset(10)
+      $0.centerY.equalToSuperview()
     }
-    
   }
 }

@@ -13,7 +13,6 @@ class AlarmView: UIView {
   
   lazy var alarmList: UITableView = {
     let tableView = UITableView()
-    tableView.backgroundColor = .dangn
     return tableView
   }()
   
