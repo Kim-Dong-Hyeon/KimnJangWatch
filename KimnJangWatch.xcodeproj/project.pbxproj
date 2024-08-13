@@ -27,6 +27,9 @@
 		766E178D2C69CA4F004C0163 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 766E178C2C69CA4F004C0163 /* README.md */; };
 		766E178F2C69CBA2004C0163 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E178E2C69CBA2004C0163 /* UIColor+Extensions.swift */; };
 		E797FDA92C6ADA9900D6ABE6 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDA82C6ADA9900D6ABE6 /* TimerViewController.swift */; };
+		E797FDAB2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDAA2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift */; };
+		E797FDAE2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDAD2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift */; };
+		E797FDB02C6B67E500D6ABE6 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDAF2C6B67E500D6ABE6 /* TimerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,9 @@
 		766E178C2C69CA4F004C0163 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		766E178E2C69CBA2004C0163 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		E797FDA82C6ADA9900D6ABE6 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		E797FDAA2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTimerTableViewCell.swift; sourceTree = "<group>"; };
+		E797FDAD2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTimerTableViewCell.swift; sourceTree = "<group>"; };
+		E797FDAF2C6B67E500D6ABE6 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,8 +180,8 @@
 		766E17762C69C8F1004C0163 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E797FDAC2C6B559500D6ABE6 /* TimerView */,
 				766E17482C69C7C7004C0163 /* TabBarController.swift */,
-				E797FDA82C6ADA9900D6ABE6 /* TimerViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -184,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				766E177E2C69C9DE004C0163 /* MainViewModel.swift */,
+				E797FDAF2C6B67E500D6ABE6 /* TimerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -194,6 +201,16 @@
 				766E17442C69C7C7004C0163 /* AppDelegate.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		E797FDAC2C6B559500D6ABE6 /* TimerView */ = {
+			isa = PBXGroup;
+			children = (
+				E797FDA82C6ADA9900D6ABE6 /* TimerViewController.swift */,
+				E797FDAA2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift */,
+				E797FDAD2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift */,
+			);
+			path = TimerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,13 +357,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E797FDB02C6B67E500D6ABE6 /* TimerViewModel.swift in Sources */,
 				766E177F2C69C9DE004C0163 /* MainViewModel.swift in Sources */,
 				766E178F2C69CBA2004C0163 /* UIColor+Extensions.swift in Sources */,
 				766E17492C69C7C7004C0163 /* TabBarController.swift in Sources */,
 				E797FDA92C6ADA9900D6ABE6 /* TimerViewController.swift in Sources */,
 				766E177D2C69C9CD004C0163 /* MainCommon.swift in Sources */,
 				766E17452C69C7C7004C0163 /* AppDelegate.swift in Sources */,
+				E797FDAB2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift in Sources */,
 				766E177B2C69C9B9004C0163 /* MainModel.swift in Sources */,
+				E797FDAE2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

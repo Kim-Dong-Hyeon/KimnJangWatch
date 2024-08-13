@@ -24,19 +24,19 @@ class TimerViewController: UIViewController {
   
   private var mainTimerView: UIView = {
     let view = UIView()
-    view.backgroundColor = .yellow
+    // view.backgroundColor = .yellow
     return view
   }()
   
   private var currentTimerView: UIView = {
     let view = UIView()
-    view.backgroundColor = .orange
+    // view.backgroundColor = .orange
     return view
   }()
   
   private var recentTimerView: UIView = {
     let view = UIView()
-    view.backgroundColor = .purple
+    // view.backgroundColor = .purple
     return view
   }()
   
@@ -50,9 +50,9 @@ class TimerViewController: UIViewController {
   private lazy var startButton: UIButton = {
     let button = UIButton()
     button.setTitle("시작", for: .normal)
-    button.setTitleColor(.green, for: .normal)
+    button.setTitleColor(.dangn, for: .normal)
     button.layer.cornerRadius = 35
-    button.backgroundColor = .green.withAlphaComponent(0.2)
+    button.backgroundColor = .dangn.withAlphaComponent(0.2)
     button.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
     return button
   }()
@@ -67,7 +67,7 @@ class TimerViewController: UIViewController {
     return button
   }()
   
-  private var buttonStackView: UIStackView = {
+  private lazy var buttonStackView: UIStackView = {
     let stackView = UIStackView()
     stackView.axis = .horizontal
     stackView.spacing = 150
@@ -75,22 +75,25 @@ class TimerViewController: UIViewController {
   }()
   
   // MARK: currentTimerView 영역
-  private var currentTableView: UITableView = {
+  private lazy var currentTableView: UITableView = {
     let tableView = UITableView()
     tableView.backgroundColor = .gray
     return tableView
   }()
   
   // MARK: recentTimerView 영역
-  private var recentLabel: UILabel = {
+  private lazy var recentLabel: UILabel = {
     let label = UILabel()
     label.text = "최근 항목"
     label.font = .systemFont(ofSize: 24, weight: .bold)
     return label
   }()
   
-  private var recentTableView: UITableView = {
+  private lazy var recentTableView: UITableView = {
     let tableView = UITableView()
+    tableView.register(RecentTimerTableViewCell.self, forCellReuseIdentifier: RecentTimerTableViewCell.id)
+    tableView.delegate = self
+    tableView.dataSource = self
     tableView.backgroundColor = .gray
     return tableView
   }()
@@ -135,7 +138,9 @@ class TimerViewController: UIViewController {
     setRecentTimerView()
     setCurrentTimerView()
     
-    [mainTimerView, currentTimerView, recentTimerView].forEach { mainStackView.addArrangedSubview($0) }
+    [mainTimerView,
+     currentTimerView,
+     recentTimerView].forEach { mainStackView.addArrangedSubview($0) }
     
     scrollView.snp.makeConstraints {
       $0.edges.equalTo(view.safeAreaLayoutGuide)
@@ -149,6 +154,14 @@ class TimerViewController: UIViewController {
     mainTimerView.snp.makeConstraints {
       $0.height.equalTo(350)
     }
+    
+    currentTimerView.snp.makeConstraints {
+      $0.height.equalTo(350)
+    }
+    
+    recentTimerView.snp.makeConstraints {
+      $0.height.equalTo(350)
+    }    
   }
   
   private func setMainTimerView() {
@@ -192,8 +205,29 @@ class TimerViewController: UIViewController {
     
     recentTableView.snp.makeConstraints {
       $0.top.equalTo(recentLabel.snp.bottom).offset(10)
-      $0.leading.trailing.equalToSuperview()
+      $0.leading.trailing.equalToSuperview().inset(20)
+      $0.bottom.equalToSuperview().offset(-10)
     }
     
+  }
+}
+
+extension TimerViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 100
+  }
+}
+
+extension TimerViewController: UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 5
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let cell = recentTableView
+      .dequeueReusableCell(withIdentifier: RecentTimerTableViewCell.id, for: indexPath) as? RecentTimerTableViewCell else {
+      return UITableViewCell()
+    }
+    return cell
   }
 }
