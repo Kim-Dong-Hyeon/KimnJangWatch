@@ -176,9 +176,8 @@
 		766E17752C69C8CF004C0163 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F45957EB2C6B788800AFEB69 /* WorlTime */,
 				766E177A2C69C9B9004C0163 /* MainModel.swift */,
-				F45957E32C69E37400AFEB69 /* WorldTimeViewModel.swift */,
-				F45957E92C6A657500AFEB69 /* TimeZoneModalViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -186,10 +185,8 @@
 		766E17762C69C8F1004C0163 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F45957EC2C6B789F00AFEB69 /* WorldTime */,
 				766E17482C69C7C7004C0163 /* TabBarController.swift */,
-				F45957E12C69E2F800AFEB69 /* WorldTimeViewController.swift */,
-				F45957E52C69FC4300AFEB69 /* WorldTimeCell.swift */,
-				F45957E72C6A02B900AFEB69 /* TimeZoneModalViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -208,6 +205,25 @@
 				766E17442C69C7C7004C0163 /* AppDelegate.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		F45957EB2C6B788800AFEB69 /* WorlTime */ = {
+			isa = PBXGroup;
+			children = (
+				F45957E92C6A657500AFEB69 /* TimeZoneModalViewModel.swift */,
+				F45957E32C69E37400AFEB69 /* WorldTimeViewModel.swift */,
+			);
+			path = WorlTime;
+			sourceTree = "<group>";
+		};
+		F45957EC2C6B789F00AFEB69 /* WorldTime */ = {
+			isa = PBXGroup;
+			children = (
+				F45957E72C6A02B900AFEB69 /* TimeZoneModalViewController.swift */,
+				F45957E12C69E2F800AFEB69 /* WorldTimeViewController.swift */,
+				F45957E52C69FC4300AFEB69 /* WorldTimeCell.swift */,
+			);
+			path = WorldTime;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
