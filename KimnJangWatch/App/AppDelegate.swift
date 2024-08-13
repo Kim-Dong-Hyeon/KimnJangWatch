@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // 기본 윈도우 설정
     let window = UIWindow(frame: UIScreen.main.bounds)
-    window.rootViewController = TabBarController()
+    window.rootViewController = AlarmViewController()
     window.makeKeyAndVisible()
     
     self.window = window
