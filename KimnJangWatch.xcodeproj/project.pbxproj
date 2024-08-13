@@ -10,6 +10,7 @@
 		765E85342C69CFC900F928D7 /* CodeConvention.md in Resources */ = {isa = PBXBuildFile; fileRef = 765E85332C69CFC900F928D7 /* CodeConvention.md */; };
 		765E85362C69CFD900F928D7 /* CommitConvention.md in Resources */ = {isa = PBXBuildFile; fileRef = 765E85352C69CFD900F928D7 /* CommitConvention.md */; };
 		765E853B2C6A87F900F928D7 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765E853A2C6A87F900F928D7 /* NotificationManager.swift */; };
+		765E853D2C6B443500F928D7 /* TestNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765E853C2C6B443500F928D7 /* TestNotificationViewController.swift */; };
 		766E17452C69C7C7004C0163 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17442C69C7C7004C0163 /* AppDelegate.swift */; };
 		766E17492C69C7C7004C0163 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17482C69C7C7004C0163 /* TabBarController.swift */; };
 		766E174E2C69C7C9004C0163 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 766E174D2C69C7C9004C0163 /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		765E85332C69CFC900F928D7 /* CodeConvention.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CodeConvention.md; sourceTree = "<group>"; };
 		765E85352C69CFD900F928D7 /* CommitConvention.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CommitConvention.md; sourceTree = "<group>"; };
 		765E853A2C6A87F900F928D7 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		765E853C2C6B443500F928D7 /* TestNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNotificationViewController.swift; sourceTree = "<group>"; };
 		766E17412C69C7C7004C0163 /* KimnJangWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KimnJangWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		766E17442C69C7C7004C0163 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		766E17482C69C7C7004C0163 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				766E17482C69C7C7004C0163 /* TabBarController.swift */,
+				765E853C2C6B443500F928D7 /* TestNotificationViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				766E17492C69C7C7004C0163 /* TabBarController.swift in Sources */,
 				766E177D2C69C9CD004C0163 /* MainCommon.swift in Sources */,
 				765E853B2C6A87F900F928D7 /* NotificationManager.swift in Sources */,
+				765E853D2C6B443500F928D7 /* TestNotificationViewController.swift in Sources */,
 				766E17452C69C7C7004C0163 /* AppDelegate.swift in Sources */,
 				766E177B2C69C9B9004C0163 /* MainModel.swift in Sources */,
 			);
