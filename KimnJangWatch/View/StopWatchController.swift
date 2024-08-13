@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 final class StopWatchController: UIViewController {
-//  var labData = [LapModel(time: <#Date#>)]
+
   
   let timeStackView = {
     let x = UIStackView()
@@ -21,31 +21,31 @@ final class StopWatchController: UIViewController {
     let x = UIStackView()
     x.axis = .horizontal
     x.distribution = .fillProportionally
+    x.spacing = 200
     return x
   }()
   
   lazy var timerLabel = {
     let x = UILabel()
-    x.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+    x.font = UIFont.systemFont(ofSize: 48, weight: .bold)
     x.textAlignment = .center
     x.textColor = .black
-    x.text = "00:00:00"
+    x.text = "00:00.00"
     return x
   }()
   lazy var resetButton = {
     let x = UIButton()
     x.setTitle("랩", for: .normal)
     x.setTitleColor(.red, for: .normal)
-    x.layer.cornerRadius = 10
+    x.layer.cornerRadius = 25
     x.backgroundColor = UIColor.lightGray
-    
     return x
   }()
   lazy var startButton = {
     let x = UIButton()
     x.setTitle("시작", for: .normal)
     x.setTitleColor(.green, for: .normal)
-    x.layer.cornerRadius = 10
+    x.layer.cornerRadius = 25
     x.backgroundColor = UIColor.lightGray
     return x
   }()
@@ -96,6 +96,9 @@ final class StopWatchController: UIViewController {
         $0.leading.trailing.equalTo(self.view.safeAreaLayoutGuide).inset(15)
         $0.height.equalTo(300)
       }
+//      timerLabel.snp.makeConstraints{
+//        $0.height.equalTo(100)
+//      }
       resetButton.snp.makeConstraints{
         $0.height.width.equalTo(50)
       }
@@ -148,7 +151,7 @@ final class LapViewCell: UITableViewCell {
   }()
   let timeLabel = {
     let x = UILabel()
-    x.text = "00:00:00"
+    x.text = "00:00.00"
     x.textAlignment = .right
     x.font = UIFont.systemFont(ofSize: 18)
     return x
