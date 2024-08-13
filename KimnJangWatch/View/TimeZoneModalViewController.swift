@@ -13,7 +13,7 @@ import RxSwift
 
 class TimeZoneModalViewController: UIViewController {
   
-  let cities = Observable.just(TimeZone.knownTimeZoneIdentifiers)
+  var viewModel: TimeZoneModalViewModel!
   let disposeBag = DisposeBag()
   
   let titleLabel: UILabel = {
@@ -36,34 +36,16 @@ class TimeZoneModalViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    viewModel = TimeZoneModalViewModel()
+    tableView.dataSource = self
     setLayout()
-    setTableView()
     tableViewTapped()
   }
-  
-  func setTableView() {
-    cities
-      .bind(to: tableView.rx.items) { (tableView, row, element) in
-        let cell = UITableViewCell()
-        let country = TimeZone(identifier: element)?.localizedName(for: .shortGeneric, locale: Locale(identifier: "ko_KR")) ?? ""
-        cell.textLabel?.text = country
-        return cell
-      }
-      .disposed(by: disposeBag)
-  }
-  
+
   func tableViewTapped() {
-    var cityString = ""
     tableView.rx.itemSelected
       .subscribe(onNext: { [weak self] indexPath in
-        // tap한 cell 도시 WorlTimeVC로 넘기기
-        self?.cities.compactMap { array in
-          array.indices.contains(indexPath.row) ? array[indexPath.row] : nil
-        }.subscribe(onNext: { city in
-          cityString = city
-        })
-        .disposed(by: self!.disposeBag)
-        print(cityString)
+        print(self?.viewModel.identifiers[indexPath.row])
         self?.dismiss(animated: true)
       })
       .disposed(by: disposeBag)
@@ -83,7 +65,6 @@ class TimeZoneModalViewController: UIViewController {
     searchBar.snp.makeConstraints {
       $0.top.equalTo(titleLabel.snp.bottom).offset(8)
       $0.left.right.equalToSuperview()
-//      $0.height.equalTo(30)
     }
     
     tableView.snp.makeConstraints {
@@ -91,5 +72,18 @@ class TimeZoneModalViewController: UIViewController {
       $0.left.right.bottom.equalToSuperview()
     }
   }
+}
+
+extension TimeZoneModalViewController: UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return viewModel.identifiers.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = UITableViewCell()
+    cell.textLabel?.text = viewModel.identifiers[indexPath.row].kor
+    return cell
+  }
+  
   
 }

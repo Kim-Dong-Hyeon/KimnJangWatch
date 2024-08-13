@@ -60,7 +60,7 @@ class WorldTimeViewController: UIViewController {
   }
   
   func setLayout() {
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
   }
   
   func timeZoneModalPresent() {
