@@ -6,7 +6,38 @@
 //
 
 import UIKit
+import SnapKit
 
 class TestNotificationViewController: UIViewController {
   
+  private let triggerButton: UIButton = {
+    let button = UIButton(type: .system)
+    button.setTitle("Trigger Notification in 5 seconds", for: .normal)
+    button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+    button.addTarget(self, action: #selector(triggerNotification), for: .touchUpInside)
+    return button
+  }()
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    configureUI()
+  }
+  
+  private func configureUI() {
+    view.backgroundColor = .white
+    view.addSubview(triggerButton)
+    
+    triggerButton.snp.makeConstraints { make in
+      make.center.equalToSuperview()
+    }
+  }
+  
+  @objc private func triggerNotification() {
+    let date = Date().addingTimeInterval(5) // 5초 후 알림 트리거
+    NotificationManager.shared.scheduleNotification(at: date, with: "test 알림입니다")
+    
+    let alert = UIAlertController(title: "알림 예약됨", message: "알림이 5초 뒤에 울립니다.", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    present(alert, animated: true, completion: nil)
+  }
 }
