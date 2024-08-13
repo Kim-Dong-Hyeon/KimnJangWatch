@@ -11,16 +11,19 @@ class TabBarController: UITabBarController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
+    
+    let worldTimeVC = UINavigationController(rootViewController: WorldTimeViewController())
+    worldTimeVC.tabBarItem = UITabBarItem(title: "세계 시간", image: UIImage(systemName: "globe"), tag: 0)
+    
+    let stopWatchController = UINavigationController(rootViewController: StopWatchController())
+    stopWatchController.tabBarItem = UITabBarItem(title: "스톱워치", image: UIImage(systemName: "stopwatch"), tag: 1)
     
     let testNotificationVC = UINavigationController(rootViewController: TestNotificationViewController())
+    testNotificationVC.tabBarItem = UITabBarItem(title: "알림 Test", image: UIImage(systemName: "globe"), tag: 2)
     
-    testNotificationVC.tabBarItem = UITabBarItem(title: "알림 Test", image: UIImage(systemName: "globe"), selectedImage: UIImage(systemName: "globe"))
-    
-    self.setViewControllers([testNotificationVC], animated: true)
+    self.setViewControllers([worldTimeVC, stopWatchController, testNotificationVC], animated: true)
+    // Do any additional setup after loading the view.
     
   }
   
-  
 }
-
