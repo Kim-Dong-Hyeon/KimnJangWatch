@@ -9,13 +9,44 @@ import UIKit
 import SnapKit
 
 class TimerViewController: UIViewController {
-
+  
+  private let scrollView = UIScrollView()
+  
+  // MARK: mainStackView 및 주요 View 영역
+  private var mainStackView: UIStackView = {
+    let stackView = UIStackView()
+    stackView.axis = .vertical
+    stackView.spacing = 10
+    stackView.alignment = .fill
+    stackView.distribution = .fill
+    return stackView
+  }()
+  
+  private var mainTimerView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .yellow
+    return view
+  }()
+  
+  private var currentTimerView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .orange
+    return view
+  }()
+  
+  private var recentTimerView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .purple
+    return view
+  }()
+  
+  // MARK: mainTimerView UI 영역
   private lazy var timerPicker: UIDatePicker = {
     let timerPicker = UIDatePicker()
     timerPicker.datePickerMode = .countDownTimer
     return timerPicker
   }()
-    
+  
   private lazy var startButton: UIButton = {
     let button = UIButton()
     button.setTitle("시작", for: .normal)
@@ -25,7 +56,7 @@ class TimerViewController: UIViewController {
     button.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
     return button
   }()
-    
+  
   private lazy var cancelButton: UIButton = {
     let button = UIButton()
     button.setTitle("취소", for: .normal)
@@ -35,20 +66,43 @@ class TimerViewController: UIViewController {
     button.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
     return button
   }()
-    
+  
   private var buttonStackView: UIStackView = {
     let stackView = UIStackView()
     stackView.axis = .horizontal
     stackView.spacing = 150
     return stackView
   }()
-
+  
+  // MARK: currentTimerView 영역
+  private var currentTableView: UITableView = {
+    let tableView = UITableView()
+    tableView.backgroundColor = .gray
+    return tableView
+  }()
+  
+  // MARK: recentTimerView 영역
+  private var recentLabel: UILabel = {
+    let label = UILabel()
+    label.text = "최근 항목"
+    label.font = .systemFont(ofSize: 24, weight: .bold)
+    return label
+  }()
+  
+  private var recentTableView: UITableView = {
+    let tableView = UITableView()
+    tableView.backgroundColor = .gray
+    return tableView
+  }()
+  
+  // MARK: 뷰 생애주기
   override func viewDidLoad() {
     super.viewDidLoad()
-    configUI()
-    addSubViews()
+    configNavigationUI()
+    setAllView()
   }
   
+  // MARK: 버튼 액션
   @objc func editButtonTapped() {
     
   }
@@ -60,8 +114,9 @@ class TimerViewController: UIViewController {
   @objc func cancelButtonTapped() {
     
   }
-    
-  func configUI() {
+  
+  // MARK: UI
+  private func configNavigationUI() {
     view.backgroundColor = .white
     self.navigationController?.navigationBar.prefersLargeTitles = true
     self.navigationItem.largeTitleDisplayMode = .automatic
@@ -72,27 +127,72 @@ class TimerViewController: UIViewController {
     self.navigationItem.leftBarButtonItem = editButton
   }
   
-  private func addSubViews() {
-    view.addSubview(timerPicker)
-    view.addSubview(buttonStackView)
+  private func setAllView() {
+    view.addSubview(scrollView)
+    scrollView.addSubview(mainStackView)
+    
+    setMainTimerView()
+    setRecentTimerView()
+    setCurrentTimerView()
+    
+    [mainTimerView, currentTimerView, recentTimerView].forEach { mainStackView.addArrangedSubview($0) }
+    
+    scrollView.snp.makeConstraints {
+      $0.edges.equalTo(view.safeAreaLayoutGuide)
+    }
+    
+    mainStackView.snp.makeConstraints {
+      $0.edges.equalTo(scrollView)
+      $0.width.equalTo(scrollView.snp.width)
+    }
+    
+    mainTimerView.snp.makeConstraints {
+      $0.height.equalTo(350)
+    }
+  }
+  
+  private func setMainTimerView() {
+    mainTimerView.addSubview(timerPicker)
+    mainTimerView.addSubview(buttonStackView)
     [cancelButton, startButton].forEach { buttonStackView.addArrangedSubview($0) }
+    
+    timerPicker.snp.makeConstraints {
+      $0.top.equalToSuperview()
+      $0.centerX.equalToSuperview()
+    }
     
     cancelButton.snp.makeConstraints {
       $0.width.height.equalTo(70)
     }
-    
+
     startButton.snp.makeConstraints {
       $0.width.height.equalTo(70)
-    }
-    
-    timerPicker.snp.makeConstraints {
-      $0.top.equalTo(view.safeAreaLayoutGuide)
-      $0.centerX.equalToSuperview()
     }
     
     buttonStackView.snp.makeConstraints {
       $0.top.equalTo(timerPicker.snp.bottom).offset(20)
       $0.centerX.equalToSuperview()
+    }
+  }
+  
+  private func setCurrentTimerView() {
+    currentTimerView.addSubview(currentTableView)
+    currentTableView.snp.makeConstraints {
+      $0.edges.equalToSuperview()
+    }
+  }
+  
+  private func setRecentTimerView() {
+    [recentLabel, recentTableView].forEach { recentTimerView.addSubview($0)}
+    
+    recentLabel.snp.makeConstraints {
+      $0.top.equalToSuperview()
+      $0.leading.equalToSuperview().offset(20)
+    }
+    
+    recentTableView.snp.makeConstraints {
+      $0.top.equalTo(recentLabel.snp.bottom).offset(10)
+      $0.leading.trailing.equalToSuperview()
     }
     
   }
