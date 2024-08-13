@@ -16,7 +16,8 @@ class NotificationManager {
     let content = UNMutableNotificationContent()
     content.title = "Kim&Jang"
     content.body = message
-    content.sound = UNNotificationSound.default
+//    content.sound = UNNotificationSound.default
+    content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "hummus.mp3"))
     
     let triggerDate = Calendar.current.dateComponents([.month,.day,.hour,.minute,.second], from: date)
     let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
