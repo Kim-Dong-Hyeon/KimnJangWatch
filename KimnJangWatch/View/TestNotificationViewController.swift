@@ -12,23 +12,23 @@ class TestNotificationViewController: UIViewController {
   
   private let triggerButton: UIButton = {
     let button = UIButton(type: .system)
-    button.setTitle("Trigger Notification in 5 seconds", for: .normal)
+    button.setTitle("5초 후 알림 생성", for: .normal)
     button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-    button.addTarget(self, action: #selector(triggerNotification), for: .touchUpInside)
     return button
   }()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     configureUI()
+    self.triggerButton.addTarget(self, action: #selector(triggerNotification), for: .touchUpInside)
   }
   
   private func configureUI() {
     view.backgroundColor = .white
     view.addSubview(triggerButton)
     
-    triggerButton.snp.makeConstraints { make in
-      make.center.equalToSuperview()
+    triggerButton.snp.makeConstraints {
+      $0.center.equalToSuperview()
     }
   }
   

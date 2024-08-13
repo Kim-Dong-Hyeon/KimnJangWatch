@@ -24,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     self.window = window
     
+    // UNUserNotificationCenter의 delegate 설정
+    UNUserNotificationCenter.current().delegate = self
+
     return true
   }
   
@@ -38,3 +41,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+  // 앱이 foreground 상태일 때 알림을 처리하는 메서드
+  func userNotificationCenter(_ center: UNUserNotificationCenter,
+                              willPresent notification: UNNotification,
+                              withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    // 알림을 화면에 표시
+    completionHandler([.banner, .list, .sound])
+  }
+}
