@@ -25,6 +25,7 @@ class CurrentTimerViewController: UIViewController {
     tableView.delegate = self
     tableView.dataSource = self
     tableView.backgroundColor = .gray
+    tableView.isScrollEnabled = false
     return tableView
   }()
   
@@ -45,7 +46,13 @@ class CurrentTimerViewController: UIViewController {
       $0.top.equalTo(currentLabel.snp.bottom).offset(10)
       $0.leading.trailing.equalToSuperview().inset(20)
       $0.bottom.equalToSuperview().offset(-10)
+      $0.height.equalTo(tableViewHeight())
     }
+  }
+  
+  private func tableViewHeight() -> CGFloat {
+    let rowsCount = tableView(currentTableView, numberOfRowsInSection: 0)
+    return CGFloat(rowsCount) * 100
   }
 }
   
