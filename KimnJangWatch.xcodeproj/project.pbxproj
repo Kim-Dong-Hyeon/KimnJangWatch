@@ -12,6 +12,7 @@
 		765E853B2C6A87F900F928D7 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765E853A2C6A87F900F928D7 /* NotificationManager.swift */; };
 		765E853D2C6B443500F928D7 /* TestNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765E853C2C6B443500F928D7 /* TestNotificationViewController.swift */; };
 		765E85452C6B5EDD00F928D7 /* hummus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 765E85442C6B5EDD00F928D7 /* hummus.mp3 */; };
+		765E854B2C6C33C400F928D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17442C69C7C7004C0163 /* AppDelegate.swift */; };
 		766E17492C69C7C7004C0163 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17482C69C7C7004C0163 /* TabBarController.swift */; };
 		766E174E2C69C7C9004C0163 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 766E174D2C69C7C9004C0163 /* Assets.xcassets */; };
 		766E17512C69C7C9004C0163 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 766E17502C69C7C9004C0163 /* Base */; };
@@ -52,13 +53,6 @@
 			remoteGlobalIDString = 766E17402C69C7C7004C0163;
 			remoteInfo = KimnJangWatch;
 		};
-		766E17622C69C7C9004C0163 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 766E17392C69C7C7004C0163 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 766E17402C69C7C7004C0163;
-			remoteInfo = KimnJangWatch;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -75,7 +69,6 @@
 		766E17522C69C7C9004C0163 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		766E17572C69C7C9004C0163 /* KimnJangWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KimnJangWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		766E175B2C69C7C9004C0163 /* KimnJangWatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KimnJangWatchTests.swift; sourceTree = "<group>"; };
-		766E17612C69C7C9004C0163 /* KimnJangWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KimnJangWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		766E177C2C69C9CD004C0163 /* MainCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCommon.swift; sourceTree = "<group>"; };
 		766E178A2C69CA42004C0163 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		766E178C2C69CA4F004C0163 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -112,13 +105,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		766E17542C69C7C9004C0163 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		766E175E2C69C7C9004C0163 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -201,7 +187,6 @@
 			children = (
 				766E17412C69C7C7004C0163 /* KimnJangWatch.app */,
 				766E17572C69C7C9004C0163 /* KimnJangWatchTests.xctest */,
-				766E17612C69C7C9004C0163 /* KimnJangWatchUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -351,24 +336,6 @@
 			productReference = 766E17572C69C7C9004C0163 /* KimnJangWatchTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		766E17602C69C7C9004C0163 /* KimnJangWatchUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 766E17712C69C7C9004C0163 /* Build configuration list for PBXNativeTarget "KimnJangWatchUITests" */;
-			buildPhases = (
-				766E175D2C69C7C9004C0163 /* Sources */,
-				766E175E2C69C7C9004C0163 /* Frameworks */,
-				766E175F2C69C7C9004C0163 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				766E17632C69C7C9004C0163 /* PBXTargetDependency */,
-			);
-			name = KimnJangWatchUITests;
-			productName = KimnJangWatchUITests;
-			productReference = 766E17612C69C7C9004C0163 /* KimnJangWatchUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -383,10 +350,6 @@
 						CreatedOnToolsVersion = 15.4;
 					};
 					766E17562C69C7C9004C0163 = {
-						CreatedOnToolsVersion = 15.4;
-						TestTargetID = 766E17402C69C7C7004C0163;
-					};
-					766E17602C69C7C9004C0163 = {
 						CreatedOnToolsVersion = 15.4;
 						TestTargetID = 766E17402C69C7C7004C0163;
 					};
@@ -411,7 +374,6 @@
 			targets = (
 				766E17402C69C7C7004C0163 /* KimnJangWatch */,
 				766E17562C69C7C9004C0163 /* KimnJangWatchTests */,
-				766E17602C69C7C9004C0163 /* KimnJangWatchUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -432,13 +394,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		766E17552C69C7C9004C0163 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		766E175F2C69C7C9004C0163 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -486,13 +441,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		766E175D2C69C7C9004C0163 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -500,11 +448,6 @@
 			isa = PBXTargetDependency;
 			target = 766E17402C69C7C7004C0163 /* KimnJangWatch */;
 			targetProxy = 766E17582C69C7C9004C0163 /* PBXContainerItemProxy */;
-		};
-		766E17632C69C7C9004C0163 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 766E17402C69C7C7004C0163 /* KimnJangWatch */;
-			targetProxy = 766E17622C69C7C9004C0163 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -737,42 +680,6 @@
 			};
 			name = Release;
 		};
-		766E17722C69C7C9004C0163 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4LTNHNC3S6;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.donghyeon.KimnJangWatchUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = KimnJangWatch;
-			};
-			name = Debug;
-		};
-		766E17732C69C7C9004C0163 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4LTNHNC3S6;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.donghyeon.KimnJangWatchUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = KimnJangWatch;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -799,15 +706,6 @@
 			buildConfigurations = (
 				766E176F2C69C7C9004C0163 /* Debug */,
 				766E17702C69C7C9004C0163 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		766E17712C69C7C9004C0163 /* Build configuration list for PBXNativeTarget "KimnJangWatchUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				766E17722C69C7C9004C0163 /* Debug */,
-				766E17732C69C7C9004C0163 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
