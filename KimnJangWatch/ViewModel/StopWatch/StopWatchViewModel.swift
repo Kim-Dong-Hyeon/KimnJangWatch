@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 enum WatchStatus {
   case start
   case stop
@@ -30,16 +31,33 @@ class StopWatchViewModel {
     case .start:
       self.watchStatus = .stop
       startTime = Date() - elapsedTime
-      self.timer = Timer.scheduledTimer(timeInterval: 0.001,
+      self.timer = Timer.scheduledTimer(timeInterval: 0.01,
                                         target: self,
                                         selector: #selector(timeUp),
                                         userInfo: nil,
                                         repeats: true)
     case .stop:
+      self.watchStatus = .start
+      timer?.invalidate()
 
-
-      print(recordList.index(recordList.endIndex, offsetBy: -1))
     }
+  }
+  @objc func didTapButton() {
+    let timeString =
+  }
+  @objc private func updateTime() {
+    elapsedTime = Date().timeIntervalSince(startTime)
+    let timeString = formattedTime(from: elapsedTime)
+  }
+  private func formattedTime(from timeInterval: TimeInterval) -> String {
+    ///(3600초가 넘어야 시간이 생김)
+    let hour = Int(timeInterval) / 3600
+    ///(Double값인 timeInterval에서 60 을 나눈값이 분의 값이 되고 그값을 60을나눈 나머지의 값이 들어감, )
+    let minute = (Int(timeInterval) / 60) % 60
+    
+    let seconds = Int(timeInterval) % 60
+    return String(format: "%02d:%02d:%02d.%02d", <#T##arguments: any CVarArg...##any CVarArg#>)
+    
   }
   
   @objc private func timeUp(){ //타임의 계산 작업
@@ -62,9 +80,9 @@ class StopWatchViewModel {
   
   
 }
-
+//앱밖을 나가게 되었을때 현재시간을 저장하고 중단상태일때는 타이머를 멈춤
 extension StopWatchViewModel {
-///앱밖을 나가게 되었을때 현재시간을 저장하고 중단상태일때는 타이머를 멈춤
+///앱이 백그라운드로 전환될때 현재시간을 저장
   @objc private func appWillEnterBackground() {
     UserDefaults.standard.set(Date(), forKey: "savedStartTime")
     UserDefaults.standard.set(elapsedTime, forKey: "savedElapsedTime")
