@@ -1,5 +1,5 @@
 //
-//  ModalViewController.swift
+//  AddAlarmViewController.swift
 //  KimnJangWatch
 //
 //  Created by 김윤홍 on 8/13/24.
