@@ -11,14 +11,15 @@ import SnapKit
 
 class AddAlarmView: UIView {
   
-  private lazy var timeView: UIDatePicker = {
+  let timeView: UIDatePicker = {
     let datePicker = UIDatePicker()
     datePicker.datePickerMode = .time
     datePicker.preferredDatePickerStyle = .wheels
+    datePicker.locale = Locale(identifier: "ko_GB")
     return datePicker
   }()
   
-  lazy var timeSetList: UITableView = {
+  private let timeSetList: UITableView = {
     let tableView = UITableView()
     tableView.backgroundColor = .lightGray
     return tableView
@@ -37,7 +38,7 @@ class AddAlarmView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func setConstraints() {
+  private func setConstraints() {
     timeView.snp.makeConstraints {
       $0.top.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
       $0.height.equalTo(self.frame.height / 4)
@@ -49,5 +50,4 @@ class AddAlarmView: UIView {
       $0.height.equalTo(self.frame.height / 4)
     }
   }
-  
 }

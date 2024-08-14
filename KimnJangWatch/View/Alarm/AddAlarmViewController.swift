@@ -14,6 +14,7 @@ class AddAlarmViewController: UIViewController {
   
   private var addAlarmView = AddAlarmView(frame: .zero)
   private let disposeBag = DisposeBag()
+  private let alarmViewModel = AlarmViewModel()
   
   override func loadView() {
     addAlarmView = AddAlarmView(frame: UIScreen.main.bounds)
@@ -32,15 +33,23 @@ class AddAlarmViewController: UIViewController {
     navigationItem.leftBarButtonItem = cancelButton()
   }
   
-  //bind? subscribe? 나중에 userDefault에 연결혀줄것을 생각하기 !
+  //bind부분과 UIBarButton 설정하는거 분리해주기
   private func saveButton() -> UIBarButtonItem {
     let button = UIButton()
     button.setTitle("저장", for: .normal)
     button.setTitleColor(UIColor.dangn, for: .normal)
     
     button.rx.tap.bind { [weak self] in
-      self?.dismiss(animated: true)
-    }.disposed(by: disposeBag)
+      let selectedDate = self?.addAlarmView.timeView.date
+      let dateFormatter = DateFormatter()
+      dateFormatter.dateFormat = "HH시 mm분"
+      let time = dateFormatter.string(from: selectedDate!)
+      var times = UserDefaults.standard.array(forKey: "times") as? [String] ?? []
+      times.append(time)
+      print(times)
+      UserDefaults.standard.set(times, forKey: "times")
+      self?.alarmViewModel.savedTimes.onNext(times)
+      self?.dismiss(animated: true)}.disposed(by: disposeBag)
     return UIBarButtonItem(customView: button)
   }
   
@@ -54,5 +63,4 @@ class AddAlarmViewController: UIViewController {
     }.disposed(by: disposeBag)
     return UIBarButtonItem(customView: button)
   }
-  
 }

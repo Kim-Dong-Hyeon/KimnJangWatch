@@ -10,6 +10,10 @@ import UIKit
 import RxSwift
 
 class AlarmViewModel {
+  var times: [String] = UserDefaults.standard.array(forKey: "times") as? [String] ?? []
+  let savedTimes: BehaviorSubject<[String]>
   
-  let ids = BehaviorSubject(value: ["1","2","3"])
+  init() {
+    self.savedTimes = BehaviorSubject(value: times)
+  }
 }
