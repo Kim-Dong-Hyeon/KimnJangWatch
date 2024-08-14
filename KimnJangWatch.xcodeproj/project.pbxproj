@@ -38,6 +38,9 @@
 		E797FDAB2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDAA2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift */; };
 		E797FDAE2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDAD2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift */; };
 		E797FDB02C6B67E500D6ABE6 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDAF2C6B67E500D6ABE6 /* TimerViewModel.swift */; };
+		E797FDB82C6C5E7C00D6ABE6 /* SetTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDB72C6C5E7C00D6ABE6 /* SetTimerViewController.swift */; };
+		E797FDBA2C6C5E9100D6ABE6 /* CurrentTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDB92C6C5E9100D6ABE6 /* CurrentTimerViewController.swift */; };
+		E797FDBC2C6C5E9B00D6ABE6 /* RecentTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDBB2C6C5E9B00D6ABE6 /* RecentTimerViewController.swift */; };
 		F45957E22C69E2F800AFEB69 /* WorldTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E12C69E2F800AFEB69 /* WorldTimeViewController.swift */; };
 		F45957E42C69E37400AFEB69 /* WorldTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E32C69E37400AFEB69 /* WorldTimeViewModel.swift */; };
 		F45957E62C69FC4300AFEB69 /* WorldTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E52C69FC4300AFEB69 /* WorldTimeCell.swift */; };
@@ -85,6 +88,9 @@
 		E797FDAA2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTimerTableViewCell.swift; sourceTree = "<group>"; };
 		E797FDAD2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTimerTableViewCell.swift; sourceTree = "<group>"; };
 		E797FDAF2C6B67E500D6ABE6 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		E797FDB72C6C5E7C00D6ABE6 /* SetTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTimerViewController.swift; sourceTree = "<group>"; };
+		E797FDB92C6C5E9100D6ABE6 /* CurrentTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTimerViewController.swift; sourceTree = "<group>"; };
+		E797FDBB2C6C5E9B00D6ABE6 /* RecentTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTimerViewController.swift; sourceTree = "<group>"; };
 		F45957E12C69E2F800AFEB69 /* WorldTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTimeViewController.swift; sourceTree = "<group>"; };
 		F45957E32C69E37400AFEB69 /* WorldTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTimeViewModel.swift; sourceTree = "<group>"; };
 		F45957E52C69FC4300AFEB69 /* WorldTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTimeCell.swift; sourceTree = "<group>"; };
@@ -267,8 +273,11 @@
 			isa = PBXGroup;
 			children = (
 				E797FDA82C6ADA9900D6ABE6 /* TimerViewController.swift */,
-				E797FDAA2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift */,
+				E797FDB72C6C5E7C00D6ABE6 /* SetTimerViewController.swift */,
+				E797FDB92C6C5E9100D6ABE6 /* CurrentTimerViewController.swift */,
+				E797FDBB2C6C5E9B00D6ABE6 /* RecentTimerViewController.swift */,
 				E797FDAD2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift */,
+				E797FDAA2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -420,6 +429,7 @@
 				E797FDA92C6ADA9900D6ABE6 /* TimerViewController.swift in Sources */,
 				766E177D2C69C9CD004C0163 /* MainCommon.swift in Sources */,
 				765E853B2C6A87F900F928D7 /* NotificationManager.swift in Sources */,
+				E797FDBC2C6C5E9B00D6ABE6 /* RecentTimerViewController.swift in Sources */,
 				765E853D2C6B443500F928D7 /* TestNotificationViewController.swift in Sources */,
 				F45957E62C69FC4300AFEB69 /* WorldTimeCell.swift in Sources */,
 				F45957E82C6A02B900AFEB69 /* TimeZoneModalViewController.swift in Sources */,
@@ -428,6 +438,8 @@
 				DDC1F6002C6A0EAA003FCDB3 /* AlarmListCell.swift in Sources */,
 				DD0DC5362C6B16270090B1DF /* AddAlarmViewController.swift in Sources */,
 				DDC1F5FC2C69FD36003FCDB3 /* AlarmView.swift in Sources */,
+				E797FDB82C6C5E7C00D6ABE6 /* SetTimerViewController.swift in Sources */,
+				E797FDBA2C6C5E9100D6ABE6 /* CurrentTimerViewController.swift in Sources */,
 				E797FDAB2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift in Sources */,
 				E797FDAE2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift in Sources */,
 			);
