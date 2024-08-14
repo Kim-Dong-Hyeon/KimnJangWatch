@@ -11,7 +11,7 @@ import SnapKit
 
 final class StopWatchController: UIViewController {
   private let viewModel = StopWatchViewModel()
-  let timeLabel = {
+  private let timeLabel = {
     let label = UILabel()
     label.font = UIFont.monospacedDigitSystemFont(ofSize: 48, weight: .bold)
     label.textAlignment = .center
@@ -19,37 +19,39 @@ final class StopWatchController: UIViewController {
     label.text = "00:00.00"
     return label
   }()
-  lazy var lapResetButton = {
+  private let lapResetButton = {
     let button = UIButton()
     button.setTitle("랩", for: .normal)
     button.setTitleColor(.red, for: .normal)
     button.layer.cornerRadius = 35
     button.backgroundColor = UIColor.lightGray
     button.isEnabled = false
-    button.addTarget(self, action: #selector(didTapLapResetButton), for: .touchUpInside)
     return button
   }()
-  lazy var startStopButton = {
+  private let startStopButton = {
     let button = UIButton()
     button.setTitle("시작", for: .normal)
     button.setTitleColor(.green, for: .normal)
     button.layer.cornerRadius = 35
     button.backgroundColor = UIColor.dangn
-    button.addTarget(self, action: #selector(didTapStartStopButton), for: .touchUpInside)
     return button
   }()
-  lazy var timeLabTableView = {
-    let tableView = UITableView()
-    tableView.register(LapViewCell.self, forCellReuseIdentifier: LapViewCell.id)
-    tableView.dataSource = self
-    tableView.delegate = self
-    return tableView
-  }()
-
+  private let timeLabTableView = UITableView()
+    
   override func viewDidLoad() {
     super.viewDidLoad()
+    viewModel.onTimeUpdate = { [weak self] timeString in
+      self?.timeLabel.text = timeString }
     self.configureUI()
     self.makeConstraints()
+    self.setupAction()
+  }
+  private func setupAction() {
+    lapResetButton.addTarget(self, action: #selector(didTapLapResetButton), for: .touchUpInside)
+    startStopButton.addTarget(self, action: #selector(didTapStartStopButton), for: .touchUpInside)
+    timeLabTableView.register(LapViewCell.self, forCellReuseIdentifier: LapViewCell.id)
+    timeLabTableView.dataSource = self
+    timeLabTableView.delegate = self
   }
   private func configureUI() {
     self.view.backgroundColor = .white
@@ -65,7 +67,6 @@ final class StopWatchController: UIViewController {
     { self.view.addSubview($0) }
     
   }
-
     private func makeConstraints() {
       timeLabel.snp.makeConstraints {
         $0.centerX.equalToSuperview()
@@ -96,7 +97,7 @@ final class StopWatchController: UIViewController {
 }
 extension StopWatchController {
   @objc private func didTapStartStopButton() {
-    
+    viewModel.didTapStartButton()
     switch viewModel.watchStatus {
     case .start:
       startStopButton.setTitle("시작", for: .normal)
@@ -111,11 +112,12 @@ extension StopWatchController {
   @objc private func didTapLapResetButton(){
     switch viewModel.watchStatus {
     case .start:
-      viewModel
+      viewModel.didTapResetButton()
       lapResetButton.setTitle("랩", for: .normal)
       lapResetButton.isEnabled = false
+      self.timeLabTableView.reloadData()
     case .stop:
-      viewModel
+      viewModel.didTapLapButton()
       timeLabTableView.reloadData()
       
     }
@@ -135,7 +137,8 @@ extension StopWatchController: UITableViewDelegate,UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: LapViewCell.id, for: indexPath) as? LapViewCell
     guard let safecell = cell else { return UITableViewCell() }
-    safecell
+    safecell.timeLabel.text = viewModel.recordList[indexPath.row]
+    safecell.lapCountLabel.text = "랩\(viewModel.lapcounts[indexPath.row])"
     return safecell
   }
   
