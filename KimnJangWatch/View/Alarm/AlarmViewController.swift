@@ -24,6 +24,7 @@ class AlarmViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    view.backgroundColor = .systemBackground
     alarmView.alarmList.register(AlarmListCell.self,
                                  forCellReuseIdentifier: AlarmListCell.identifier)
     initNavigation()
@@ -38,11 +39,12 @@ class AlarmViewController: UIViewController {
         }
       }).disposed(by: disposeBag)
     
-    alarmViewModel.ids
+    alarmViewModel.savedTimes
+      .debug()
       .bind(to: alarmView.alarmList.rx
         .items(cellIdentifier: AlarmListCell.identifier,
-               cellType: AlarmListCell.self)) { index, alarm, cell in
-        cell.timeLabel.text = "12:10"
+               cellType: AlarmListCell.self)) { _, time, cell in
+        cell.timeLabel.text = time
       }.disposed(by: disposeBag)
   }
   
@@ -56,8 +58,8 @@ class AlarmViewController: UIViewController {
   
   private func getRightBarButton() -> UIBarButtonItem {
     let button = UIButton()
-    button.setTitle("+", for: .normal)
-    button.setTitleColor(UIColor.dangn, for: .normal)
+    button.setImage(UIImage(systemName: "plus"), for: .normal)
+    button.tintColor = UIColor.dangn
     
     button.rx.tap.bind { [weak self] in
       self?.showModal()
