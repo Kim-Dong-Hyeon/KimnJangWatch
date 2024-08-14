@@ -74,14 +74,15 @@ class TimerViewController: UIViewController {
       $0.edges.equalTo(scrollView)
       $0.width.equalTo(scrollView.snp.width)
     }
+    
+    setTimerView.view.snp.makeConstraints {
+      $0.height.equalTo(350)
+    }    
   }
   
   private func addChildViewController(childContoller: UIViewController, stackView: UIStackView) {
     addChild(childContoller)
     stackView.addArrangedSubview(childContoller.view)
     childContoller.didMove(toParent: self)
-    childContoller.view.snp.makeConstraints {
-      $0.height.equalTo(500)
-    }
   }
 }

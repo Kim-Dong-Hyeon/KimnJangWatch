@@ -25,6 +25,7 @@ class RecentTimerViewController: UIViewController {
     tableView.delegate = self
     tableView.dataSource = self
     tableView.backgroundColor = .gray
+    tableView.isScrollEnabled = false
     return tableView
   }()
 
@@ -45,7 +46,13 @@ class RecentTimerViewController: UIViewController {
       $0.top.equalTo(recentLabel.snp.bottom).offset(10)
       $0.leading.trailing.equalToSuperview().inset(20)
       $0.bottom.equalToSuperview().offset(-10)
+      $0.height.equalTo(tableViewHeight())
     }
+  }
+  
+  private func tableViewHeight() -> CGFloat {
+    let rowsCount = tableView(recentTableView, numberOfRowsInSection: 0)
+    return CGFloat(rowsCount) * 100
   }
 }
 
