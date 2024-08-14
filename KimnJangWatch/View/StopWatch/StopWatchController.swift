@@ -22,22 +22,22 @@ final class StopWatchController: UIViewController {
   private let lapResetButton = {
     let button = UIButton()
     button.setTitle("랩", for: .normal)
-    button.setTitleColor(.red, for: .normal)
+    button.setTitleColor(.black, for: .normal)
     button.layer.cornerRadius = 35
-    button.backgroundColor = UIColor.lightGray
+    button.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
     button.isEnabled = false
     return button
   }()
   private let startStopButton = {
     let button = UIButton()
     button.setTitle("시작", for: .normal)
-    button.setTitleColor(.green, for: .normal)
+    button.setTitleColor(.white, for: .normal)
     button.layer.cornerRadius = 35
     button.backgroundColor = UIColor.dangn
     return button
   }()
   private let timeLabTableView = UITableView()
-    
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     viewModel.onTimeUpdate = { [weak self] timeString in
@@ -46,6 +46,7 @@ final class StopWatchController: UIViewController {
     self.makeConstraints()
     self.setupAction()
   }
+  
   private func setupAction() {
     lapResetButton.addTarget(self, action: #selector(didTapLapResetButton), for: .touchUpInside)
     startStopButton.addTarget(self, action: #selector(didTapStartStopButton), for: .touchUpInside)
@@ -58,42 +59,35 @@ final class StopWatchController: UIViewController {
     navigationItem.title = "스톱워치"
     self.navigationController?.navigationBar.prefersLargeTitles = true
     self.navigationItem.largeTitleDisplayMode = .always
-    [   
+    [
       lapResetButton,
       startStopButton,
       timeLabel,
       timeLabTableView
     ].forEach
     { self.view.addSubview($0) }
-    
   }
-    private func makeConstraints() {
-      timeLabel.snp.makeConstraints {
-        $0.centerX.equalToSuperview()
-        $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(60)
-      }
-      lapResetButton.snp.makeConstraints {
-        $0.leading.equalTo(self.view.safeAreaLayoutGuide).inset(60)
-        $0.top.equalTo(timeLabel.snp.bottom).offset(60)
-        $0.height.width.equalTo(70)
-      }
-      startStopButton.snp.makeConstraints {
-        $0.trailing.equalTo(self.view.safeAreaLayoutGuide).inset(60)
-        $0.top.equalTo(timeLabel.snp.bottom).offset(60)
-        $0.height.width.equalTo(70)
-      }
-
-      timeLabTableView.snp.makeConstraints{
-        $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(30)
-        $0.leading.trailing.equalTo(self.view.safeAreaLayoutGuide).inset(15)
-        $0.height.equalTo(300)
-      }
-
-
+  private func makeConstraints() {
+    timeLabel.snp.makeConstraints {
+      $0.centerX.equalToSuperview()
+      $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(60)
     }
-    
-  
-  
+    lapResetButton.snp.makeConstraints {
+      $0.leading.equalTo(self.view.safeAreaLayoutGuide).inset(60)
+      $0.top.equalTo(timeLabel.snp.bottom).offset(60)
+      $0.height.width.equalTo(70)
+    }
+    startStopButton.snp.makeConstraints {
+      $0.trailing.equalTo(self.view.safeAreaLayoutGuide).inset(60)
+      $0.top.equalTo(timeLabel.snp.bottom).offset(60)
+      $0.height.width.equalTo(70)
+    }
+    timeLabTableView.snp.makeConstraints{
+      $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(30)
+      $0.leading.trailing.equalTo(self.view.safeAreaLayoutGuide).inset(15)
+      $0.height.equalTo(300)
+    }
+  }
 }
 extension StopWatchController {
   @objc private func didTapStartStopButton() {
@@ -101,29 +95,30 @@ extension StopWatchController {
     switch viewModel.watchStatus {
     case .start:
       startStopButton.setTitle("시작", for: .normal)
+      startStopButton.backgroundColor = UIColor.dangn
       lapResetButton.setTitle("재시작", for: .normal)
+      lapResetButton.backgroundColor = UIColor.lightGray
       lapResetButton.isEnabled = true
     case .stop:
       startStopButton.setTitle("중단", for: .normal)
+      startStopButton.backgroundColor = UIColor.purple
       lapResetButton.setTitle("랩", for: .normal)
       lapResetButton.isEnabled = true
     }
   }
-  @objc private func didTapLapResetButton(){
+  @objc private func didTapLapResetButton() {
     switch viewModel.watchStatus {
     case .start:
       viewModel.didTapResetButton()
       lapResetButton.setTitle("랩", for: .normal)
+      lapResetButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
       lapResetButton.isEnabled = false
       self.timeLabTableView.reloadData()
     case .stop:
       viewModel.didTapLapButton()
       timeLabTableView.reloadData()
-      
     }
   }
-  
-  
 }
 
 extension StopWatchController: UITableViewDelegate,UITableViewDataSource {
@@ -141,8 +136,6 @@ extension StopWatchController: UITableViewDelegate,UITableViewDataSource {
     safecell.lapCountLabel.text = "랩\(viewModel.lapcounts[indexPath.row])"
     return safecell
   }
-  
-  
 }
 
 

@@ -11,43 +11,33 @@ import SnapKit
 
 final class LapViewCell: UITableViewCell {
   static let id = "LabViewCell"
-  let lapCountLabel = {
-    let x = UILabel()
-    x.text = "랩1"
-    x.textAlignment = .left
-    x.font = UIFont.systemFont(ofSize: 18)
-    return x
-  }()
-  let timeLabel = {
-    let x = UILabel()
-    x.text = "00:00.00"
-    x.textAlignment = .right
-    x.font = UIFont.systemFont(ofSize: 18)
-    return x
-  }()
-//half line
+  let lapCountLabel = UILabel()
+  let timeLabel = UILabel()
+
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     self.configureUI()
-    
   }
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  private func configureUI(){
-    self.addSubview(lapCountLabel)
-    self.addSubview(timeLabel)
-    lapCountLabel.snp.makeConstraints{
+  
+  private func configureUI() {
+    lapCountLabel.textAlignment = .left
+    lapCountLabel.font = UIFont.systemFont(ofSize: 18)
+    timeLabel.textAlignment = .right
+    timeLabel.font = UIFont.systemFont(ofSize: 18)
+    [
+      lapCountLabel,
+      timeLabel
+    ].forEach{ self.addSubview($0) }
+    lapCountLabel.snp.makeConstraints {
       $0.leading.equalTo(contentView).inset(20)
       $0.centerY.equalToSuperview()
-      
     }
-    timeLabel.snp.makeConstraints{
+    timeLabel.snp.makeConstraints {
       $0.trailing.equalTo(contentView).inset(20)
       $0.centerY.equalToSuperview()
     }
-    
   }
-
-  
 }
