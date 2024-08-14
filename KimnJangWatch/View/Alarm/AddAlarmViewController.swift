@@ -46,7 +46,6 @@ class AddAlarmViewController: UIViewController {
       let time = dateFormatter.string(from: selectedDate!)
       var times = UserDefaults.standard.array(forKey: "times") as? [String] ?? []
       times.append(time)
-      print(times)
       UserDefaults.standard.set(times, forKey: "times")
       self?.alarmViewModel.savedTimes.onNext(times)
       self?.dismiss(animated: true)}.disposed(by: disposeBag)
