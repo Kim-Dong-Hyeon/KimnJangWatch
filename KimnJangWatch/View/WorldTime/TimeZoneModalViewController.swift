@@ -1,5 +1,5 @@
 //
-//  TimeZoneSearchViewController.swift
+//  TimeZoneModalViewController.swift
 //  KimnJangWatch
 //
 //  Created by Soo Jang on 8/12/24.

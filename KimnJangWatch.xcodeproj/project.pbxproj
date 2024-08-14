@@ -12,7 +12,6 @@
 		765E853B2C6A87F900F928D7 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765E853A2C6A87F900F928D7 /* NotificationManager.swift */; };
 		765E853D2C6B443500F928D7 /* TestNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765E853C2C6B443500F928D7 /* TestNotificationViewController.swift */; };
 		765E85452C6B5EDD00F928D7 /* hummus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 765E85442C6B5EDD00F928D7 /* hummus.mp3 */; };
-		766E17452C69C7C7004C0163 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17442C69C7C7004C0163 /* AppDelegate.swift */; };
 		766E17492C69C7C7004C0163 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17482C69C7C7004C0163 /* TabBarController.swift */; };
 		766E174E2C69C7C9004C0163 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 766E174D2C69C7C9004C0163 /* Assets.xcassets */; };
 		766E17512C69C7C9004C0163 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 766E17502C69C7C9004C0163 /* Base */; };
@@ -466,13 +465,11 @@
 				765E853B2C6A87F900F928D7 /* NotificationManager.swift in Sources */,
 				765E853D2C6B443500F928D7 /* TestNotificationViewController.swift in Sources */,
 				F45957E62C69FC4300AFEB69 /* WorldTimeCell.swift in Sources */,
-				766E17452C69C7C7004C0163 /* AppDelegate.swift in Sources */,
 				F45957E82C6A02B900AFEB69 /* TimeZoneModalViewController.swift in Sources */,
 				F45957E42C69E37400AFEB69 /* WorldTimeViewModel.swift in Sources */,
 				F45957EA2C6A657500AFEB69 /* TimeZoneModalViewModel.swift in Sources */,
 				DDC1F6002C6A0EAA003FCDB3 /* AlarmListCell.swift in Sources */,
 				DD0DC5362C6B16270090B1DF /* AddAlarmViewController.swift in Sources */,
-				766E17452C69C7C7004C0163 /* AppDelegate.swift in Sources */,
 				DDC1F5FC2C69FD36003FCDB3 /* AlarmView.swift in Sources */,
 				E797FDAB2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift in Sources */,
 				E797FDAE2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift in Sources */,
@@ -647,10 +644,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 72GVCX2P2A;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KimnJangWatch/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = KimnJang;
+				INFOPLIST_KEY_CFBundleDisplayName = "Kim&Jang";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -676,10 +673,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 72GVCX2P2A;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KimnJangWatch/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = KimnJang;
+				INFOPLIST_KEY_CFBundleDisplayName = "Kim&Jang";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
