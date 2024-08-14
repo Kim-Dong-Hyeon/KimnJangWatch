@@ -40,7 +40,7 @@ class AlarmViewController: UIViewController {
       }).disposed(by: disposeBag)
     
     alarmViewModel.savedTimes
-      .debug()
+      //.debug()
       .bind(to: alarmView.alarmList.rx
         .items(cellIdentifier: AlarmListCell.identifier,
                cellType: AlarmListCell.self)) { _, time, cell in
