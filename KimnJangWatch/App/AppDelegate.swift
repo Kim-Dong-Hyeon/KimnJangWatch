@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Kim&JangWatch
+//  KimnJangWatch
 //
 //  Created by 김동현 on 8/12/24.
 //
