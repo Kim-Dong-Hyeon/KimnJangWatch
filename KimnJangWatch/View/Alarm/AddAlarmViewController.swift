@@ -42,7 +42,7 @@ class AddAlarmViewController: UIViewController {
     button.rx.tap.bind { [weak self] in
       let selectedDate = self?.addAlarmView.timeView.date
       let dateFormatter = DateFormatter()
-      dateFormatter.dateFormat = "HH시 mm분"
+      dateFormatter.dateFormat = "HH:mm"
       let time = dateFormatter.string(from: selectedDate!)
       var times = UserDefaults.standard.array(forKey: "times") as? [String] ?? []
       times.append(time)

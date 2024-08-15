@@ -74,6 +74,7 @@ class AlarmViewController: UIViewController {
     
     button.rx.tap.bind { [weak self] in
       self?.edit()
+      
     }.disposed(by: disposeBag)
     return UIBarButtonItem(customView: button)
   }
@@ -84,7 +85,10 @@ class AlarmViewController: UIViewController {
   }
   
   func edit() {
-    print("편집화면 구현하기")
+    let shouldBeEdited = !alarmView.alarmList.isEditing
+    alarmView.alarmList.setEditing(shouldBeEdited, animated: true)
+    let newTitle = shouldBeEdited ? "완료" : "편집"
+       (navigationItem.leftBarButtonItem?.customView as? UIButton)?.setTitle(newTitle, for: .normal)
   }
 }
 
