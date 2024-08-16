@@ -416,6 +416,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
 				765E854B2C6C33C400F928D7 /* AppDelegate.swift in Sources */,
 				9FE1E0E72C69FE2F003C448E /* StopWatchController.swift in Sources */,
 				DDC1F5FE2C69FD45003FCDB3 /* AlarmViewController.swift in Sources */,

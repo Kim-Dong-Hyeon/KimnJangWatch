@@ -19,10 +19,13 @@ class AddAlarmView: UIView {
     return datePicker
   }()
   
-  private let timeSetList: UITableView = {
-    let tableView = UITableView()
-    tableView.backgroundColor = .lightGray
-    return tableView
+  private let timeSetList: UIStackView = {
+    let stackView = UIStackView()
+    stackView.backgroundColor = .lightGray
+    stackView.layer.cornerRadius = 10
+    stackView.distribution = .fillEqually
+    stackView.axis = .vertical
+    return stackView
   }()
   
   override init(frame: CGRect) {
@@ -31,7 +34,7 @@ class AddAlarmView: UIView {
       timeView,
       timeSetList
     ].forEach { self.addSubview($0) }
-     setConstraints()
+    setConstraints()
   }
   
   required init?(coder: NSCoder) {
@@ -46,8 +49,8 @@ class AddAlarmView: UIView {
     
     timeSetList.snp.makeConstraints {
       $0.top.equalTo(timeView.snp.bottom).inset(5)
-      $0.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
-      $0.height.equalTo(self.frame.height / 4)
+      $0.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(15)
+      $0.height.equalTo(self.frame.height / 4.5)
     }
   }
 }
