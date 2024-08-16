@@ -11,7 +11,7 @@ import SnapKit
 
 class AlarmView: UIView {
   
-  lazy var alarmList: UITableView = {
+  let alarmList: UITableView = {
     let tableView = UITableView()
     return tableView
   }()

@@ -4,7 +4,7 @@
 //
 //  Created by 김윤홍 on 8/12/24.
 //
-//rootViewController 수정해야함 TabBarController로 반드시 반드시
+//편집시 rxDataSources사용 하기
 
 import UIKit
 
@@ -24,6 +24,7 @@ class AlarmViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    view.backgroundColor = .systemBackground
     alarmView.alarmList.register(AlarmListCell.self,
                                  forCellReuseIdentifier: AlarmListCell.identifier)
     initNavigation()
@@ -38,12 +39,24 @@ class AlarmViewController: UIViewController {
         }
       }).disposed(by: disposeBag)
     
-    alarmViewModel.ids
+    alarmViewModel.savedTimes
+      .debug()
+      .observe(on: MainScheduler.instance)
       .bind(to: alarmView.alarmList.rx
         .items(cellIdentifier: AlarmListCell.identifier,
-               cellType: AlarmListCell.self)) { index, alarm, cell in
-        cell.timeLabel.text = "12:10"
+               cellType: AlarmListCell.self)) { _, time, cell in
+        cell.timeLabel.text = time
       }.disposed(by: disposeBag)
+    
+    guard let right = navigationItem.rightBarButtonItem?.customView as? UIButton else { return }
+    right.rx.tap.bind { [weak self] in
+      self?.showModal()
+    }.disposed(by: disposeBag)
+    
+    guard let left = navigationItem.leftBarButtonItem?.customView as? UIButton else { return }
+    left.rx.tap.bind { [weak self] in
+      self?.edit()
+    }.disposed(by: disposeBag)
   }
   
   private func initNavigation() {
@@ -56,12 +69,8 @@ class AlarmViewController: UIViewController {
   
   private func getRightBarButton() -> UIBarButtonItem {
     let button = UIButton()
-    button.setTitle("+", for: .normal)
-    button.setTitleColor(UIColor.dangn, for: .normal)
-    
-    button.rx.tap.bind { [weak self] in
-      self?.showModal()
-    }.disposed(by: disposeBag)
+    button.setImage(UIImage(systemName: "plus"), for: .normal)
+    button.tintColor = UIColor.dangn
     return UIBarButtonItem(customView: button)
   }
   
@@ -69,20 +78,21 @@ class AlarmViewController: UIViewController {
     let button = UIButton()
     button.setTitle("편집", for: .normal)
     button.setTitleColor(UIColor.dangn, for: .normal)
-    
-    button.rx.tap.bind { [weak self] in
-      self?.edit()
-    }.disposed(by: disposeBag)
     return UIBarButtonItem(customView: button)
   }
   
-  func showModal() {
-    let modal = UINavigationController(rootViewController: AddAlarmViewController())
+  private func showModal() {
+    let addAlarmVC = AddAlarmViewController()
+    addAlarmVC.alarmViewModel = self.alarmViewModel
+    let modal = UINavigationController(rootViewController: addAlarmVC)
     present(modal, animated: true, completion: nil)
   }
   
-  func edit() {
-    print("편집화면 구현하기")
+  private func edit() {
+    let shouldBeEdited = !alarmView.alarmList.isEditing
+    alarmView.alarmList.setEditing(shouldBeEdited, animated: true)
+    let newTitle = shouldBeEdited ? "완료" : "편집"
+    (navigationItem.leftBarButtonItem?.customView as? UIButton)?.setTitle(newTitle, for: .normal)
   }
 }
 
