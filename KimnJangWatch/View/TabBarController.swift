@@ -11,6 +11,7 @@ class TabBarController: UITabBarController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.tabBar.tintColor = .dangn
     
     let worldTimeVC = UINavigationController(rootViewController: WorldTimeViewController())
     worldTimeVC.tabBarItem = UITabBarItem(title: "세계 시간", image: UIImage(systemName: "globe"), tag: 0)
