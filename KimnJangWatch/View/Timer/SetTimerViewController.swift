@@ -54,6 +54,10 @@ class SetTimerViewController: UIViewController {
     
   }
   
+  @objc func cancelButtonTapped() {
+    
+  }
+  
   private func setView() {
     view.addSubview(timerPicker)
     view.addSubview(buttonStackView)

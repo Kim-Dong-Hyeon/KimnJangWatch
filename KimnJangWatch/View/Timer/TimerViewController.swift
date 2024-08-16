@@ -8,6 +8,8 @@
 import UIKit
 
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class TimerViewController: UIViewController {
   
@@ -35,10 +37,6 @@ class TimerViewController: UIViewController {
   
   // MARK: 버튼 액션
   @objc func editButtonTapped() {
-    
-  }
-  
-  @objc func cancelButtonTapped() {
     
   }
   
