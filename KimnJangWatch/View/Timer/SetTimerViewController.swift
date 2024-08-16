@@ -7,9 +7,14 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
 import SnapKit
 
 class SetTimerViewController: UIViewController {
+  
+  private let viewModel = TimerViewModel()
+  private let disposeBag = DisposeBag()
   
   // MARK: mainTimerView UI 영역
   private lazy var timerPicker: UIDatePicker = {
@@ -24,17 +29,15 @@ class SetTimerViewController: UIViewController {
     button.setTitleColor(.dangn, for: .normal)
     button.layer.cornerRadius = 35
     button.backgroundColor = .dangn.withAlphaComponent(0.2)
-    button.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
     return button
   }()
   
-  private lazy var cancelButton: UIButton = {
+  private lazy var pauseButton: UIButton = {
     let button = UIButton()
     button.setTitle("취소", for: .normal)
     button.setTitleColor(.darkGray, for: .normal)
     button.layer.cornerRadius = 35
     button.backgroundColor = .gray.withAlphaComponent(0.5)
-    button.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
     return button
   }()
   
@@ -48,27 +51,45 @@ class SetTimerViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setView()
+    bind()
   }
   
-  @objc func startButtonTapped() {
+  private func bind() {
+    timerPicker.rx.countDownDuration
+      .bind(to: viewModel.remainingTime)
+      .disposed(by: disposeBag)
     
-  }
-  
-  @objc func cancelButtonTapped() {
+    startButton.rx.tap
+      .subscribe(onNext: { [weak self] _ in
+        self?.viewModel.startTimer()
+      }).disposed(by: disposeBag)
     
+    pauseButton.rx.tap
+      .subscribe(onNext: { [weak self] _ in
+        self?.viewModel.pauseTimer()
+      }).disposed(by: disposeBag)
+    
+    viewModel.isRunnning
+      .map { !$0 }
+      .bind(to: startButton.rx.isEnabled)
+      .disposed(by: disposeBag)
+    
+    viewModel.isRunnning
+      .bind(to: pauseButton.rx.isEnabled)
+      .disposed(by: disposeBag)
   }
   
   private func setView() {
     view.addSubview(timerPicker)
     view.addSubview(buttonStackView)
-    [cancelButton, startButton].forEach { buttonStackView.addArrangedSubview($0) }
+    [pauseButton, startButton].forEach { buttonStackView.addArrangedSubview($0) }
     
     timerPicker.snp.makeConstraints {
       $0.top.equalToSuperview()
       $0.centerX.equalToSuperview()
     }
     
-    cancelButton.snp.makeConstraints {
+    pauseButton.snp.makeConstraints {
       $0.width.height.equalTo(70)
     }
 

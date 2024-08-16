@@ -7,9 +7,9 @@
 
 import UIKit
 
-import SnapKit
-import RxSwift
 import RxCocoa
+import RxSwift
+import SnapKit
 
 class TimerViewController: UIViewController {
   

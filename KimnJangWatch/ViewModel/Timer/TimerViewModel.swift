@@ -7,8 +7,8 @@
 
 import UIKit
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
 class TimerViewModel {
   let remainingTime = BehaviorRelay<TimeInterval>(value: 0)
@@ -20,6 +20,7 @@ class TimerViewModel {
   private var disposeBag = DisposeBag()
   
   init() {
+    manageTimer()
   }
   
   func manageTimer() {
@@ -57,13 +58,13 @@ class TimerViewModel {
         let currentTime = self.remainingTime.value - 1
         self.remainingTime.accept(currentTime)
         if currentTime <= 0 {
-          self.stopTimer()
+          self.pauseTimer()
           self.endTimer.onNext(())
         }
       }).disposed(by: disposeBag)
   }
   
-  func stopTimer() {
+  func pauseTimer() {
     isRunnning.accept(false)
   }
   
@@ -81,7 +82,7 @@ class TimerViewModel {
     if isRunnning.value && newTime > 0 {
       startTimer()
     } else {
-      stopTimer()
+      pauseTimer()
     }
   }
 }
