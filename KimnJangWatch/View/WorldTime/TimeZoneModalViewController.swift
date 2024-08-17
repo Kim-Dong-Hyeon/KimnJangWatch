@@ -37,6 +37,7 @@ class TimeZoneModalViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     viewModel = TimeZoneModalViewModel()
+    searchBar.delegate = self
     tableView.dataSource = self
     setLayout()
     tableViewTapped()
@@ -46,7 +47,7 @@ class TimeZoneModalViewController: UIViewController {
     tableView.rx.itemSelected
       .subscribe(onNext: { [weak self] indexPath in
         guard let self else { return }
-        self.viewModel.addTimeZone(identifier: self.viewModel.identifiers[indexPath.row])
+        self.viewModel.addTimeZone(identifier: self.viewModel.getTableViewItems()[indexPath.row])
         self.dismiss(animated: true)
       })
       .disposed(by: disposeBag)
@@ -77,14 +78,33 @@ class TimeZoneModalViewController: UIViewController {
 
 extension TimeZoneModalViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return viewModel.identifiers.count
+    return viewModel.getTableViewItems().count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = UITableViewCell()
-    cell.textLabel?.text = viewModel.identifiers[indexPath.row].kor
+    cell.textLabel?.text = viewModel.getTableViewItems()[indexPath.row].kor
     return cell
   }
-  
-  
+}
+
+extension TimeZoneModalViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+          viewModel.clearSearchedIDs()
+        } else {
+          viewModel.getSearchedIDs(searchText: searchText)
+          tableView.reloadData()
+        }
+    }
+}
+
+extension UIViewController {
+    func hideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

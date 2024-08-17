@@ -25,8 +25,9 @@ class WorldTimeCell: UITableViewCell {
   
   let timeLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.systemFont(ofSize: 64, weight: .thin)
+    label.font = UIFont.systemFont(ofSize: 56, weight: .light)
     label.text = "11:11"
+    label.textAlignment = .left
     return label
   }()
   
@@ -49,12 +50,12 @@ class WorldTimeCell: UITableViewCell {
     
     cityLabel.snp.makeConstraints {
       $0.leading.equalToSuperview().offset(16)
-      $0.centerY.equalToSuperview()
+      $0.firstBaseline.equalTo(timeLabel.snp.firstBaseline)
     }
     
     meridiemLabel.snp.makeConstraints {
-      $0.trailing.equalTo(timeLabel.snp.leading).offset(-16)
-      $0.centerY.equalToSuperview()
+      $0.trailing.equalTo(timeLabel.snp.leading).offset(-8)
+      $0.firstBaseline.equalTo(timeLabel.snp.firstBaseline)
     }
     
     timeLabel.snp.makeConstraints {
