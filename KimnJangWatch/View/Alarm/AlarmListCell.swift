@@ -13,15 +13,16 @@ class AlarmListCell: UITableViewCell {
   
   static let identifier = "alarmCell"
   
-  lazy var timeLabel: UILabel = {
+  //timeLabel 접근제한자 확인
+  let timeLabel: UILabel = {
     let label = UILabel()
-    label.font = .boldSystemFont(ofSize: 30)
+    label.font = .systemFont(ofSize: 50, weight: .thin)
     label.textColor = .lightGray
-    label.text = "14:30"
+    label.text = ""
     return label
   }()
   
-  lazy var dayLabel: UILabel = {
+  private let dayLabel: UILabel = {
     let label = UILabel()
     label.font = .systemFont(ofSize: 10)
     label.textColor = .lightGray
@@ -29,7 +30,11 @@ class AlarmListCell: UITableViewCell {
     return label
   }()
   
-  lazy var onOff = UISwitch()
+  private let onOff: UISwitch = {
+    let onOff = UISwitch()
+    onOff.onTintColor = UIColor.dangn
+    return onOff
+  }()
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -45,7 +50,7 @@ class AlarmListCell: UITableViewCell {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func setConstraints() {
+  private func setConstraints() {
     timeLabel.snp.makeConstraints {
       $0.leading.equalToSuperview().inset(10)
       $0.top.equalToSuperview().inset(10)
