@@ -16,6 +16,7 @@ class AlarmViewController: UIViewController {
   private var alarmView = AlarmView(frame: .zero)
   private let disposeBag = DisposeBag()
   private let alarmViewModel = AlarmViewModel()
+  private var time = String()
   
   override func loadView() {
     alarmView = AlarmView(frame: UIScreen.main.bounds)
@@ -34,8 +35,9 @@ class AlarmViewController: UIViewController {
   private func bind() {
     alarmView.alarmList.rx.itemSelected
       .subscribe(onNext: { indexPath in
-        if let _ = self.alarmView.alarmList.cellForRow(at: indexPath) as? AlarmListCell {
-          self.showModal()
+        if let cell = self.alarmView.alarmList.cellForRow(at: indexPath) as? AlarmListCell {
+          self.time = cell.timeLabel.text ?? "00:00"
+          self.showModal(time: self.time)
         }
       }).disposed(by: disposeBag)
     
@@ -50,12 +52,14 @@ class AlarmViewController: UIViewController {
     
     guard let right = navigationItem.rightBarButtonItem?.customView as? UIButton else { return }
     right.rx.tap.bind { [weak self] in
-      self?.showModal()
+      guard let self = self else { return }
+      self.showModal(time: self.time)
     }.disposed(by: disposeBag)
     
     guard let left = navigationItem.leftBarButtonItem?.customView as? UIButton else { return }
     left.rx.tap.bind { [weak self] in
-      self?.edit()
+      guard let self = self else { return }
+      self.edit()
     }.disposed(by: disposeBag)
   }
   
@@ -81,8 +85,8 @@ class AlarmViewController: UIViewController {
     return UIBarButtonItem(customView: button)
   }
   
-  private func showModal() {
-    let addAlarmVC = AddAlarmViewController()
+  private func showModal(time: String) {
+    let addAlarmVC = AddAlarmViewController(time: time)
     addAlarmVC.alarmViewModel = self.alarmViewModel
     let modal = UINavigationController(rootViewController: addAlarmVC)
     present(modal, animated: true, completion: nil)
@@ -95,25 +99,3 @@ class AlarmViewController: UIViewController {
     (navigationItem.leftBarButtonItem?.customView as? UIButton)?.setTitle(newTitle, for: .normal)
   }
 }
-
-//struct PreView: PreviewProvider {
-//  static var previews: some View {
-//    AlarmViewController().toPreview()
-//  }
-//}
-//
-//#if DEBUG
-//extension UIViewController {
-//  private struct Preview: UIViewControllerRepresentable {
-//    let viewController: UIViewController
-//    func makeUIViewController(context: Context) -> UIViewController {
-//      return viewController
-//    }
-//    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-//    }
-//  }
-//  func toPreview() -> some View {
-//    Preview(viewController: self)
-//  }
-//}
-//#endif
