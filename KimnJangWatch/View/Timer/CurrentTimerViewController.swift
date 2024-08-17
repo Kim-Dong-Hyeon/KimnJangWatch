@@ -7,9 +7,14 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
 import SnapKit
 
 class CurrentTimerViewController: UIViewController {
+  
+  private let viewModel = TimerViewModel.shared
+  private let disposeBag = DisposeBag()
   
   // MARK: currentTimerView 영역
   private lazy var currentLabel: UILabel = {
@@ -32,6 +37,28 @@ class CurrentTimerViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setView()
+    bind()
+  }
+
+  private func tableViewHeight() -> CGFloat {
+    let rowsCount = tableView(currentTableView, numberOfRowsInSection: 0)
+    return CGFloat(rowsCount) * 100
+  }
+  
+  private func updateTableViewHeight() {
+    currentTableView.snp.updateConstraints {
+      $0.height.equalTo(tableViewHeight())
+    }
+  }
+  
+  private func bind() {
+    viewModel.timers
+      .asDriver()
+      .drive(onNext: { [weak self] _ in
+        guard let self else { return }
+        self.currentTableView.reloadData()
+        self.updateTableViewHeight()
+      }).disposed(by: disposeBag)
   }
   
   private func setView() {
@@ -49,11 +76,6 @@ class CurrentTimerViewController: UIViewController {
       $0.height.equalTo(tableViewHeight())
     }
   }
-  
-  private func tableViewHeight() -> CGFloat {
-    let rowsCount = tableView(currentTableView, numberOfRowsInSection: 0)
-    return CGFloat(rowsCount) * 100
-  }
 }
   
 extension CurrentTimerViewController: UITableViewDelegate {
@@ -64,7 +86,7 @@ extension CurrentTimerViewController: UITableViewDelegate {
   
 extension CurrentTimerViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 4
+    return viewModel.timers.value.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,6 +94,8 @@ extension CurrentTimerViewController: UITableViewDataSource {
       .dequeueReusableCell(withIdentifier: CurrentTimerTableViewCell.id, for: indexPath) as? CurrentTimerTableViewCell else {
       return UITableViewCell()
     }
+    let timer = viewModel.timers.value[indexPath.row]
+    cell.configCurrentCell(with: timer)
     return cell
   }
 }
