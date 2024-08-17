@@ -49,8 +49,9 @@ class TimerViewModel {
   }
   
   func startTimer(id: UUID) {
-    guard let timer = getTimer(id: id), timer.isRunning.value else { return }
+    guard var timer = getTimer(id: id), timer.isRunning.value else { return }
     timer.isRunning.accept(true)
+    timer.disposeBag = DisposeBag()
     
     let endTime = Date().addingTimeInterval(timer.remainingTime.value)
     notification(id: id, endTime: endTime)
@@ -66,12 +67,15 @@ class TimerViewModel {
         if currentTime <= 0 {
           self.endTimer(id: id)
         }
-      }).disposed(by: disposeBag)
+      }).disposed(by: timer.disposeBag!)
   }
   
   func pauseTimer(id: UUID) {
-    guard let timer = getTimer(id: id) else { return }
+    guard var timer = getTimer(id: id) else { return }
     timer.isRunning.accept(false)
+    timer.disposeBag = nil
+    
+    // 알림취소 메서드 추가 예정
   }
   
   func cancelTimer(id: UUID) {
@@ -82,7 +86,6 @@ class TimerViewModel {
   }
   
   func endTimer(id: UUID) {
-    let message = "타이머가 종료되었습니다."
     removeTimer(id: id)
   }
   

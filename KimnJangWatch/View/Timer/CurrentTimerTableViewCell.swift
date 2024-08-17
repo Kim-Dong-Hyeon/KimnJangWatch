@@ -14,6 +14,7 @@ import SnapKit
 class CurrentTimerTableViewCell: UITableViewCell {
   
   static let id = "currentTimerViewCell"
+  private var timerViewModel = TimerViewModel.shared
   private var disposeBag = DisposeBag()
   
   private let timeLabel: UILabel = {
@@ -26,10 +27,11 @@ class CurrentTimerTableViewCell: UITableViewCell {
   private let startButton: UIButton = {
     let button = UIButton()
     button.setImage(UIImage(named: "currentStartButton"), for: .normal)
+    button.isHidden = true
     return button
   }()
   
-  private let stopButton: UIButton = {
+  private let pauseButton: UIButton = {
     let button = UIButton()
     button.setImage(UIImage(named: "currentStopButton"), for: .normal)
     return button
@@ -45,7 +47,7 @@ class CurrentTimerTableViewCell: UITableViewCell {
   }
   
   private func setCell() {
-    [timeLabel, startButton].forEach { contentView.addSubview($0) }
+    [timeLabel, startButton, pauseButton].forEach { contentView.addSubview($0) }
     
     timeLabel.snp.makeConstraints {
       $0.centerY.equalToSuperview()
@@ -57,6 +59,9 @@ class CurrentTimerTableViewCell: UITableViewCell {
       $0.width.height.equalTo(50)
       $0.centerY.equalTo(timeLabel)
     }
+    pauseButton.snp.makeConstraints {
+      $0.edges.equalTo(startButton)
+    }
   }
   
   func configCurrentCell(with timer: TimerModel) {
@@ -64,6 +69,26 @@ class CurrentTimerTableViewCell: UITableViewCell {
       .map { String(format: "%02d:%02d", Int($0)/60, Int($0)%60) }
       .bind(to: timeLabel.rx.text)
       .disposed(by: disposeBag)
+    
+    timer.isRunning
+      .subscribe(onNext: { [weak self] isRunning in
+        self?.startButton.isHidden = isRunning
+        self?.pauseButton.isHidden = !isRunning
+      }).disposed(by: disposeBag)
+    
+    pauseButton.rx.tap
+      .subscribe(onNext: { [weak self] in
+        guard let self else { return }
+        timer.isRunning.accept(false)
+        self.timerViewModel.pauseTimer(id: timer.id)
+      }).disposed(by: disposeBag)
+    
+    startButton.rx.tap
+      .subscribe(onNext: { [weak self] in
+        guard let self else { return }
+        timer.isRunning.accept(true)
+        self.timerViewModel.startTimer(id: timer.id)
+      }).disposed(by: disposeBag)
   }
-
+  
 }
