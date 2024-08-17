@@ -42,7 +42,7 @@ class TimeZoneModalViewController: UIViewController {
     setLayout()
     tableViewTapped()
   }
-
+  
   private func tableViewTapped() {
     tableView.rx.itemSelected
       .subscribe(onNext: { [weak self] indexPath in
@@ -89,22 +89,22 @@ extension TimeZoneModalViewController: UITableViewDataSource {
 }
 
 extension TimeZoneModalViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-          viewModel.clearSearchedIDs()
-        } else {
-          viewModel.getSearchedIDs(searchText: searchText)
-          tableView.reloadData()
-        }
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    if searchText.isEmpty {
+      viewModel.clearSearchedIDs()
+    } else {
+      viewModel.getSearchedIDs(searchText: searchText)
+      tableView.reloadData()
     }
+  }
 }
 
 extension UIViewController {
-    func hideKeyboard() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
+  func hideKeyboard() {
+    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+    view.addGestureRecognizer(tap)
+  }
+  @objc func dismissKeyboard() {
+    view.endEditing(true)
+  }
 }

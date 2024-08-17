@@ -31,7 +31,6 @@
 		DD0DC5362C6B16270090B1DF /* AddAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0DC5352C6B16270090B1DF /* AddAlarmViewController.swift */; };
 		DD0DC5382C6B34910090B1DF /* AddAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0DC5372C6B34910090B1DF /* AddAlarmView.swift */; };
 		DD0DC53A2C6B4B910090B1DF /* AlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0DC5392C6B4B910090B1DF /* AlarmViewModel.swift */; };
-		DD0DC53B2C6B94980090B1DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17442C69C7C7004C0163 /* AppDelegate.swift */; };
 		DDC1F5FC2C69FD36003FCDB3 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1F5FB2C69FD36003FCDB3 /* AlarmView.swift */; };
 		DDC1F5FE2C69FD45003FCDB3 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1F5FD2C69FD45003FCDB3 /* AlarmViewController.swift */; };
 		DDC1F6002C6A0EAA003FCDB3 /* AlarmListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1F5FF2C6A0EAA003FCDB3 /* AlarmListCell.swift */; };
@@ -45,6 +44,7 @@
 		E797FDBE2C6F0F2C00D6ABE6 /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDBD2C6F0F2C00D6ABE6 /* TimerModel.swift */; };
 		F407753B2C6C5454009D05A2 /* TimeZoneID.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407753A2C6C5454009D05A2 /* TimeZoneID.swift */; };
 		F407753D2C6C7029009D05A2 /* TimeZoneList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407753C2C6C7029009D05A2 /* TimeZoneList.swift */; };
+		F407753F2C70B53F009D05A2 /* TimeZone+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407753E2C70B53F009D05A2 /* TimeZone+Extensions.swift */; };
 		F45957E22C69E2F800AFEB69 /* WorldTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E12C69E2F800AFEB69 /* WorldTimeViewController.swift */; };
 		F45957E42C69E37400AFEB69 /* WorldTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E32C69E37400AFEB69 /* WorldTimeViewModel.swift */; };
 		F45957E62C69FC4300AFEB69 /* WorldTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E52C69FC4300AFEB69 /* WorldTimeCell.swift */; };
@@ -99,6 +99,7 @@
 		E797FDBD2C6F0F2C00D6ABE6 /* TimerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
 		F407753A2C6C5454009D05A2 /* TimeZoneID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneID.swift; sourceTree = "<group>"; };
 		F407753C2C6C7029009D05A2 /* TimeZoneList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneList.swift; sourceTree = "<group>"; };
+		F407753E2C70B53F009D05A2 /* TimeZone+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeZone+Extensions.swift"; sourceTree = "<group>"; };
 		F45957E12C69E2F800AFEB69 /* WorldTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTimeViewController.swift; sourceTree = "<group>"; };
 		F45957E32C69E37400AFEB69 /* WorldTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTimeViewModel.swift; sourceTree = "<group>"; };
 		F45957E52C69FC4300AFEB69 /* WorldTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTimeCell.swift; sourceTree = "<group>"; };
@@ -235,6 +236,7 @@
 			children = (
 				766E178E2C69CBA2004C0163 /* UIColor+Extensions.swift */,
 				766E177C2C69C9CD004C0163 /* MainCommon.swift */,
+				F407753E2C70B53F009D05A2 /* TimeZone+Extensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -436,6 +438,7 @@
 				766E178F2C69CBA2004C0163 /* UIColor+Extensions.swift in Sources */,
 				F45957E22C69E2F800AFEB69 /* WorldTimeViewController.swift in Sources */,
 				DD0DC5382C6B34910090B1DF /* AddAlarmView.swift in Sources */,
+				F407753F2C70B53F009D05A2 /* TimeZone+Extensions.swift in Sources */,
 				DD0DC53A2C6B4B910090B1DF /* AlarmViewModel.swift in Sources */,
 				766E17492C69C7C7004C0163 /* TabBarController.swift in Sources */,
 				9FE1E0E92C6B1A48003C448E /* StopWatchViewModel.swift in Sources */,
