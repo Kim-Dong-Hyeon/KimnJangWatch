@@ -11,14 +11,14 @@ class RecentTimerTableViewCell: UITableViewCell {
   static let id = "recentTimerCell"
   var viewModel: TimerViewModel?
   
-  let timeLabel: UILabel = {
+  private let timeLabel: UILabel = {
     let label = UILabel()
     label.text = "00:00"
     label.font = .systemFont(ofSize: 30, weight: .semibold)
     return label
   }()
   
-  let startButton: UIButton = {
+  private let startButton: UIButton = {
     let button = UIButton()
     button.setImage(UIImage(named: "startButton"), for: .normal)
     return button
@@ -33,7 +33,7 @@ class RecentTimerTableViewCell: UITableViewCell {
     fatalError("init(coder:) has not been implemented")
   }
   
-  @objc func startButtonTapped() {
+  @objc private func startButtonTapped() {
     
   }
   
@@ -52,7 +52,7 @@ class RecentTimerTableViewCell: UITableViewCell {
     }
   }
   
-  func configCell() {
+  func configRecentCell() {
     
   }
   
