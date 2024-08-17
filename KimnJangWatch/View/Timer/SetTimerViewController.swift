@@ -100,5 +100,4 @@ class SetTimerViewController: UIViewController {
       $0.centerX.equalToSuperview()
     }
   }
-
 }

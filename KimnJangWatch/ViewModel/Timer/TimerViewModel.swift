@@ -52,6 +52,9 @@ class TimerViewModel {
     guard let timer = getTimer(id: id), timer.isRunning.value else { return }
     timer.isRunning.accept(true)
     
+    let endTime = Date().addingTimeInterval(timer.remainingTime.value)
+    notification(id: id, endTime: endTime)
+    
     Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
       .take(until: { _ in
         timer.remainingTime.value <= 0
@@ -61,8 +64,7 @@ class TimerViewModel {
         let currentTime = timer.remainingTime.value - 1
         timer.remainingTime.accept(currentTime)
         if currentTime <= 0 {
-          self.pauseTimer(id: id)
-          self.endTimer.onNext(id)
+          self.endTimer(id: id)
         }
       }).disposed(by: disposeBag)
   }
@@ -76,6 +78,21 @@ class TimerViewModel {
     guard let timer = getTimer(id: id) else { return }
     pauseTimer(id: id)
     timer.remainingTime.accept(0)
+    removeTimer(id: id)
+  }
+  
+  func endTimer(id: UUID) {
+    let message = "타이머가 종료되었습니다."
+    removeTimer(id: id)
+  }
+  
+  func notification(id: UUID, endTime: Date) {
+    let message = "타이머가 종료되었습니다."
+    NotificationManager.shared.scheduleNotification(at: endTime, with: message)
+    print("Notification scheduled for timer with ID: \(id) at \(endTime)")
+  }
+  
+  func removeTimer(id: UUID) {
     timers.accept(timers.value.filter { $0.id != id })
   }
   
