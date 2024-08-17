@@ -15,6 +15,7 @@ class AddAlarmViewController: UIViewController {
   private var addAlarmView = AddAlarmView(frame: .zero)
   private let disposeBag = DisposeBag()
   var alarmViewModel = AlarmViewModel()
+  var moveNextPage: ((Int) -> Void)?
   
   override func loadView() {
     addAlarmView = AddAlarmView(frame: UIScreen.main.bounds)
@@ -24,6 +25,10 @@ class AddAlarmViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
+    addAlarmView.timeSetList.register(TimeSetCell.self,
+                                      forCellReuseIdentifier: TimeSetCell.identifier)
+    addAlarmView.timeSetList.dataSource = self
+    addAlarmView.timeSetList.delegate = self
     initNavigation()
     bind()
   }
@@ -37,6 +42,17 @@ class AddAlarmViewController: UIViewController {
   private func bind() {
     guard let right = navigationItem.rightBarButtonItem?.customView as? UIButton else { return }
     guard let left = navigationItem.leftBarButtonItem?.customView as? UIButton else { return }
+    
+    addAlarmView.timeSetList.rx.itemSelected
+      .subscribe(onNext: { indexPath in
+        if let cell = self.addAlarmView.timeSetList.cellForRow(at: indexPath) as? TimeSetCell {
+          if indexPath.row == 0 {
+            self.navigationController?.pushViewController(DayTableViewController(), animated: true)
+          } else if indexPath.row == 2 {
+            
+          }
+        }
+      }).disposed(by: disposeBag)
     
     right.rx.tap.bind { [weak self] in
       guard let self = self else { return }
@@ -67,4 +83,20 @@ class AddAlarmViewController: UIViewController {
     button.setTitleColor(UIColor.dangn, for: .normal)
     return UIBarButtonItem(customView: button)
   }
+}
+
+extension AddAlarmViewController: UITableViewDelegate, UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    4
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let cell = tableView.dequeueReusableCell(
+      withIdentifier: TimeSetCell.identifier,
+      for: indexPath) as? TimeSetCell else { return UITableViewCell() }
+    cell.configureCell(indexPath: indexPath.row)
+    return cell
+  }
+  
+  
 }
