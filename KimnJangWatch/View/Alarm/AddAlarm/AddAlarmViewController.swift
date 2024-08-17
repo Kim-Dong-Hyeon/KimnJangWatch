@@ -45,11 +45,11 @@ class AddAlarmViewController: UIViewController {
     
     addAlarmView.timeSetList.rx.itemSelected
       .subscribe(onNext: { indexPath in
-        if let cell = self.addAlarmView.timeSetList.cellForRow(at: indexPath) as? TimeSetCell {
+        if self.addAlarmView.timeSetList.cellForRow(at: indexPath) is TimeSetCell {
           if indexPath.row == 0 {
             self.navigationController?.pushViewController(DayTableViewController(), animated: true)
           } else if indexPath.row == 2 {
-            
+            self.navigationController?.pushViewController(AlarmSongViewController(), animated: true)
           }
         }
       }).disposed(by: disposeBag)

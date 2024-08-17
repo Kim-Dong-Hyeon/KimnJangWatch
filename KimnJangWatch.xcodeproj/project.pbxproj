@@ -34,7 +34,8 @@
 		DD0DC53A2C6B4B910090B1DF /* AlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0DC5392C6B4B910090B1DF /* AlarmViewModel.swift */; };
 		DD0DC5612C6F758D0090B1DF /* TimeSetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0DC5602C6F758D0090B1DF /* TimeSetCell.swift */; };
 		DD73EEB72C70A46300F6773B /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEB62C70A46300F6773B /* BaseTableViewController.swift */; };
-		DD73EEB92C70B5BE00F6773B /*  DayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEB82C70B5BE00F6773B /*  DayTableViewController.swift */; };
+		DD73EEB92C70B5BE00F6773B /* DayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEB82C70B5BE00F6773B /* DayTableViewController.swift */; };
+		DD73EEBB2C70D4D700F6773B /* AlarmSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEBA2C70D4D700F6773B /* AlarmSongViewController.swift */; };
 		DDC1F5FC2C69FD36003FCDB3 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1F5FB2C69FD36003FCDB3 /* AlarmView.swift */; };
 		DDC1F5FE2C69FD45003FCDB3 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1F5FD2C69FD45003FCDB3 /* AlarmViewController.swift */; };
 		DDC1F6002C6A0EAA003FCDB3 /* AlarmListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1F5FF2C6A0EAA003FCDB3 /* AlarmListCell.swift */; };
@@ -93,7 +94,8 @@
 		DD0DC5392C6B4B910090B1DF /* AlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewModel.swift; sourceTree = "<group>"; };
 		DD0DC5602C6F758D0090B1DF /* TimeSetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSetCell.swift; sourceTree = "<group>"; };
 		DD73EEB62C70A46300F6773B /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
-		DD73EEB82C70B5BE00F6773B /*  DayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " DayTableViewController.swift"; sourceTree = "<group>"; };
+		DD73EEB82C70B5BE00F6773B /* DayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTableViewController.swift; sourceTree = "<group>"; };
+		DD73EEBA2C70D4D700F6773B /* AlarmSongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSongViewController.swift; sourceTree = "<group>"; };
 		DDC1F5FB2C69FD36003FCDB3 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
 		DDC1F5FD2C69FD45003FCDB3 /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		DDC1F5FF2C6A0EAA003FCDB3 /* AlarmListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListCell.swift; sourceTree = "<group>"; };
@@ -297,7 +299,8 @@
 				DD0DC5352C6B16270090B1DF /* AddAlarmViewController.swift */,
 				DD0DC5602C6F758D0090B1DF /* TimeSetCell.swift */,
 				DD73EEB62C70A46300F6773B /* BaseTableViewController.swift */,
-				DD73EEB82C70B5BE00F6773B /*  DayTableViewController.swift */,
+				DD73EEB82C70B5BE00F6773B /* DayTableViewController.swift */,
+				DD73EEBA2C70D4D700F6773B /* AlarmSongViewController.swift */,
 			);
 			path = AddAlarm;
 			sourceTree = "<group>";
@@ -457,11 +460,12 @@
 				E797FDB02C6B67E500D6ABE6 /* TimerViewModel.swift in Sources */,
 				766E178F2C69CBA2004C0163 /* UIColor+Extensions.swift in Sources */,
 				F45957E22C69E2F800AFEB69 /* WorldTimeViewController.swift in Sources */,
-				DD73EEB92C70B5BE00F6773B /*  DayTableViewController.swift in Sources */,
+				DD73EEB92C70B5BE00F6773B /* DayTableViewController.swift in Sources */,
 				DD0DC5382C6B34910090B1DF /* AddAlarmView.swift in Sources */,
 				F407753F2C70B53F009D05A2 /* TimeZone+Extensions.swift in Sources */,
 				DD0DC53A2C6B4B910090B1DF /* AlarmViewModel.swift in Sources */,
 				766E17492C69C7C7004C0163 /* TabBarController.swift in Sources */,
+				DD73EEBB2C70D4D700F6773B /* AlarmSongViewController.swift in Sources */,
 				9FE1E0E92C6B1A48003C448E /* StopWatchViewModel.swift in Sources */,
 				F407753B2C6C5454009D05A2 /* TimeZoneID.swift in Sources */,
 				E797FDA92C6ADA9900D6ABE6 /* TimerViewController.swift in Sources */,
