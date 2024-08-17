@@ -7,9 +7,14 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
+import SnapKit
+
 class CurrentTimerTableViewCell: UITableViewCell {
+  
   static let id = "currentTimerViewCell"
-  private var isChecking = true
+  private var disposeBag = DisposeBag()
   
   private let timeLabel: UILabel = {
     let label = UILabel()
@@ -39,14 +44,6 @@ class CurrentTimerTableViewCell: UITableViewCell {
     fatalError("init(coder:) has not been implemented")
   }
   
-  @objc private func startButtonTapped() {
-    isChecking.toggle()
-  }
-  
-  @objc private func stopButtonTapped() {
-    isChecking.toggle()
-  }
-  
   private func setCell() {
     [timeLabel, startButton].forEach { contentView.addSubview($0) }
     
@@ -62,8 +59,11 @@ class CurrentTimerTableViewCell: UITableViewCell {
     }
   }
   
-  func configCurrentCell() {
-    
+  func configCurrentCell(with timer: TimerModel) {
+    timer.remainingTime
+      .map { String(format: "%02d:%02d", Int($0)/60, Int($0)%60) }
+      .bind(to: timeLabel.rx.text)
+      .disposed(by: disposeBag)
   }
 
 }
