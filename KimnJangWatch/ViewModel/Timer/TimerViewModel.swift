@@ -44,6 +44,7 @@ class TimerViewModel {
                               remainingTime: BehaviorRelay<TimeInterval>(value: time),
                               isRunning: BehaviorRelay<Bool>(value: true))
     timers.accept(timers.value + [newTimer])
+    startTimer(id: newTimer.id)
     print("New timer added with time: \(time)")
   }
   
