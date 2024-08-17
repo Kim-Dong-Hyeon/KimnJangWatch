@@ -11,78 +11,90 @@ import RxCocoa
 import RxSwift
 
 class TimerViewModel {
-  let remainingTime = BehaviorRelay<TimeInterval>(value: 0)
-  let isRunnning =  BehaviorRelay<Bool>(value: false)
-  let endTimer = PublishSubject<Void>()
+  static let shared = TimerViewModel()
   
-  private var timer: Observable<Int>?
+  var timers = BehaviorRelay<[TimerModel]>(value: [])
+  let endTimer = PublishSubject<UUID>()
   private var backgroundEntryTime = BehaviorRelay<Date?>(value: nil)
   private var disposeBag = DisposeBag()
-  
-  init() {
-    manageTimer()
-  }
-  
-  func manageTimer() {
-    let enterBackGround = NotificationCenter.default.rx.notification(UIApplication.didEnterBackgroundNotification)
-    let enterForeGround = NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification)
     
-    enterBackGround
+  func manageTimerState() {
+    let enterBackground = NotificationCenter.default
+      .rx.notification(UIApplication.didEnterBackgroundNotification)
+    let enterForeground = NotificationCenter.default
+      .rx.notification(UIApplication.willEnterForegroundNotification)
+    
+    enterBackground
       .subscribe(onNext: { [weak self] _ in
-        self?.saveTime()
+        self?.saveTimes()
       }).disposed(by: disposeBag)
     
-    enterForeGround
-      .subscribe(onNext: { [ weak self] _ in
-        self?.loadTime()
+    enterForeground
+      .subscribe(onNext: { [weak self] _ in
+        self?.loadTimes()
       }).disposed(by: disposeBag)
   }
   
-  func setTimer(time: TimeInterval) {
-    remainingTime.accept(time)
+  func getTimer(id: UUID) -> TimerModel? {
+    return timers.value.first(where: { $0.id == id })
   }
   
-  func startTimer() {
-    guard !isRunnning.value else { return }
-    isRunnning.accept(true)
+  func setNewTimer(time: TimeInterval) {
+    let newTimer = TimerModel(id: UUID(),
+                              remainingTime: BehaviorRelay<TimeInterval>(value: time),
+                              isRunning: BehaviorRelay<Bool>(value: true))
+    timers.accept(timers.value + [newTimer])
+    print("New timer added with time: \(time)")
+  }
+  
+  func startTimer(id: UUID) {
+    guard let timer = getTimer(id: id), timer.isRunning.value else { return }
+    timer.isRunning.accept(true)
     
-    timer = Observable<Int>
-      .interval(.seconds(1), scheduler: MainScheduler.instance)
-      .take(until: { [weak self] _ in
-        return self?.remainingTime.value ?? 0 <= 0
+    Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+      .take(until: { _ in
+        timer.remainingTime.value <= 0
       })
-    
-    timer?
       .subscribe(onNext: { [weak self] _ in
         guard let self else { return }
-        let currentTime = self.remainingTime.value - 1
-        self.remainingTime.accept(currentTime)
+        let currentTime = timer.remainingTime.value - 1
+        timer.remainingTime.accept(currentTime)
         if currentTime <= 0 {
-          self.pauseTimer()
-          self.endTimer.onNext(())
+          self.pauseTimer(id: id)
+          self.endTimer.onNext(id)
         }
       }).disposed(by: disposeBag)
   }
   
-  func pauseTimer() {
-    isRunnning.accept(false)
+  func pauseTimer(id: UUID) {
+    guard let timer = getTimer(id: id) else { return }
+    timer.isRunning.accept(false)
   }
   
-  private func saveTime() {
+  func cancelTimer(id: UUID) {
+    guard let timer = getTimer(id: id) else { return }
+    pauseTimer(id: id)
+    timer.remainingTime.accept(0)
+    timers.accept(timers.value.filter { $0.id != id })
+  }
+  
+  private func saveTimes() {
     backgroundEntryTime.accept(Date())
   }
   
-  private func loadTime() {
+  private func loadTimes() {
     guard let entryTime = backgroundEntryTime.value else { return }
     let passedTime = Date().timeIntervalSince(entryTime)
-    let newTime = max((remainingTime.value - passedTime), 0)
     
-    remainingTime.accept(newTime)
-    
-    if isRunnning.value && newTime > 0 {
-      startTimer()
-    } else {
-      pauseTimer()
+    timers.value.forEach { timer in
+      let newTime = max((timer.remainingTime.value - passedTime), 0)
+      timer.remainingTime.accept(newTime)
+      
+      if timer.isRunning.value && newTime > 0 {
+        startTimer(id: timer.id)
+      } else {
+        pauseTimer(id: timer.id)
+      }
     }
   }
 }
