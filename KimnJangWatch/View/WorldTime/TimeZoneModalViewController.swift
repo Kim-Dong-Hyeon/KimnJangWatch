@@ -13,23 +13,23 @@ import RxSwift
 
 class TimeZoneModalViewController: UIViewController {
   
-  var viewModel: TimeZoneModalViewModel!
-  let disposeBag = DisposeBag()
+  private var viewModel: TimeZoneModalViewModel!
+  private let disposeBag = DisposeBag()
   
-  let titleLabel: UILabel = {
+  private let titleLabel: UILabel = {
     let label = UILabel()
     label.text = "국가 선택"
     label.textAlignment = .center
     return label
   }()
   
-  let searchBar: UISearchBar = {
+  private let searchBar: UISearchBar = {
     let sb = UISearchBar()
     sb.placeholder = "검색"
     return sb
   }()
   
-  let tableView: UITableView = {
+  private let tableView: UITableView = {
     let tv = UITableView()
     return tv
   }()
@@ -42,19 +42,17 @@ class TimeZoneModalViewController: UIViewController {
     tableViewTapped()
   }
 
-  func tableViewTapped() {
+  private func tableViewTapped() {
     tableView.rx.itemSelected
       .subscribe(onNext: { [weak self] indexPath in
-        guard let self
-        else { return }
-        print(self.viewModel.identifiers[indexPath.row])
-        self.viewModel.addTimeZone(id: self.viewModel.identifiers[indexPath.row].eng)
+        guard let self else { return }
+        self.viewModel.addTimeZone(identifier: self.viewModel.identifiers[indexPath.row])
         self.dismiss(animated: true)
       })
       .disposed(by: disposeBag)
   }
   
-  func setLayout() {
+  private func setLayout() {
     view.backgroundColor = .systemBackground
     
     [titleLabel, searchBar, tableView]
