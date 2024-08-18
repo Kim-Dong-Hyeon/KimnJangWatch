@@ -13,16 +13,16 @@ import SnapKit
 
 class BaseTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
-  private let tableView = UITableView(frame: .zero, style: .insetGrouped)
-  private let disposeBag = DisposeBag()
+  let tableView = UITableView(frame: .zero, style: .insetGrouped)
+  let disposeBag = DisposeBag()
   var titles = [String]()
-  var checkedCell = BehaviorRelay<[IndexPath]>(value: [])
   
   override func viewDidLoad() {
     super.viewDidLoad()
     setupTableView()
     configureUI()
     bind()
+    navigationItem.leftBarButtonItem = backButton()
   }
   
   private func setupTableView() {
@@ -36,31 +36,27 @@ class BaseTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
   }
   
-  private func bind() {
-      tableView.rx.itemSelected
-        .subscribe(onNext: { [weak self] indexPath in
-          guard let self = self else { return }
+  func bind() {
     
-          var checkedCells = self.checkedCell.value
-          
-          if checkedCells.contains(indexPath) {
-            if let cell = self.tableView.cellForRow(at: indexPath) {
-              cell.accessoryView = nil
-            }
-            checkedCells.removeAll(where: { $0 == indexPath })
-          } else {
-            if let cell = self.tableView.cellForRow(at: indexPath) {
-              let checkmarkImage = UIImage(systemName: "checkmark")?.withRenderingMode(.alwaysTemplate)
-              let checkmarkImageView = UIImageView(image: checkmarkImage)
-              checkmarkImageView.tintColor = .dangn
-              cell.accessoryView = checkmarkImageView
-            }
-            checkedCells.append(indexPath)
-          }
-          self.checkedCell.accept(checkedCells)
-        })
-        .disposed(by: disposeBag)
-    }
+    guard let left = navigationItem.leftBarButtonItem?.customView as? UIButton else { return }
+    
+    left.rx.tap.bind { [weak self] in
+      guard let self = self else { return }
+      saveData()
+      self.navigationController?.popViewController(animated: true)
+    }.disposed(by: disposeBag)
+  }
+  
+  private func backButton() -> UIBarButtonItem {
+    let button = UIButton()
+    button.setTitle("뒤로", for: .normal)
+    button.setTitleColor(UIColor.dangn, for: .normal)
+    return UIBarButtonItem(customView: button)
+  }
+  
+  private func saveData() {
+    print("데이터 저장")
+  }
   
   //override 메서드
   func configureUI() {
