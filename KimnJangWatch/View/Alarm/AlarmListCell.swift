@@ -22,7 +22,7 @@ class AlarmListCell: UITableViewCell {
     return label
   }()
   
-  private let dayLabel: UILabel = {
+  let dayLabel: UILabel = {
     let label = UILabel()
     label.font = .systemFont(ofSize: 10)
     label.textColor = .lightGray
@@ -48,6 +48,11 @@ class AlarmListCell: UITableViewCell {
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  func configure(time: String, days: [String]) {
+    timeLabel.text = time
+    dayLabel.text = "요일"
   }
   
   private func setConstraints() {

@@ -80,7 +80,7 @@ class AddAlarmViewController: UIViewController {
       let dateFormatter = DateFormatter()
       dateFormatter.dateFormat = "HH:mm"
       let time = dateFormatter.string(from: selectedDate)
-      self.alarmViewModel.addTime(time)
+      self.alarmViewModel.addTime(day: ["알람"], time: time)
       self.dismiss(animated: true)
     }.disposed(by: disposeBag)
     

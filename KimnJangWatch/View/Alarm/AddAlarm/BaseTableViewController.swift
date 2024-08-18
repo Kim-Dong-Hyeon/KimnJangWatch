@@ -54,7 +54,7 @@ class BaseTableViewController: UIViewController, UITableViewDelegate, UITableVie
     return UIBarButtonItem(customView: button)
   }
   
-  private func saveData() {
+  func saveData() {
     print("데이터 저장")
   }
   

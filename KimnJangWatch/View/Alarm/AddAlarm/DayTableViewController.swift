@@ -37,15 +37,21 @@ class DayTableViewController: BaseTableViewController {
           checkedCells.removeAll(where: { $0 == indexPath })
         } else {
           if let cell = self.tableView.cellForRow(at: indexPath) {
+            
             let checkmarkImage = UIImage(systemName: "checkmark")?.withRenderingMode(.alwaysTemplate)
             let checkmarkImageView = UIImageView(image: checkmarkImage)
             checkmarkImageView.tintColor = .dangn
             cell.accessoryView = checkmarkImageView
+            
           }
           checkedCells.append(indexPath)
         }
         self.checkedCell.accept(checkedCells)
       }).disposed(by: disposeBag)
+  }
+  
+  override func saveData() {
+    print(type(of: checkedCell.value))
   }
   
   override func configureUI() {
