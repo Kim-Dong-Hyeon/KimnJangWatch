@@ -62,6 +62,7 @@ class BaseTableViewController: UIViewController, UITableViewDelegate, UITableVie
         .disposed(by: disposeBag)
     }
   
+  //override 메서드
   func configureUI() {
     
   }

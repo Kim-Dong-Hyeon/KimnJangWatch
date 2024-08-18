@@ -25,6 +25,7 @@ class AlarmViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    alarmView.alarmList.delegate = self
     view.backgroundColor = .systemBackground
     alarmView.alarmList.register(AlarmListCell.self,
                                  forCellReuseIdentifier: AlarmListCell.identifier)
@@ -33,6 +34,7 @@ class AlarmViewController: UIViewController {
   }
   
   private func bind() {
+    
     alarmView.alarmList.rx.itemSelected
       .subscribe(onNext: { indexPath in
         if let cell = self.alarmView.alarmList.cellForRow(at: indexPath) as? AlarmListCell {
@@ -40,6 +42,15 @@ class AlarmViewController: UIViewController {
           self.showModal(time: self.time)
         }
       }).disposed(by: disposeBag)
+    
+//    alarmView.alarmList.rx.itemDeleted
+//      .subscribe(onNext: { [weak self] indexPath in
+//        guard let self = self else { return }
+//        
+//        var time = self.alarmViewModel.savedTimes.value()
+//        time.remove(at: indexPath.row)
+//        self.alarmViewModel.savedTimes.onNext(time)
+//      })
     
     alarmViewModel.savedTimes
       .debug()
@@ -97,5 +108,23 @@ class AlarmViewController: UIViewController {
     alarmView.alarmList.setEditing(shouldBeEdited, animated: true)
     let newTitle = shouldBeEdited ? "완료" : "편집"
     (navigationItem.leftBarButtonItem?.customView as? UIButton)?.setTitle(newTitle, for: .normal)
+  }
+}
+
+extension AlarmViewController: UITableViewDelegate {
+  
+  func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+    print("delte모드\(indexPath)")
+    return .delete
+  }
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    print("나와라 제발\(indexPath)")
+    if editingStyle == .delete {
+      print("삭제")
+//      var currentTimes = alarmViewModel.savedTimes.value
+//      currentTimes.remove(at: indexPath.row)
+//      alarmViewModel.savedTimes.accept(currentTimes)
+    }
   }
 }
