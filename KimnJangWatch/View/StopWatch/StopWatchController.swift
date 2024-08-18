@@ -31,32 +31,26 @@ final class StopWatchController: UIViewController {
   private let startStopButton = {
     let button = UIButton()
     button.setTitle("시작", for: .normal)
-    button.setTitleColor(.white, for: .normal)
+    button.setTitleColor(.black, for: .normal)
     button.layer.cornerRadius = 35
-    button.backgroundColor = UIColor.dangn
+    button.backgroundColor = UIColor.dangn.withAlphaComponent(0.7)
     return button
   }()
   private let timeLabTableView = UITableView()
-  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-      self.viewModel.onTimeUpdate = { [weak self] timeString in
-        self?.timeLabel.text = timeString }
-    
-
+    self.viewModel.onTimeUpdate = { [weak self] timeString in
+      self?.timeLabel.text = timeString }
     self.configureUI()
     self.makeConstraints()
-    self.setupAction()
+    self.setupActions()
   }
-
-  
-  private func setupAction() {
-    lapResetButton.addTarget(self, action: #selector(didTapLapResetButton), for: .touchUpInside)
-    startStopButton.addTarget(self, action: #selector(didTapStartStopButton), for: .touchUpInside)
-    timeLabTableView.register(LapViewCell.self, forCellReuseIdentifier: LapViewCell.id)
-    timeLabTableView.dataSource = self
-    timeLabTableView.delegate = self
+  private func setupActions() {
+    self.lapResetButton.addTarget(self, action: #selector(didTapLapResetButton), for: .touchUpInside)
+    self.startStopButton.addTarget(self, action: #selector(didTapStartStopButton), for: .touchUpInside)
+    self.timeLabTableView.register(LapViewCell.self, forCellReuseIdentifier: LapViewCell.id)
+    self.timeLabTableView.dataSource = self
+    self.timeLabTableView.delegate = self
   }
   private func configureUI() {
     self.view.backgroundColor = .white
@@ -92,52 +86,53 @@ final class StopWatchController: UIViewController {
       $0.height.equalTo(300)
     }
   }
+  private func configureButtons() {
+    let isRunning = viewModel.watchStatus == .stop
+    self.startStopButton.setTitle(isRunning ? "중단" : "시작", for: .normal)
+    self.startStopButton.backgroundColor = isRunning ? UIColor.dangn : UIColor.dangn.withAlphaComponent(0.7)
+    if isRunning {
+      self.lapResetButton.setTitle("랩", for: .normal)
+      self.lapResetButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+      self.lapResetButton.isEnabled = true
+    } else {
+      self.lapResetButton.setTitle("재시작", for: .normal)
+      self.lapResetButton.backgroundColor = UIColor.lightGray
+      self.lapResetButton.isEnabled = true
+    }
+  }
 }
 extension StopWatchController {
   @objc private func didTapStartStopButton() {
-    viewModel.didTapStartButton()
-    switch viewModel.watchStatus {
-    case .start:
-      startStopButton.setTitle("시작", for: .normal)
-      startStopButton.backgroundColor = UIColor.dangn
-      lapResetButton.setTitle("재시작", for: .normal)
-      lapResetButton.backgroundColor = UIColor.lightGray
-      lapResetButton.isEnabled = true
-    case .stop:
-      startStopButton.setTitle("중단", for: .normal)
-      startStopButton.backgroundColor = UIColor.purple
-      lapResetButton.setTitle("랩", for: .normal)
-      lapResetButton.isEnabled = true
-    }
+    self.viewModel.didTapStartButton()
+    self.configureButtons()
+
   }
   @objc private func didTapLapResetButton() {
     switch viewModel.watchStatus {
     case .start:
-      viewModel.didTapResetButton()
-      lapResetButton.setTitle("랩", for: .normal)
-      lapResetButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-      lapResetButton.isEnabled = false
+      self.viewModel.didTapResetButton()
+      self.configureButtons()
       self.timeLabTableView.reloadData()
     case .stop:
-      viewModel.didTapLapButton()
-      timeLabTableView.reloadData()
+      self.viewModel.didTapLapButton()
+      let lastRow = self.viewModel.recordList.count - 1
+      let indexPath = IndexPath(row: lastRow, section: 0)
+      self.timeLabTableView.insertRows(at: [indexPath], with: .automatic)
     }
   }
 }
-
 extension StopWatchController: UITableViewDelegate,UITableViewDataSource {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    60
+    50
   }
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return viewModel.recordList.count
   }
-  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: LapViewCell.id, for: indexPath) as? LapViewCell
     guard let safecell = cell else { return UITableViewCell() }
     safecell.timeLabel.text = viewModel.recordList[indexPath.row]
-    safecell.lapCountLabel.text = "랩\(viewModel.lapcounts[indexPath.row])"
+    safecell.lapCountLabel.text = "랩 \(viewModel.lapcounts[indexPath.row])"
     return safecell
   }
 }
