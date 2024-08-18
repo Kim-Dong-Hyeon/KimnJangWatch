@@ -16,6 +16,7 @@ class AlarmViewController: UIViewController {
   private var alarmView = AlarmView(frame: .zero)
   private let disposeBag = DisposeBag()
   private let alarmViewModel = AlarmViewModel()
+  private var time = String()
   
   override func loadView() {
     alarmView = AlarmView(frame: UIScreen.main.bounds)
@@ -24,6 +25,7 @@ class AlarmViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    alarmView.alarmList.delegate = self
     view.backgroundColor = .systemBackground
     alarmView.alarmList.register(AlarmListCell.self,
                                  forCellReuseIdentifier: AlarmListCell.identifier)
@@ -32,12 +34,23 @@ class AlarmViewController: UIViewController {
   }
   
   private func bind() {
+    
     alarmView.alarmList.rx.itemSelected
       .subscribe(onNext: { indexPath in
-        if let _ = self.alarmView.alarmList.cellForRow(at: indexPath) as? AlarmListCell {
-          self.showModal()
+        if let cell = self.alarmView.alarmList.cellForRow(at: indexPath) as? AlarmListCell {
+          self.time = cell.timeLabel.text ?? "00:00"
+          self.showModal(time: self.time)
         }
       }).disposed(by: disposeBag)
+    
+//    alarmView.alarmList.rx.itemDeleted
+//      .subscribe(onNext: { [weak self] indexPath in
+//        guard let self = self else { return }
+//        
+//        var time = self.alarmViewModel.savedTimes.value()
+//        time.remove(at: indexPath.row)
+//        self.alarmViewModel.savedTimes.onNext(time)
+//      })
     
     alarmViewModel.savedTimes
       .debug()
@@ -50,12 +63,14 @@ class AlarmViewController: UIViewController {
     
     guard let right = navigationItem.rightBarButtonItem?.customView as? UIButton else { return }
     right.rx.tap.bind { [weak self] in
-      self?.showModal()
+      guard let self = self else { return }
+      self.showModal(time: self.time)
     }.disposed(by: disposeBag)
     
     guard let left = navigationItem.leftBarButtonItem?.customView as? UIButton else { return }
     left.rx.tap.bind { [weak self] in
-      self?.edit()
+      guard let self = self else { return }
+      self.edit()
     }.disposed(by: disposeBag)
   }
   
@@ -81,8 +96,8 @@ class AlarmViewController: UIViewController {
     return UIBarButtonItem(customView: button)
   }
   
-  private func showModal() {
-    let addAlarmVC = AddAlarmViewController()
+  private func showModal(time: String) {
+    let addAlarmVC = AddAlarmViewController(time: time)
     addAlarmVC.alarmViewModel = self.alarmViewModel
     let modal = UINavigationController(rootViewController: addAlarmVC)
     present(modal, animated: true, completion: nil)
@@ -96,24 +111,20 @@ class AlarmViewController: UIViewController {
   }
 }
 
-//struct PreView: PreviewProvider {
-//  static var previews: some View {
-//    AlarmViewController().toPreview()
-//  }
-//}
-//
-//#if DEBUG
-//extension UIViewController {
-//  private struct Preview: UIViewControllerRepresentable {
-//    let viewController: UIViewController
-//    func makeUIViewController(context: Context) -> UIViewController {
-//      return viewController
-//    }
-//    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-//    }
-//  }
-//  func toPreview() -> some View {
-//    Preview(viewController: self)
-//  }
-//}
-//#endif
+extension AlarmViewController: UITableViewDelegate {
+  
+  func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+    print("delte모드\(indexPath)")
+    return .delete
+  }
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    print("나와라 제발\(indexPath)")
+    if editingStyle == .delete {
+      print("삭제")
+//      var currentTimes = alarmViewModel.savedTimes.value
+//      currentTimes.remove(at: indexPath.row)
+//      alarmViewModel.savedTimes.accept(currentTimes)
+    }
+  }
+}
