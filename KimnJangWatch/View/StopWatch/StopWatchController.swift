@@ -40,12 +40,16 @@ final class StopWatchController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    viewModel.onTimeUpdate = { [weak self] timeString in
-      self?.timeLabel.text = timeString }
+    
+      self.viewModel.onTimeUpdate = { [weak self] timeString in
+        self?.timeLabel.text = timeString }
+    
+
     self.configureUI()
     self.makeConstraints()
     self.setupAction()
   }
+
   
   private func setupAction() {
     lapResetButton.addTarget(self, action: #selector(didTapLapResetButton), for: .touchUpInside)
@@ -82,7 +86,7 @@ final class StopWatchController: UIViewController {
       $0.top.equalTo(timeLabel.snp.bottom).offset(60)
       $0.height.width.equalTo(70)
     }
-    timeLabTableView.snp.makeConstraints{
+    timeLabTableView.snp.makeConstraints {
       $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(30)
       $0.leading.trailing.equalTo(self.view.safeAreaLayoutGuide).inset(15)
       $0.height.equalTo(300)
