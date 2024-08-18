@@ -13,12 +13,13 @@ import RxSwift
 
 class WorldTimeViewController: UIViewController {
   
-  var viewModel: WorldTimeViewModel!
-  let disposeBag = DisposeBag()
-
-  let tableView: UITableView = {
+  private var viewModel: WorldTimeViewModel!
+  private let disposeBag = DisposeBag()
+  
+  private let tableView: UITableView = {
     let tv = UITableView()
     tv.register(WorldTimeCell.self, forCellReuseIdentifier: "WorldTimeCell")
+    tv.rowHeight = 90
     return tv
   }()
   
@@ -28,29 +29,26 @@ class WorldTimeViewController: UIViewController {
     setNavigation()
     setTableView()
     setLayout()
+    deleteCell()
   }
   
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
     viewModel.getIdArray()
   }
   
-  func setNavigation() {
+  private func setNavigation() {
     title = "세계 시계"
-    let editButton = UIBarButtonItem(title: "편집", style: .plain, target: self, action: nil)
-    editButton.rx.tap
-      .bind { _ in
-
-      }
-      .disposed(by: disposeBag)
-    
+    navigationController?.navigationBar.prefersLargeTitles = true
+    //    let editButton = UIBarButtonItem(title: "편집", style: .plain, target: self, action: nil)
+    //    editButton.tintColor = .dangn
+    //    editButton.rx.tap
+    //      .bind { _ in
+    //
+    //      }
+    //      .disposed(by: disposeBag)
     let plusButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: nil)
-
-    editButton.rx.tap
-      .bind { _ in
-        
-      }
-      .disposed(by: disposeBag)
+    plusButton.tintColor = .dangn
     
     plusButton.rx.tap
       .bind { [weak self] _ in
@@ -58,22 +56,38 @@ class WorldTimeViewController: UIViewController {
       }
       .disposed(by: disposeBag)
     
-    navigationItem.leftBarButtonItem = editButton
+    //    navigationItem.leftBarButtonItem = editButton
     navigationItem.rightBarButtonItem = plusButton
   }
   
-  func setTableView() {
-    viewModel.ids
-      .bind(to: tableView.rx.items(cellIdentifier: "WorldTimeCell",
-                                   cellType: WorldTimeCell.self)) 
-    { (row, item, cell) in
-      cell.countryLabel.text = item
-      print(item)
+  private func setTableView() {
+    tableView.rx.setDelegate(self).disposed(by: disposeBag)
+    
+    TimeZoneList.shared.added
+      .bind(to: tableView.rx
+        .items(cellIdentifier: "WorldTimeCell",
+               cellType: WorldTimeCell.self))
+    { [weak self] (row, item, cell) in
+      guard let self else { return }
+      cell.cityLabel.text = item.kor.getCityName()
+      cell.meridiemLabel.text = self.viewModel.getCurrentTime(identifier: item.eng).meridiem
+      cell.timeLabel.text = self.viewModel.getCurrentTime(identifier: item.eng).time
+      cell.selectionStyle = .none
     }
+    .disposed(by: disposeBag)
+  }
+  
+  private func deleteCell() {
+    tableView.rx.itemDeleted
+      .subscribe(onNext: { indexPath in
+        var currentItems = TimeZoneList.shared.added.value
+        currentItems.remove(at: indexPath.row)
+        TimeZoneList.shared.added.accept(currentItems)
+      })
       .disposed(by: disposeBag)
   }
   
-  func setLayout() {
+  private func setLayout() {
     view.backgroundColor = .systemBackground
     
     [tableView]
@@ -86,9 +100,17 @@ class WorldTimeViewController: UIViewController {
     }
   }
   
-  func timeZoneModalPresent() {
+  private func timeZoneModalPresent() {
     let timezoneModal = TimeZoneModalViewController()
-    timezoneModal.modalPresentationStyle = .fullScreen
-    present(timezoneModal, animated: true)
+    timezoneModal.modalPresentationStyle = .pageSheet
+    present(timezoneModal, animated: true) { [weak self] in
+      self?.viewModel.updateCityFromTimeZoneList()
+    }
+  }
+}
+
+extension WorldTimeViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+    return "삭제"
   }
 }

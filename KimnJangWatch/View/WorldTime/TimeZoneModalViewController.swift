@@ -13,23 +13,23 @@ import RxSwift
 
 class TimeZoneModalViewController: UIViewController {
   
-  var viewModel: TimeZoneModalViewModel!
-  let disposeBag = DisposeBag()
+  private var viewModel: TimeZoneModalViewModel!
+  private let disposeBag = DisposeBag()
   
-  let titleLabel: UILabel = {
+  private let titleLabel: UILabel = {
     let label = UILabel()
     label.text = "국가 선택"
     label.textAlignment = .center
     return label
   }()
   
-  let searchBar: UISearchBar = {
+  private let searchBar: UISearchBar = {
     let sb = UISearchBar()
     sb.placeholder = "검색"
     return sb
   }()
   
-  let tableView: UITableView = {
+  private let tableView: UITableView = {
     let tv = UITableView()
     return tv
   }()
@@ -37,24 +37,23 @@ class TimeZoneModalViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     viewModel = TimeZoneModalViewModel()
+    searchBar.delegate = self
     tableView.dataSource = self
     setLayout()
     tableViewTapped()
   }
-
-  func tableViewTapped() {
+  
+  private func tableViewTapped() {
     tableView.rx.itemSelected
       .subscribe(onNext: { [weak self] indexPath in
-        guard let self
-        else { return }
-        print(self.viewModel.identifiers[indexPath.row])
-        self.viewModel.addTimeZone(id: self.viewModel.identifiers[indexPath.row].eng)
+        guard let self else { return }
+        self.viewModel.addTimeZone(identifier: self.viewModel.getTableViewItems()[indexPath.row])
         self.dismiss(animated: true)
       })
       .disposed(by: disposeBag)
   }
   
-  func setLayout() {
+  private func setLayout() {
     view.backgroundColor = .systemBackground
     
     [titleLabel, searchBar, tableView]
@@ -79,14 +78,33 @@ class TimeZoneModalViewController: UIViewController {
 
 extension TimeZoneModalViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return viewModel.identifiers.count
+    return viewModel.getTableViewItems().count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = UITableViewCell()
-    cell.textLabel?.text = viewModel.identifiers[indexPath.row].kor
+    cell.textLabel?.text = viewModel.getTableViewItems()[indexPath.row].kor
     return cell
   }
-  
-  
+}
+
+extension TimeZoneModalViewController: UISearchBarDelegate {
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    if searchText.isEmpty {
+      viewModel.clearSearchedIDs()
+    } else {
+      viewModel.getSearchedIDs(searchText: searchText)
+      tableView.reloadData()
+    }
+  }
+}
+
+extension UIViewController {
+  func hideKeyboard() {
+    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+    view.addGestureRecognizer(tap)
+  }
+  @objc func dismissKeyboard() {
+    view.endEditing(true)
+  }
 }
