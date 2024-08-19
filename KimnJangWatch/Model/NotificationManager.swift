@@ -5,13 +5,6 @@
 //  Created by 김동현 on 8/13/24.
 //
 
-//
-//  NotificationManager.swift
-//  KimnJangWatch
-//
-//  Created by 김동현 on 8/13/24.
-//
-
 import UserNotifications
 
 /// 앱 내에서 로컬 알림을 관리하는 싱글톤 클래스입니다.
@@ -28,7 +21,7 @@ class NotificationManager {
   ///   - identifier: 알림의 고유 식별자
   ///   - repeats: 알람이 반복될 요일 배열 (1: 일요일, 2: 월요일, ..., 7: 토요일)
   ///   - snooze: 다시 알림 기능 활성화 여부
-  func scheduleNotification(at date: Date, with message: String, identifier: String, repeats: [Int] = [], snooze: Bool = false) {
+  func scheduleNotification(at date: Date, with message: String, identifier: String, repeats: [Int] = [], snooze: Bool = false, soundFile: String = "default") {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     let dateString = dateFormatter.string(from: date)
@@ -36,7 +29,11 @@ class NotificationManager {
     let content = UNMutableNotificationContent()
     content.title = "Kim&Jang"
     content.body = message
-    content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "hummus.mp3"))
+    if soundFile != "default" {
+      content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "\(soundFile).mp3"))
+    } else {
+      content.sound = UNNotificationSound.default
+    }
     
     let currentDate = Date()
     var finalDate = date

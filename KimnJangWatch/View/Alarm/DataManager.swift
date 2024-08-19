@@ -11,7 +11,7 @@ import CoreData
 class DataManager {
   let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
-  func createTime(id: UUID, hour: String, minute: String, repeatDays: [Int], message: String, isOn: Bool, repeatAlarm: Bool) {
+  func createTime(id: UUID, hour: String, minute: String, repeatDays: [Int], message: String, isOn: Bool, repeatAlarm: Bool, alarmSound: String) {
     let newTime = Time(context: context)
     newTime.id = id
     newTime.hour = hour
@@ -20,6 +20,7 @@ class DataManager {
     newTime.message = message
     newTime.isOn = isOn
     newTime.repeatAlarm = repeatAlarm
+    newTime.alarmSound = alarmSound  // 새로운 속성으로 추가된 alarmSound를 저장
     
     saveContext()
   }

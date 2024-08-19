@@ -23,6 +23,7 @@ extension Time {
     @NSManaged public var message: String?
     @NSManaged public var repeatAlarm: Bool
     @NSManaged public var isOn: Bool
+    @NSManaged public var alarmSound: String?
 
 }
 

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7611D5802C73C16B00BC5B26 /* boop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7611D57F2C73C16B00BC5B26 /* boop.mp3 */; };
+		7611D5822C73C1BE00BC5B26 /* knock_brush.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7611D5812C73C1BE00BC5B26 /* knock_brush.mp3 */; };
+		7611D5892C73CB8900BC5B26 /* cat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7611D5862C73CB8900BC5B26 /* cat.mp3 */; };
+		7611D58A2C73CB8900BC5B26 /* dog.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7611D5872C73CB8900BC5B26 /* dog.mp3 */; };
+		7611D58B2C73CB8900BC5B26 /* siren.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7611D5882C73CB8900BC5B26 /* siren.mp3 */; };
 		765E85342C69CFC900F928D7 /* CodeConvention.md in Resources */ = {isa = PBXBuildFile; fileRef = 765E85332C69CFC900F928D7 /* CodeConvention.md */; };
 		765E85362C69CFD900F928D7 /* CommitConvention.md in Resources */ = {isa = PBXBuildFile; fileRef = 765E85352C69CFD900F928D7 /* CommitConvention.md */; };
 		765E853B2C6A87F900F928D7 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765E853A2C6A87F900F928D7 /* NotificationManager.swift */; };
@@ -17,7 +22,6 @@
 		766E174E2C69C7C9004C0163 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 766E174D2C69C7C9004C0163 /* Assets.xcassets */; };
 		766E17512C69C7C9004C0163 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 766E17502C69C7C9004C0163 /* Base */; };
 		766E175C2C69C7C9004C0163 /* KimnJangWatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E175B2C69C7C9004C0163 /* KimnJangWatchTests.swift */; };
-		766E177D2C69C9CD004C0163 /* MainCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E177C2C69C9CD004C0163 /* MainCommon.swift */; };
 		766E17822C69C9FB004C0163 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 766E17812C69C9FB004C0163 /* SnapKit */; };
 		766E17852C69CA28004C0163 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 766E17842C69CA28004C0163 /* RxCocoa */; };
 		766E17872C69CA28004C0163 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 766E17862C69CA28004C0163 /* RxRelay */; };
@@ -73,6 +77,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7611D57F2C73C16B00BC5B26 /* boop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = boop.mp3; sourceTree = "<group>"; };
+		7611D5812C73C1BE00BC5B26 /* knock_brush.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = knock_brush.mp3; sourceTree = "<group>"; };
+		7611D5862C73CB8900BC5B26 /* cat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat.mp3; sourceTree = "<group>"; };
+		7611D5872C73CB8900BC5B26 /* dog.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dog.mp3; sourceTree = "<group>"; };
+		7611D5882C73CB8900BC5B26 /* siren.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = siren.mp3; sourceTree = "<group>"; };
 		765E85332C69CFC900F928D7 /* CodeConvention.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CodeConvention.md; sourceTree = "<group>"; };
 		765E85352C69CFD900F928D7 /* CommitConvention.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CommitConvention.md; sourceTree = "<group>"; };
 		765E853A2C6A87F900F928D7 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
@@ -86,7 +95,6 @@
 		766E17522C69C7C9004C0163 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		766E17572C69C7C9004C0163 /* KimnJangWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KimnJangWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		766E175B2C69C7C9004C0163 /* KimnJangWatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KimnJangWatchTests.swift; sourceTree = "<group>"; };
-		766E177C2C69C9CD004C0163 /* MainCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCommon.swift; sourceTree = "<group>"; };
 		766E178A2C69CA42004C0163 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		766E178C2C69CA4F004C0163 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		766E178E2C69CBA2004C0163 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
@@ -153,6 +161,11 @@
 			isa = PBXGroup;
 			children = (
 				765E85442C6B5EDD00F928D7 /* hummus.mp3 */,
+				7611D5812C73C1BE00BC5B26 /* knock_brush.mp3 */,
+				7611D57F2C73C16B00BC5B26 /* boop.mp3 */,
+				7611D5862C73CB8900BC5B26 /* cat.mp3 */,
+				7611D5872C73CB8900BC5B26 /* dog.mp3 */,
+				7611D5882C73CB8900BC5B26 /* siren.mp3 */,
 				766E174D2C69C7C9004C0163 /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -257,7 +270,6 @@
 			isa = PBXGroup;
 			children = (
 				766E178E2C69CBA2004C0163 /* UIColor+Extensions.swift */,
-				766E177C2C69C9CD004C0163 /* MainCommon.swift */,
 				F407753E2C70B53F009D05A2 /* TimeZone+Extensions.swift */,
 			);
 			path = Common;
@@ -448,9 +460,14 @@
 				766E178B2C69CA42004C0163 /* .gitignore in Resources */,
 				766E178D2C69CA4F004C0163 /* README.md in Resources */,
 				765E85342C69CFC900F928D7 /* CodeConvention.md in Resources */,
+				7611D58B2C73CB8900BC5B26 /* siren.mp3 in Resources */,
 				765E85452C6B5EDD00F928D7 /* hummus.mp3 in Resources */,
+				7611D5892C73CB8900BC5B26 /* cat.mp3 in Resources */,
 				765E85362C69CFD900F928D7 /* CommitConvention.md in Resources */,
+				7611D5822C73C1BE00BC5B26 /* knock_brush.mp3 in Resources */,
+				7611D5802C73C16B00BC5B26 /* boop.mp3 in Resources */,
 				766E17512C69C7C9004C0163 /* Base in Resources */,
+				7611D58A2C73CB8900BC5B26 /* dog.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,7 +507,6 @@
 				76D235082C737071001F6DA4 /* AlarmData.xcdatamodeld in Sources */,
 				DD73EEBE2C725DCB00F6773B /* AlarmModel.swift in Sources */,
 				E797FDA92C6ADA9900D6ABE6 /* TimerViewController.swift in Sources */,
-				766E177D2C69C9CD004C0163 /* MainCommon.swift in Sources */,
 				765E853B2C6A87F900F928D7 /* NotificationManager.swift in Sources */,
 				E797FDBC2C6C5E9B00D6ABE6 /* RecentTimerViewController.swift in Sources */,
 				765E853D2C6B443500F928D7 /* TestNotificationViewController.swift in Sources */,
@@ -668,10 +684,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 72GVCX2P2A;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KimnJangWatch/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Kim&Jang";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -697,10 +714,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 72GVCX2P2A;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KimnJangWatch/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Kim&Jang";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

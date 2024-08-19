@@ -19,8 +19,10 @@ class AddAlarmViewController: UIViewController {
   private let hour: Int
   private let minute: Int
   private var time: String
+  private let soundOptions = AddAlarm().songs
   let dataManager = DataManager()
   var onSave: (() -> Void)?
+  var selectedSound: (displayName: String, fileName: String) = AddAlarm().songs.first ?? ("Default", "default") // 기본 사운드 설정
   
   init(time: String) {
     hour = Int(time.prefix(2)) ?? 0
@@ -98,10 +100,15 @@ class AddAlarmViewController: UIViewController {
           // 반복 설정 페이지로 이동
           let dayTableViewController = DayTableViewController(time: self.time)
           self.navigationController?.pushViewController(dayTableViewController, animated: true)
-        } else if indexPath.row == 2 {
-          // 사운드 설정 페이지로 이동
-          let alarmSongViewController = AlarmSongViewController()
-          self.navigationController?.pushViewController(alarmSongViewController, animated: true)
+        } else if indexPath.row == 2 { // 사운드 선택 화면으로 이동
+          let soundVC = AlarmSongViewController()
+          soundVC.selectedSound = self.selectedSound
+          soundVC.onSoundSelected = { [weak self] soundFileName in
+            if let sound = self?.soundOptions.first(where: { $0.fileName == soundFileName }) {
+              self?.selectedSound = sound
+            }
+          }
+          self.navigationController?.pushViewController(soundVC, animated: true)
         }
       }).disposed(by: disposeBag)
     
@@ -137,7 +144,8 @@ class AddAlarmViewController: UIViewController {
         with: message,
         identifier: newAlarmID,
         repeats: dataManager.readUserDefault(key: "day") ?? [],
-        snooze: repeatAlarm
+        snooze: repeatAlarm,
+        soundFile: selectedSound.fileName  // 선택한 사운드를 사용
       )
       
       dataManager.createTime(
@@ -147,7 +155,8 @@ class AddAlarmViewController: UIViewController {
         repeatDays: dataManager.readUserDefault(key: "day") ?? [],
         message: message,
         isOn: true,
-        repeatAlarm: repeatAlarm
+        repeatAlarm: repeatAlarm,
+        alarmSound: selectedSound.fileName // CoreData에 파일 이름 저장
       )
     }
     
