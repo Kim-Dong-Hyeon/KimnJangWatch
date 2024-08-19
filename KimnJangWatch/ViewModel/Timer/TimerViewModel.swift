@@ -36,15 +36,19 @@ class TimerViewModel {
   func startTimer(id: UUID) {
     guard let timer = getTimer(id: id), timer.isRunning.value else { return }
     
+    let endTime = Date().addingTimeInterval(timer.remainingTime.value)
+    notification(id: id, endTime: endTime)
+    
     if let previousSubscription = timerSubscription[id] {
       previousSubscription.dispose()
       timerSubscription.removeValue(forKey: id)
     }
     
-    let subscription = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+    let subscription = Observable<Int>.interval(.milliseconds(100),
+                                                scheduler: MainScheduler.instance)
       .subscribe(onNext: { [weak self] _ in
         guard let self = self else { return }
-        let currentTime = max(timer.remainingTime.value - 1, 0)
+        let currentTime = max(timer.remainingTime.value - 0.1, 0)
         timer.remainingTime.accept(currentTime)
         UserDefaults.standard.set(currentTime, forKey: id.uuidString)
         
@@ -101,7 +105,7 @@ class TimerViewModel {
     timers.accept(timers.value.filter { $0.id != id })
   }
 
-  // MARK: 앱 상태 관리
+  // MARK: 앱 상태 관리 - viewController에서 호출 필요
   func manageTimerState() {
     let enterBackground = NotificationCenter.default
       .rx.notification(UIApplication.didEnterBackgroundNotification)
@@ -128,13 +132,15 @@ class TimerViewModel {
     let passedTime = Date().timeIntervalSince(entryTime)
     
     timers.value.forEach { timer in
-      let newTime = max((timer.remainingTime.value - passedTime), 0)
-      timer.remainingTime.accept(newTime)
-      
-      if timer.isRunning.value && newTime > 0 {
-        startTimer(id: timer.id)
-      } else {
-        pauseTimer(id: timer.id)
+      if timer.isRunning.value {
+        let newTime = max((timer.remainingTime.value - passedTime), 0)
+        timer.remainingTime.accept(newTime)
+        
+        if newTime > 0 {
+          startTimer(id: timer.id)
+        } else {
+          pauseTimer(id: timer.id)
+        }
       }
     }
   }
