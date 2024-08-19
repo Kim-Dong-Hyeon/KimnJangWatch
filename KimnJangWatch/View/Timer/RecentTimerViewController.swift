@@ -13,6 +13,9 @@ import SnapKit
 
 class RecentTimerViewController: UIViewController {
   
+  private let viewModel = TimerViewModel.shared
+  private let disposeBag = DisposeBag()
+  
   // MARK: recentTimerView 영역
   private lazy var recentLabel: UILabel = {
     let label = UILabel()
@@ -23,7 +26,8 @@ class RecentTimerViewController: UIViewController {
   
   private lazy var recentTableView: UITableView = {
     let tableView = UITableView()
-    tableView.register(RecentTimerTableViewCell.self, forCellReuseIdentifier: RecentTimerTableViewCell.id)
+    tableView.register(RecentTimerTableViewCell.self,
+                       forCellReuseIdentifier: RecentTimerTableViewCell.id)
     tableView.delegate = self
     tableView.dataSource = self
     tableView.backgroundColor = .gray
@@ -34,6 +38,7 @@ class RecentTimerViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setRecentTimerView()
+    bind()
   }
   
   private func setRecentTimerView() {
@@ -56,6 +61,13 @@ class RecentTimerViewController: UIViewController {
     let rowsCount = tableView(recentTableView, numberOfRowsInSection: 0)
     return CGFloat(rowsCount) * 100
   }
+  
+  private func bind() {
+    viewModel.timers
+      .subscribe(onNext: { [weak self] _ in
+        self?.recentTableView.reloadData()
+      }).disposed(by: disposeBag)
+  }
 }
 
 extension RecentTimerViewController: UITableViewDelegate {
@@ -66,14 +78,19 @@ extension RecentTimerViewController: UITableViewDelegate {
 
 extension RecentTimerViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 5
+    return viewModel.getRecentTimers().count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = recentTableView
-      .dequeueReusableCell(withIdentifier: RecentTimerTableViewCell.id, for: indexPath) as? RecentTimerTableViewCell else {
+      .dequeueReusableCell(withIdentifier: RecentTimerTableViewCell.id, for: indexPath)
+            as? RecentTimerTableViewCell else {
       return UITableViewCell()
     }
+    let recentTimers = viewModel.getRecentTimers().reversed()
+    let timeString = recentTimers[recentTimers.index(recentTimers.startIndex, offsetBy: indexPath.row)]
+    cell.configRecentCell(timeString: timeString)
+    
     return cell
   }
 }

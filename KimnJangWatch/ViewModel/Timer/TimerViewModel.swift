@@ -17,7 +17,12 @@ class TimerViewModel {
   let endTimer = PublishSubject<UUID>()
   private var timerSubscription = [UUID:Disposable]()
   private var backgroundEntryTime = BehaviorRelay<Date?>(value: nil)
+  private var recentTimers = [String]()
   private var disposeBag = DisposeBag()
+  
+  init() {
+    loadRecentTimers()
+  }
     
   func manageTimerState() {
     let enterBackground = NotificationCenter.default
@@ -46,7 +51,37 @@ class TimerViewModel {
                               isRunning: BehaviorRelay<Bool>(value: true))
     timers.accept(timers.value + [newTimer])
     UserDefaults.standard.set(time, forKey: newTimer.id.uuidString)
+    addRecentTimer(time: formatTime(time: time))
+    print(recentTimers)
     startTimer(id: newTimer.id)
+  }
+  
+  private func addRecentTimer(time: String) {
+    recentTimers.append(time)
+    if recentTimers.count > 5 {
+      recentTimers.removeFirst()
+    }
+    saveRecentTimers()
+  }
+  
+  func getRecentTimers() -> [String] {
+    return recentTimers
+  }
+  
+  private func saveRecentTimers() {
+    UserDefaults.standard.set(recentTimers, forKey: "RecentTimers")
+  }
+  
+  private func loadRecentTimers() {
+    if let savedTimers = UserDefaults.standard.array(forKey: "RecentTimers") as? [String] {
+      recentTimers = savedTimers
+    }
+  }
+  
+  private func formatTime(time: TimeInterval) -> String {
+    let minutes = Int(time) / 60
+    let seconds = Int(time) % 60
+    return String(format: "%02d:%02d", minutes, seconds)
   }
   
   func startTimer(id: UUID) {

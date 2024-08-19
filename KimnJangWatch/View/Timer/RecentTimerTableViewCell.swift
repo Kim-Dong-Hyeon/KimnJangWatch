@@ -56,8 +56,8 @@ class RecentTimerTableViewCell: UITableViewCell {
     }
   }
   
-  func configRecentCell() {
-    
+  func configRecentCell(timeString: String) {
+    timeLabel.text = timeString
   }
   
 }
