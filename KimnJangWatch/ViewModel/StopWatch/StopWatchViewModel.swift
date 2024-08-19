@@ -65,6 +65,8 @@ class StopWatchViewModel {
     self.watchStatus = .pause// 상태를 중지로 바꾸고
     stopWatchTimer?.invalidate()//타이머를 정지시킴
     lapTimer?.invalidate()
+    stopWatchTimer = nil
+    lapTimer = nil
   }
   
   private func restartTimer() {
@@ -72,6 +74,9 @@ class StopWatchViewModel {
     startTime = Date().addingTimeInterval(-elapsedTime) //현재시간에서 경과시간만큼을 뺀것을 시작시점
     self.stopWatchTimer = Timer(timeInterval: 0.01, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
     RunLoop.current.add(stopWatchTimer!, forMode: .common)
+    
+    lapStartTime = Date().addingTimeInterval(-lapElapsedTime)
+    startLapTimer()
   }
   
   private func saveLapRecord() {
@@ -87,6 +92,7 @@ class StopWatchViewModel {
     startLapTimer()
   }
   private func startLapTimer() {
+    lapTimer?.invalidate()
     lapTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateLapTime), userInfo: nil, repeats: true)
     RunLoop.current.add(lapTimer!, forMode: .common)
   }
@@ -101,7 +107,6 @@ class StopWatchViewModel {
     onTimeUpdate?("00:00.00")
     onLapUpdate?("00:00.00")
   }
-
 
   @objc func updateTime() {
     guard let startTime = self.startTime else { return }
