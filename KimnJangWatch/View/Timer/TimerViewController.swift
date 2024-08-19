@@ -31,6 +31,7 @@ class TimerViewController: UIViewController {
   // MARK: 뷰 생애주기
   override func viewDidLoad() {
     super.viewDidLoad()
+    recentTimerView.view.isHidden = true // 구현 완료되지 않아 hidden 해 놓았습니다.
     configNavigationUI()
     setAllView()
   }

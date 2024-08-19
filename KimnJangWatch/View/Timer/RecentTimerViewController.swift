@@ -89,7 +89,6 @@ extension RecentTimerViewController: UITableViewDataSource {
     }
     let recentTimers = viewModel.getRecentTimers().reversed()
     let timeString = recentTimers[recentTimers.index(recentTimers.startIndex, offsetBy: indexPath.row)]
-    cell.configRecentCell(timeString: timeString)
     
     return cell
   }
