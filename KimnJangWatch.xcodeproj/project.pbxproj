@@ -38,8 +38,11 @@
 		DD73EEB72C70A46300F6773B /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEB62C70A46300F6773B /* BaseTableViewController.swift */; };
 		DD73EEB92C70B5BE00F6773B /* DayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEB82C70B5BE00F6773B /* DayTableViewController.swift */; };
 		DD73EEBB2C70D4D700F6773B /* AlarmSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEBA2C70D4D700F6773B /* AlarmSongViewController.swift */; };
-		DD73EEBC2C71F33D00F6773B /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDBD2C6F0F2C00D6ABE6 /* TimerModel.swift */; };
 		DD73EEBE2C725DCB00F6773B /* AlarmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEBD2C725DCB00F6773B /* AlarmModel.swift */; };
+		DD73EEC12C731DC900F6773B /* AlarmData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEBF2C731DC900F6773B /* AlarmData.xcdatamodeld */; };
+		DD73EEC42C73217500F6773B /* Time+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEC22C73217500F6773B /* Time+CoreDataClass.swift */; };
+		DD73EEC52C73217500F6773B /* Time+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEC32C73217500F6773B /* Time+CoreDataProperties.swift */; };
+		DD73EEC72C73275100F6773B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEC62C73275100F6773B /* DataManager.swift */; };
 		DDC1F5FC2C69FD36003FCDB3 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1F5FB2C69FD36003FCDB3 /* AlarmView.swift */; };
 		DDC1F5FE2C69FD45003FCDB3 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1F5FD2C69FD45003FCDB3 /* AlarmViewController.swift */; };
 		DDC1F6002C6A0EAA003FCDB3 /* AlarmListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1F5FF2C6A0EAA003FCDB3 /* AlarmListCell.swift */; };
@@ -100,6 +103,10 @@
 		DD73EEB82C70B5BE00F6773B /* DayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTableViewController.swift; sourceTree = "<group>"; };
 		DD73EEBA2C70D4D700F6773B /* AlarmSongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSongViewController.swift; sourceTree = "<group>"; };
 		DD73EEBD2C725DCB00F6773B /* AlarmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmModel.swift; sourceTree = "<group>"; };
+		DD73EEC02C731DC900F6773B /* AlarmData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AlarmData.xcdatamodel; sourceTree = "<group>"; };
+		DD73EEC22C73217500F6773B /* Time+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Time+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DD73EEC32C73217500F6773B /* Time+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Time+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DD73EEC62C73275100F6773B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		DDC1F5FB2C69FD36003FCDB3 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
 		DDC1F5FD2C69FD45003FCDB3 /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		DDC1F5FF2C6A0EAA003FCDB3 /* AlarmListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListCell.swift; sourceTree = "<group>"; };
@@ -155,6 +162,7 @@
 		765E85462C6B83D500F928D7 /* Alarm */ = {
 			isa = PBXGroup;
 			children = (
+				DD73EEC62C73275100F6773B /* DataManager.swift */,
 				DDC1F5FB2C69FD36003FCDB3 /* AlarmView.swift */,
 				DDC1F5FD2C69FD45003FCDB3 /* AlarmViewController.swift */,
 				DDC1F5FF2C6A0EAA003FCDB3 /* AlarmListCell.swift */,
@@ -199,6 +207,8 @@
 		766E17382C69C7C7004C0163 = {
 			isa = PBXGroup;
 			children = (
+				DD73EEC22C73217500F6773B /* Time+CoreDataClass.swift */,
+				DD73EEC32C73217500F6773B /* Time+CoreDataProperties.swift */,
 				766E178C2C69CA4F004C0163 /* README.md */,
 				765E85332C69CFC900F928D7 /* CodeConvention.md */,
 				765E85352C69CFD900F928D7 /* CommitConvention.md */,
@@ -231,6 +241,7 @@
 				765E85432C6B5EA200F928D7 /* Assets */,
 				766E174F2C69C7C9004C0163 /* LaunchScreen.storyboard */,
 				766E17522C69C7C9004C0163 /* Info.plist */,
+				DD73EEBF2C731DC900F6773B /* AlarmData.xcdatamodeld */,
 			);
 			path = KimnJangWatch;
 			sourceTree = "<group>";
@@ -464,12 +475,15 @@
 				DDC1F5FE2C69FD45003FCDB3 /* AlarmViewController.swift in Sources */,
 				DD73EEB72C70A46300F6773B /* BaseTableViewController.swift in Sources */,
 				E797FDB02C6B67E500D6ABE6 /* TimerViewModel.swift in Sources */,
+				DD73EEC72C73275100F6773B /* DataManager.swift in Sources */,
 				766E178F2C69CBA2004C0163 /* UIColor+Extensions.swift in Sources */,
 				F45957E22C69E2F800AFEB69 /* WorldTimeViewController.swift in Sources */,
 				DD73EEB92C70B5BE00F6773B /* DayTableViewController.swift in Sources */,
 				DD0DC5382C6B34910090B1DF /* AddAlarmView.swift in Sources */,
 				F407753F2C70B53F009D05A2 /* TimeZone+Extensions.swift in Sources */,
 				DD0DC53A2C6B4B910090B1DF /* AlarmViewModel.swift in Sources */,
+				DD73EEC42C73217500F6773B /* Time+CoreDataClass.swift in Sources */,
+				DD73EEC52C73217500F6773B /* Time+CoreDataProperties.swift in Sources */,
 				766E17492C69C7C7004C0163 /* TabBarController.swift in Sources */,
 				DD73EEBB2C70D4D700F6773B /* AlarmSongViewController.swift in Sources */,
 				9FE1E0E92C6B1A48003C448E /* StopWatchViewModel.swift in Sources */,
@@ -489,6 +503,7 @@
 				DD0DC5362C6B16270090B1DF /* AddAlarmViewController.swift in Sources */,
 				9FE1E0ED2C6C5A5A003C448E /* LapViewCell.swift in Sources */,
 				DDC1F5FC2C69FD36003FCDB3 /* AlarmView.swift in Sources */,
+				DD73EEC12C731DC900F6773B /* AlarmData.xcdatamodeld in Sources */,
 				DD0DC5612C6F758D0090B1DF /* TimeSetCell.swift in Sources */,
 				E797FDB82C6C5E7C00D6ABE6 /* SetTimerViewController.swift in Sources */,
 				76D234FE2C70DD0E001F6DA4 /* TestNotificationViewModel.swift in Sources */,
@@ -818,6 +833,20 @@
 			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		DD73EEBF2C731DC900F6773B /* AlarmData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DD73EEC02C731DC900F6773B /* AlarmData.xcdatamodel */,
+			);
+			currentVersion = DD73EEC02C731DC900F6773B /* AlarmData.xcdatamodel */;
+			name = AlarmData.xcdatamodeld;
+			path = "/Users/gim-yunhong/Desktop/KimnJangWatch/KimnJangWatch/AlarmData.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 766E17392C69C7C7004C0163 /* Project object */;
 }

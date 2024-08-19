@@ -6,6 +6,7 @@
 // //hour, minutem time, dayArray등 Model로 파일 분리? DateFormatter를 ViewModel로 묶어서 재활용하기?
 
 import UIKit
+import CoreData
 
 import RxSwift
 import RxCocoa
@@ -18,7 +19,8 @@ class AddAlarmViewController: UIViewController {
   private let hour: Int
   private let minute: Int
   private var time: String
-  private var dayArray: [Int] = []
+  let dataManager = DataManager()
+  var onSave: (() -> Void)?
   
   init(time: String) {
     hour = Int(time.prefix(2)) ?? 0
@@ -70,9 +72,11 @@ class AddAlarmViewController: UIViewController {
       .subscribe(onNext: { indexPath in
         if self.addAlarmView.timeSetList.cellForRow(at: indexPath) is TimeSetCell {
           if indexPath.row == 0 {
-            self.navigationController?.pushViewController(DayTableViewController(time: self.time), animated: true)
+            self.navigationController?.pushViewController(DayTableViewController(time: self.time),
+                                                          animated: true)
           } else if indexPath.row == 2 {
-            self.navigationController?.pushViewController(AlarmSongViewController(), animated: true)
+            self.navigationController?.pushViewController(AlarmSongViewController(),
+                                                          animated: true)
           }
         }
       }).disposed(by: disposeBag)
@@ -83,10 +87,24 @@ class AddAlarmViewController: UIViewController {
       let dateFormatter = DateFormatter()
       dateFormatter.dateFormat = "HH:mm"
       let time = dateFormatter.string(from: selectedDate)
-      if let savedDayArray = UserDefaults.standard.dictionary(forKey: "times") as? [String: [Int]] {
-        dayArray = savedDayArray[time] ?? []
-        self.alarmViewModel.addTime(day: dayArray, time: time)
+      
+      if let labelCell = self.addAlarmView.timeSetList.cellForRow(at: IndexPath(row: 1, section: 0)) as? TimeSetCell,
+         let switchCell = self.addAlarmView.timeSetList.cellForRow(at: IndexPath(row: 3, section: 0)) as? TimeSetCell {
+        let message = labelCell.getMessage()
+        let repeatAlarm = switchCell.getRepeat()
+        
+        dataManager.createTime(
+          id: UUID(),
+          hour: String(time.prefix(2)),
+          minute: String(time.suffix(2)),
+          repeatDays: dataManager.readUserDefault(key: "day") ?? [],
+          message: message,
+          isOn: true,
+          repeatAlarm: repeatAlarm
+        )
       }
+  
+      self.onSave?()
       self.dismiss(animated: true, completion: nil)
     }.disposed(by: disposeBag)
     
@@ -100,6 +118,7 @@ class AddAlarmViewController: UIViewController {
     let button = UIButton()
     button.setTitle("저장", for: .normal)
     button.setTitleColor(UIColor.dangn, for: .normal)
+    dataManager.deleteUserDefault(key: "day")
     return UIBarButtonItem(customView: button)
   }
   

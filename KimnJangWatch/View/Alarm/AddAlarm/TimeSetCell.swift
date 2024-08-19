@@ -16,7 +16,7 @@ class TimeSetCell: UITableViewCell {
   private let label = UILabel()
   private let subLabel = UILabel()
   
-  private let alarmSwitch: UISwitch = {
+  let alarmSwitch: UISwitch = {
     let alarmSwitch = UISwitch()
     alarmSwitch.onTintColor = .dangn
     return alarmSwitch
@@ -94,5 +94,13 @@ class TimeSetCell: UITableViewCell {
       subLabel.isHidden = true
     default: break
     }
+  }
+  
+  func getMessage() -> String {
+    return textField.text ?? ""
+  }
+  
+  func getRepeat() -> Bool {
+    return alarmSwitch.isOn
   }
 }

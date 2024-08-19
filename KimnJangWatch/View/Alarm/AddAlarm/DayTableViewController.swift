@@ -15,6 +15,7 @@ class DayTableViewController: BaseTableViewController {
   var time: String
   var checkedCell = BehaviorRelay<[IndexPath]>(value: [])
   let viewModel = AlarmViewModel()
+  let dataManager = DataManager()
   
   init(time: String) {
     self.time = time
@@ -64,7 +65,7 @@ class DayTableViewController: BaseTableViewController {
   
   override func saveData() {
     let dayArray = checkedCell.value.map { $0.row }
-    self.viewModel.addTime(day: dayArray, time: time)
+    UserDefaults.standard.set(dayArray, forKey: "day")
   }
   
   override func configureUI() {
