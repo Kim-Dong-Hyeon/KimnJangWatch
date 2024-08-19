@@ -9,16 +9,15 @@
 /* Begin PBXBuildFile section */
 		765E85342C69CFC900F928D7 /* CodeConvention.md in Resources */ = {isa = PBXBuildFile; fileRef = 765E85332C69CFC900F928D7 /* CodeConvention.md */; };
 		765E85362C69CFD900F928D7 /* CommitConvention.md in Resources */ = {isa = PBXBuildFile; fileRef = 765E85352C69CFD900F928D7 /* CommitConvention.md */; };
-		766E17452C69C7C7004C0163 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17442C69C7C7004C0163 /* AppDelegate.swift */; };
+		765E853B2C6A87F900F928D7 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765E853A2C6A87F900F928D7 /* NotificationManager.swift */; };
+		765E853D2C6B443500F928D7 /* TestNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765E853C2C6B443500F928D7 /* TestNotificationViewController.swift */; };
+		765E85452C6B5EDD00F928D7 /* hummus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 765E85442C6B5EDD00F928D7 /* hummus.mp3 */; };
+		765E854B2C6C33C400F928D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17442C69C7C7004C0163 /* AppDelegate.swift */; };
 		766E17492C69C7C7004C0163 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17482C69C7C7004C0163 /* TabBarController.swift */; };
 		766E174E2C69C7C9004C0163 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 766E174D2C69C7C9004C0163 /* Assets.xcassets */; };
 		766E17512C69C7C9004C0163 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 766E17502C69C7C9004C0163 /* Base */; };
 		766E175C2C69C7C9004C0163 /* KimnJangWatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E175B2C69C7C9004C0163 /* KimnJangWatchTests.swift */; };
-		766E17662C69C7C9004C0163 /* KimnJangWatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17652C69C7C9004C0163 /* KimnJangWatchUITests.swift */; };
-		766E17682C69C7C9004C0163 /* KimnJangWatchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17672C69C7C9004C0163 /* KimnJangWatchUITestsLaunchTests.swift */; };
-		766E177B2C69C9B9004C0163 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E177A2C69C9B9004C0163 /* MainModel.swift */; };
 		766E177D2C69C9CD004C0163 /* MainCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E177C2C69C9CD004C0163 /* MainCommon.swift */; };
-		766E177F2C69C9DE004C0163 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E177E2C69C9DE004C0163 /* MainViewModel.swift */; };
 		766E17822C69C9FB004C0163 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 766E17812C69C9FB004C0163 /* SnapKit */; };
 		766E17852C69CA28004C0163 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 766E17842C69CA28004C0163 /* RxCocoa */; };
 		766E17872C69CA28004C0163 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 766E17862C69CA28004C0163 /* RxRelay */; };
@@ -26,6 +25,42 @@
 		766E178B2C69CA42004C0163 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 766E178A2C69CA42004C0163 /* .gitignore */; };
 		766E178D2C69CA4F004C0163 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 766E178C2C69CA4F004C0163 /* README.md */; };
 		766E178F2C69CBA2004C0163 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E178E2C69CBA2004C0163 /* UIColor+Extensions.swift */; };
+		76D234FE2C70DD0E001F6DA4 /* TestNotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D234FD2C70DD0E001F6DA4 /* TestNotificationViewModel.swift */; };
+		76D234FF2C720114001F6DA4 /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDBD2C6F0F2C00D6ABE6 /* TimerModel.swift */; };
+		9FE1E0E72C69FE2F003C448E /* StopWatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE1E0E62C69FE2F003C448E /* StopWatchController.swift */; };
+		9FE1E0E92C6B1A48003C448E /* StopWatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE1E0E82C6B1A48003C448E /* StopWatchViewModel.swift */; };
+		9FE1E0ED2C6C5A5A003C448E /* LapViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE1E0EC2C6C5A5A003C448E /* LapViewCell.swift */; };
+		DD0DC5362C6B16270090B1DF /* AddAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0DC5352C6B16270090B1DF /* AddAlarmViewController.swift */; };
+		DD0DC5382C6B34910090B1DF /* AddAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0DC5372C6B34910090B1DF /* AddAlarmView.swift */; };
+		DD0DC53A2C6B4B910090B1DF /* AlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0DC5392C6B4B910090B1DF /* AlarmViewModel.swift */; };
+		DD0DC53B2C6B94980090B1DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17442C69C7C7004C0163 /* AppDelegate.swift */; };
+		DD0DC5612C6F758D0090B1DF /* TimeSetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0DC5602C6F758D0090B1DF /* TimeSetCell.swift */; };
+		DD73EEB72C70A46300F6773B /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEB62C70A46300F6773B /* BaseTableViewController.swift */; };
+		DD73EEB92C70B5BE00F6773B /* DayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEB82C70B5BE00F6773B /* DayTableViewController.swift */; };
+		DD73EEBB2C70D4D700F6773B /* AlarmSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEBA2C70D4D700F6773B /* AlarmSongViewController.swift */; };
+		DD73EEBE2C725DCB00F6773B /* AlarmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEBD2C725DCB00F6773B /* AlarmModel.swift */; };
+		DD73EEC12C731DC900F6773B /* AlarmData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEBF2C731DC900F6773B /* AlarmData.xcdatamodeld */; };
+		DD73EEC42C73217500F6773B /* Time+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEC22C73217500F6773B /* Time+CoreDataClass.swift */; };
+		DD73EEC52C73217500F6773B /* Time+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEC32C73217500F6773B /* Time+CoreDataProperties.swift */; };
+		DD73EEC72C73275100F6773B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEC62C73275100F6773B /* DataManager.swift */; };
+		DDC1F5FC2C69FD36003FCDB3 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1F5FB2C69FD36003FCDB3 /* AlarmView.swift */; };
+		DDC1F5FE2C69FD45003FCDB3 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1F5FD2C69FD45003FCDB3 /* AlarmViewController.swift */; };
+		DDC1F6002C6A0EAA003FCDB3 /* AlarmListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1F5FF2C6A0EAA003FCDB3 /* AlarmListCell.swift */; };
+		E797FDA92C6ADA9900D6ABE6 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDA82C6ADA9900D6ABE6 /* TimerViewController.swift */; };
+		E797FDAB2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDAA2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift */; };
+		E797FDAE2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDAD2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift */; };
+		E797FDB02C6B67E500D6ABE6 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDAF2C6B67E500D6ABE6 /* TimerViewModel.swift */; };
+		E797FDB82C6C5E7C00D6ABE6 /* SetTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDB72C6C5E7C00D6ABE6 /* SetTimerViewController.swift */; };
+		E797FDBA2C6C5E9100D6ABE6 /* CurrentTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDB92C6C5E9100D6ABE6 /* CurrentTimerViewController.swift */; };
+		E797FDBC2C6C5E9B00D6ABE6 /* RecentTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDBB2C6C5E9B00D6ABE6 /* RecentTimerViewController.swift */; };
+		F407753B2C6C5454009D05A2 /* TimeZoneID.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407753A2C6C5454009D05A2 /* TimeZoneID.swift */; };
+		F407753D2C6C7029009D05A2 /* TimeZoneList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407753C2C6C7029009D05A2 /* TimeZoneList.swift */; };
+		F407753F2C70B53F009D05A2 /* TimeZone+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407753E2C70B53F009D05A2 /* TimeZone+Extensions.swift */; };
+		F45957E22C69E2F800AFEB69 /* WorldTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E12C69E2F800AFEB69 /* WorldTimeViewController.swift */; };
+		F45957E42C69E37400AFEB69 /* WorldTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E32C69E37400AFEB69 /* WorldTimeViewModel.swift */; };
+		F45957E62C69FC4300AFEB69 /* WorldTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E52C69FC4300AFEB69 /* WorldTimeCell.swift */; };
+		F45957E82C6A02B900AFEB69 /* TimeZoneModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E72C6A02B900AFEB69 /* TimeZoneModalViewController.swift */; };
+		F45957EA2C6A657500AFEB69 /* TimeZoneModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45957E92C6A657500AFEB69 /* TimeZoneModalViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,20 +69,16 @@
 			containerPortal = 766E17392C69C7C7004C0163 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 766E17402C69C7C7004C0163;
-			remoteInfo = "Kim&JangWatch";
-		};
-		766E17622C69C7C9004C0163 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 766E17392C69C7C7004C0163 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 766E17402C69C7C7004C0163;
-			remoteInfo = "Kim&JangWatch";
+			remoteInfo = KimnJangWatch;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		765E85332C69CFC900F928D7 /* CodeConvention.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CodeConvention.md; sourceTree = "<group>"; };
 		765E85352C69CFD900F928D7 /* CommitConvention.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CommitConvention.md; sourceTree = "<group>"; };
+		765E853A2C6A87F900F928D7 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		765E853C2C6B443500F928D7 /* TestNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNotificationViewController.swift; sourceTree = "<group>"; };
+		765E85442C6B5EDD00F928D7 /* hummus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hummus.mp3; sourceTree = "<group>"; };
 		766E17412C69C7C7004C0163 /* KimnJangWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KimnJangWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		766E17442C69C7C7004C0163 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		766E17482C69C7C7004C0163 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -56,15 +87,45 @@
 		766E17522C69C7C9004C0163 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		766E17572C69C7C9004C0163 /* KimnJangWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KimnJangWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		766E175B2C69C7C9004C0163 /* KimnJangWatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KimnJangWatchTests.swift; sourceTree = "<group>"; };
-		766E17612C69C7C9004C0163 /* KimnJangWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KimnJangWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		766E17652C69C7C9004C0163 /* KimnJangWatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KimnJangWatchUITests.swift; sourceTree = "<group>"; };
-		766E17672C69C7C9004C0163 /* KimnJangWatchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KimnJangWatchUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		766E177A2C69C9B9004C0163 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		766E177C2C69C9CD004C0163 /* MainCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCommon.swift; sourceTree = "<group>"; };
-		766E177E2C69C9DE004C0163 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		766E178A2C69CA42004C0163 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		766E178C2C69CA4F004C0163 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		766E178E2C69CBA2004C0163 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		76D234FD2C70DD0E001F6DA4 /* TestNotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNotificationViewModel.swift; sourceTree = "<group>"; };
+		9FE1E0E62C69FE2F003C448E /* StopWatchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchController.swift; sourceTree = "<group>"; };
+		9FE1E0E82C6B1A48003C448E /* StopWatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchViewModel.swift; sourceTree = "<group>"; };
+		9FE1E0EC2C6C5A5A003C448E /* LapViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapViewCell.swift; sourceTree = "<group>"; };
+		DD0DC5352C6B16270090B1DF /* AddAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmViewController.swift; sourceTree = "<group>"; };
+		DD0DC5372C6B34910090B1DF /* AddAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmView.swift; sourceTree = "<group>"; };
+		DD0DC5392C6B4B910090B1DF /* AlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewModel.swift; sourceTree = "<group>"; };
+		DD0DC5602C6F758D0090B1DF /* TimeSetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSetCell.swift; sourceTree = "<group>"; };
+		DD73EEB62C70A46300F6773B /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		DD73EEB82C70B5BE00F6773B /* DayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTableViewController.swift; sourceTree = "<group>"; };
+		DD73EEBA2C70D4D700F6773B /* AlarmSongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSongViewController.swift; sourceTree = "<group>"; };
+		DD73EEBD2C725DCB00F6773B /* AlarmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmModel.swift; sourceTree = "<group>"; };
+		DD73EEC02C731DC900F6773B /* AlarmData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AlarmData.xcdatamodel; sourceTree = "<group>"; };
+		DD73EEC22C73217500F6773B /* Time+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Time+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DD73EEC32C73217500F6773B /* Time+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Time+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DD73EEC62C73275100F6773B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		DDC1F5FB2C69FD36003FCDB3 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
+		DDC1F5FD2C69FD45003FCDB3 /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
+		DDC1F5FF2C6A0EAA003FCDB3 /* AlarmListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListCell.swift; sourceTree = "<group>"; };
+		E797FDA82C6ADA9900D6ABE6 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		E797FDAA2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTimerTableViewCell.swift; sourceTree = "<group>"; };
+		E797FDAD2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTimerTableViewCell.swift; sourceTree = "<group>"; };
+		E797FDAF2C6B67E500D6ABE6 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		E797FDB72C6C5E7C00D6ABE6 /* SetTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTimerViewController.swift; sourceTree = "<group>"; };
+		E797FDB92C6C5E9100D6ABE6 /* CurrentTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTimerViewController.swift; sourceTree = "<group>"; };
+		E797FDBB2C6C5E9B00D6ABE6 /* RecentTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTimerViewController.swift; sourceTree = "<group>"; };
+		E797FDBD2C6F0F2C00D6ABE6 /* TimerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
+		F407753A2C6C5454009D05A2 /* TimeZoneID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneID.swift; sourceTree = "<group>"; };
+		F407753C2C6C7029009D05A2 /* TimeZoneList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneList.swift; sourceTree = "<group>"; };
+		F407753E2C70B53F009D05A2 /* TimeZone+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeZone+Extensions.swift"; sourceTree = "<group>"; };
+		F45957E12C69E2F800AFEB69 /* WorldTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTimeViewController.swift; sourceTree = "<group>"; };
+		F45957E32C69E37400AFEB69 /* WorldTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTimeViewModel.swift; sourceTree = "<group>"; };
+		F45957E52C69FC4300AFEB69 /* WorldTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTimeCell.swift; sourceTree = "<group>"; };
+		F45957E72C6A02B900AFEB69 /* TimeZoneModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneModalViewController.swift; sourceTree = "<group>"; };
+		F45957E92C6A657500AFEB69 /* TimeZoneModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneModalViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,36 +147,85 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		766E175E2C69C7C9004C0163 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		765E85432C6B5EA200F928D7 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				765E85442C6B5EDD00F928D7 /* hummus.mp3 */,
+				766E174D2C69C7C9004C0163 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		765E85462C6B83D500F928D7 /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				DD73EEC62C73275100F6773B /* DataManager.swift */,
+				DDC1F5FB2C69FD36003FCDB3 /* AlarmView.swift */,
+				DDC1F5FD2C69FD45003FCDB3 /* AlarmViewController.swift */,
+				DDC1F5FF2C6A0EAA003FCDB3 /* AlarmListCell.swift */,
+				DD0DC55F2C6F75550090B1DF /* AddAlarm */,
+			);
+			path = Alarm;
+			sourceTree = "<group>";
+		};
+		765E85472C6B83F100F928D7 /* StopWatch */ = {
+			isa = PBXGroup;
+			children = (
+				9FE1E0E62C69FE2F003C448E /* StopWatchController.swift */,
+				9FE1E0EC2C6C5A5A003C448E /* LapViewCell.swift */,
+			);
+			path = StopWatch;
+			sourceTree = "<group>";
+		};
+		765E85482C6B844900F928D7 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				E797FDAF2C6B67E500D6ABE6 /* TimerViewModel.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		765E85492C6B845500F928D7 /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				DD0DC5392C6B4B910090B1DF /* AlarmViewModel.swift */,
+			);
+			path = Alarm;
+			sourceTree = "<group>";
+		};
+		765E854A2C6B846A00F928D7 /* StopWatch */ = {
+			isa = PBXGroup;
+			children = (
+				9FE1E0E82C6B1A48003C448E /* StopWatchViewModel.swift */,
+			);
+			path = StopWatch;
+			sourceTree = "<group>";
+		};
 		766E17382C69C7C7004C0163 = {
 			isa = PBXGroup;
 			children = (
+				DD73EEC22C73217500F6773B /* Time+CoreDataClass.swift */,
+				DD73EEC32C73217500F6773B /* Time+CoreDataProperties.swift */,
 				766E178C2C69CA4F004C0163 /* README.md */,
 				765E85332C69CFC900F928D7 /* CodeConvention.md */,
 				765E85352C69CFD900F928D7 /* CommitConvention.md */,
 				766E178A2C69CA42004C0163 /* .gitignore */,
 				766E17432C69C7C7004C0163 /* KimnJangWatch */,
 				766E175A2C69C7C9004C0163 /* KimnJangWatchTests */,
-				766E17642C69C7C9004C0163 /* KimnJangWatchUITests */,
 				766E17422C69C7C7004C0163 /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		766E17422C69C7C7004C0163 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				766E17412C69C7C7004C0163 /* KimnJangWatch.app */,
 				766E17572C69C7C9004C0163 /* KimnJangWatchTests.xctest */,
-				766E17612C69C7C9004C0163 /* KimnJangWatchUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -128,9 +238,10 @@
 				766E17752C69C8CF004C0163 /* Model */,
 				766E17762C69C8F1004C0163 /* View */,
 				766E17772C69C8F5004C0163 /* ViewModel */,
-				766E174D2C69C7C9004C0163 /* Assets.xcassets */,
+				765E85432C6B5EA200F928D7 /* Assets */,
 				766E174F2C69C7C9004C0163 /* LaunchScreen.storyboard */,
 				766E17522C69C7C9004C0163 /* Info.plist */,
+				DD73EEBF2C731DC900F6773B /* AlarmData.xcdatamodeld */,
 			);
 			path = KimnJangWatch;
 			sourceTree = "<group>";
@@ -143,20 +254,12 @@
 			path = KimnJangWatchTests;
 			sourceTree = "<group>";
 		};
-		766E17642C69C7C9004C0163 /* KimnJangWatchUITests */ = {
-			isa = PBXGroup;
-			children = (
-				766E17652C69C7C9004C0163 /* KimnJangWatchUITests.swift */,
-				766E17672C69C7C9004C0163 /* KimnJangWatchUITestsLaunchTests.swift */,
-			);
-			path = KimnJangWatchUITests;
-			sourceTree = "<group>";
-		};
 		766E17742C69C8C1004C0163 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				766E178E2C69CBA2004C0163 /* UIColor+Extensions.swift */,
 				766E177C2C69C9CD004C0163 /* MainCommon.swift */,
+				F407753E2C70B53F009D05A2 /* TimeZone+Extensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -164,7 +267,10 @@
 		766E17752C69C8CF004C0163 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				766E177A2C69C9B9004C0163 /* MainModel.swift */,
+				765E853A2C6A87F900F928D7 /* NotificationManager.swift */,
+				E797FDBD2C6F0F2C00D6ABE6 /* TimerModel.swift */,
+				F407753A2C6C5454009D05A2 /* TimeZoneID.swift */,
+				DD73EEBD2C725DCB00F6773B /* AlarmModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -173,6 +279,11 @@
 			isa = PBXGroup;
 			children = (
 				766E17482C69C7C7004C0163 /* TabBarController.swift */,
+				F45957EC2C6B789F00AFEB69 /* WorldTime */,
+				765E85462C6B83D500F928D7 /* Alarm */,
+				765E85472C6B83F100F928D7 /* StopWatch */,
+				E797FDAC2C6B559500D6ABE6 /* Timer */,
+				765E853C2C6B443500F928D7 /* TestNotificationViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -180,7 +291,11 @@
 		766E17772C69C8F5004C0163 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				766E177E2C69C9DE004C0163 /* MainViewModel.swift */,
+				F45957EB2C6B788800AFEB69 /* WorldTime */,
+				765E85492C6B845500F928D7 /* Alarm */,
+				765E854A2C6B846A00F928D7 /* StopWatch */,
+				765E85482C6B844900F928D7 /* Timer */,
+				76D234FD2C70DD0E001F6DA4 /* TestNotificationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -191,6 +306,52 @@
 				766E17442C69C7C7004C0163 /* AppDelegate.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		DD0DC55F2C6F75550090B1DF /* AddAlarm */ = {
+			isa = PBXGroup;
+			children = (
+				DD0DC5372C6B34910090B1DF /* AddAlarmView.swift */,
+				DD0DC5352C6B16270090B1DF /* AddAlarmViewController.swift */,
+				DD0DC5602C6F758D0090B1DF /* TimeSetCell.swift */,
+				DD73EEB62C70A46300F6773B /* BaseTableViewController.swift */,
+				DD73EEB82C70B5BE00F6773B /* DayTableViewController.swift */,
+				DD73EEBA2C70D4D700F6773B /* AlarmSongViewController.swift */,
+			);
+			path = AddAlarm;
+			sourceTree = "<group>";
+		};
+		E797FDAC2C6B559500D6ABE6 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				E797FDA82C6ADA9900D6ABE6 /* TimerViewController.swift */,
+				E797FDB72C6C5E7C00D6ABE6 /* SetTimerViewController.swift */,
+				E797FDB92C6C5E9100D6ABE6 /* CurrentTimerViewController.swift */,
+				E797FDBB2C6C5E9B00D6ABE6 /* RecentTimerViewController.swift */,
+				E797FDAD2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift */,
+				E797FDAA2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		F45957EB2C6B788800AFEB69 /* WorldTime */ = {
+			isa = PBXGroup;
+			children = (
+				F45957E92C6A657500AFEB69 /* TimeZoneModalViewModel.swift */,
+				F45957E32C69E37400AFEB69 /* WorldTimeViewModel.swift */,
+				F407753C2C6C7029009D05A2 /* TimeZoneList.swift */,
+			);
+			path = WorldTime;
+			sourceTree = "<group>";
+		};
+		F45957EC2C6B789F00AFEB69 /* WorldTime */ = {
+			isa = PBXGroup;
+			children = (
+				F45957E72C6A02B900AFEB69 /* TimeZoneModalViewController.swift */,
+				F45957E12C69E2F800AFEB69 /* WorldTimeViewController.swift */,
+				F45957E52C69FC4300AFEB69 /* WorldTimeCell.swift */,
+			);
+			path = WorldTime;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,7 +376,7 @@
 				766E17862C69CA28004C0163 /* RxRelay */,
 				766E17882C69CA28004C0163 /* RxSwift */,
 			);
-			productName = "Kim&JangWatch";
+			productName = KimnJangWatch;
 			productReference = 766E17412C69C7C7004C0163 /* KimnJangWatch.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -233,27 +394,9 @@
 				766E17592C69C7C9004C0163 /* PBXTargetDependency */,
 			);
 			name = KimnJangWatchTests;
-			productName = "Kim&JangWatchTests";
+			productName = KimnJangWatchTests;
 			productReference = 766E17572C69C7C9004C0163 /* KimnJangWatchTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		766E17602C69C7C9004C0163 /* KimnJangWatchUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 766E17712C69C7C9004C0163 /* Build configuration list for PBXNativeTarget "KimnJangWatchUITests" */;
-			buildPhases = (
-				766E175D2C69C7C9004C0163 /* Sources */,
-				766E175E2C69C7C9004C0163 /* Frameworks */,
-				766E175F2C69C7C9004C0163 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				766E17632C69C7C9004C0163 /* PBXTargetDependency */,
-			);
-			name = KimnJangWatchUITests;
-			productName = "Kim&JangWatchUITests";
-			productReference = 766E17612C69C7C9004C0163 /* KimnJangWatchUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -269,10 +412,6 @@
 						CreatedOnToolsVersion = 15.4;
 					};
 					766E17562C69C7C9004C0163 = {
-						CreatedOnToolsVersion = 15.4;
-						TestTargetID = 766E17402C69C7C7004C0163;
-					};
-					766E17602C69C7C9004C0163 = {
 						CreatedOnToolsVersion = 15.4;
 						TestTargetID = 766E17402C69C7C7004C0163;
 					};
@@ -297,7 +436,6 @@
 			targets = (
 				766E17402C69C7C7004C0163 /* KimnJangWatch */,
 				766E17562C69C7C9004C0163 /* KimnJangWatchTests */,
-				766E17602C69C7C9004C0163 /* KimnJangWatchUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -311,19 +449,13 @@
 				766E178B2C69CA42004C0163 /* .gitignore in Resources */,
 				766E178D2C69CA4F004C0163 /* README.md in Resources */,
 				765E85342C69CFC900F928D7 /* CodeConvention.md in Resources */,
+				765E85452C6B5EDD00F928D7 /* hummus.mp3 in Resources */,
 				765E85362C69CFD900F928D7 /* CommitConvention.md in Resources */,
 				766E17512C69C7C9004C0163 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		766E17552C69C7C9004C0163 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		766E175F2C69C7C9004C0163 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -337,12 +469,47 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				766E177F2C69C9DE004C0163 /* MainViewModel.swift in Sources */,
+				76D234FF2C720114001F6DA4 /* TimerModel.swift in Sources */,
+				765E854B2C6C33C400F928D7 /* AppDelegate.swift in Sources */,
+				9FE1E0E72C69FE2F003C448E /* StopWatchController.swift in Sources */,
+				DDC1F5FE2C69FD45003FCDB3 /* AlarmViewController.swift in Sources */,
+				DD73EEB72C70A46300F6773B /* BaseTableViewController.swift in Sources */,
+				E797FDB02C6B67E500D6ABE6 /* TimerViewModel.swift in Sources */,
+				DD73EEC72C73275100F6773B /* DataManager.swift in Sources */,
 				766E178F2C69CBA2004C0163 /* UIColor+Extensions.swift in Sources */,
+				F45957E22C69E2F800AFEB69 /* WorldTimeViewController.swift in Sources */,
+				DD73EEB92C70B5BE00F6773B /* DayTableViewController.swift in Sources */,
+				DD0DC5382C6B34910090B1DF /* AddAlarmView.swift in Sources */,
+				F407753F2C70B53F009D05A2 /* TimeZone+Extensions.swift in Sources */,
+				DD0DC53A2C6B4B910090B1DF /* AlarmViewModel.swift in Sources */,
+				DD73EEC42C73217500F6773B /* Time+CoreDataClass.swift in Sources */,
+				DD73EEC52C73217500F6773B /* Time+CoreDataProperties.swift in Sources */,
 				766E17492C69C7C7004C0163 /* TabBarController.swift in Sources */,
+				DD73EEBB2C70D4D700F6773B /* AlarmSongViewController.swift in Sources */,
+				9FE1E0E92C6B1A48003C448E /* StopWatchViewModel.swift in Sources */,
+				F407753B2C6C5454009D05A2 /* TimeZoneID.swift in Sources */,
+				DD73EEBE2C725DCB00F6773B /* AlarmModel.swift in Sources */,
+				E797FDA92C6ADA9900D6ABE6 /* TimerViewController.swift in Sources */,
 				766E177D2C69C9CD004C0163 /* MainCommon.swift in Sources */,
-				766E17452C69C7C7004C0163 /* AppDelegate.swift in Sources */,
-				766E177B2C69C9B9004C0163 /* MainModel.swift in Sources */,
+				765E853B2C6A87F900F928D7 /* NotificationManager.swift in Sources */,
+				E797FDBC2C6C5E9B00D6ABE6 /* RecentTimerViewController.swift in Sources */,
+				765E853D2C6B443500F928D7 /* TestNotificationViewController.swift in Sources */,
+				F45957E62C69FC4300AFEB69 /* WorldTimeCell.swift in Sources */,
+				F45957E82C6A02B900AFEB69 /* TimeZoneModalViewController.swift in Sources */,
+				F45957E42C69E37400AFEB69 /* WorldTimeViewModel.swift in Sources */,
+				F45957EA2C6A657500AFEB69 /* TimeZoneModalViewModel.swift in Sources */,
+				DDC1F6002C6A0EAA003FCDB3 /* AlarmListCell.swift in Sources */,
+				F407753D2C6C7029009D05A2 /* TimeZoneList.swift in Sources */,
+				DD0DC5362C6B16270090B1DF /* AddAlarmViewController.swift in Sources */,
+				9FE1E0ED2C6C5A5A003C448E /* LapViewCell.swift in Sources */,
+				DDC1F5FC2C69FD36003FCDB3 /* AlarmView.swift in Sources */,
+				DD73EEC12C731DC900F6773B /* AlarmData.xcdatamodeld in Sources */,
+				DD0DC5612C6F758D0090B1DF /* TimeSetCell.swift in Sources */,
+				E797FDB82C6C5E7C00D6ABE6 /* SetTimerViewController.swift in Sources */,
+				76D234FE2C70DD0E001F6DA4 /* TestNotificationViewModel.swift in Sources */,
+				E797FDBA2C6C5E9100D6ABE6 /* CurrentTimerViewController.swift in Sources */,
+				E797FDAB2C6B559100D6ABE6 /* RecentTimerTableViewCell.swift in Sources */,
+				E797FDAE2C6B55AF00D6ABE6 /* CurrentTimerTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,15 +521,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		766E175D2C69C7C9004C0163 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				766E17682C69C7C9004C0163 /* KimnJangWatchUITestsLaunchTests.swift in Sources */,
-				766E17662C69C7C9004C0163 /* KimnJangWatchUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -370,11 +528,6 @@
 			isa = PBXTargetDependency;
 			target = 766E17402C69C7C7004C0163 /* KimnJangWatch */;
 			targetProxy = 766E17582C69C7C9004C0163 /* PBXContainerItemProxy */;
-		};
-		766E17632C69C7C9004C0163 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 766E17402C69C7C7004C0163 /* KimnJangWatch */;
-			targetProxy = 766E17622C69C7C9004C0163 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -516,9 +669,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4LTNHNC3S6;
+				DEVELOPMENT_TEAM = 72GVCX2P2A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KimnJangWatch/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Kim&Jang";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -544,9 +698,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4LTNHNC3S6;
+				DEVELOPMENT_TEAM = 72GVCX2P2A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KimnJangWatch/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Kim&Jang";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -605,42 +760,6 @@
 			};
 			name = Release;
 		};
-		766E17722C69C7C9004C0163 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4LTNHNC3S6;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.donghyeon.KimnJangWatchUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = KimnJangWatch;
-			};
-			name = Debug;
-		};
-		766E17732C69C7C9004C0163 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4LTNHNC3S6;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.donghyeon.KimnJangWatchUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = KimnJangWatch;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -667,15 +786,6 @@
 			buildConfigurations = (
 				766E176F2C69C7C9004C0163 /* Debug */,
 				766E17702C69C7C9004C0163 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		766E17712C69C7C9004C0163 /* Build configuration list for PBXNativeTarget "KimnJangWatchUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				766E17722C69C7C9004C0163 /* Debug */,
-				766E17732C69C7C9004C0163 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -723,6 +833,20 @@
 			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		DD73EEBF2C731DC900F6773B /* AlarmData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DD73EEC02C731DC900F6773B /* AlarmData.xcdatamodel */,
+			);
+			currentVersion = DD73EEC02C731DC900F6773B /* AlarmData.xcdatamodel */;
+			name = AlarmData.xcdatamodeld;
+			path = "/Users/gim-yunhong/Desktop/KimnJangWatch/KimnJangWatch/AlarmData.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 766E17392C69C7C7004C0163 /* Project object */;
 }
