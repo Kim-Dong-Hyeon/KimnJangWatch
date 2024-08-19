@@ -28,7 +28,7 @@ class DayTableViewController: BaseTableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
-    titles = ["일요일마다", "월요일마다", "화요일마다", "수요일마다", "목요일마다", "금요일마다", "토요일마다"]
+    titles = addAlarmData.day
     dataBinding()
     bind()
   }

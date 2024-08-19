@@ -17,7 +17,7 @@ class AlarmSongViewController: BaseTableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
-    titles = ["a", "b", "c", "d", "E", "F", "G", "h"]
+    titles = addAlarmData.songs
     dataBinding()
     bind()
   }

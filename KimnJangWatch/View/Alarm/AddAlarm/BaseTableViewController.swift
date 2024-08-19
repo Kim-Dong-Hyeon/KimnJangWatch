@@ -3,7 +3,7 @@
 //  KimnJangWatch
 //
 //  Created by 김윤홍 on 8/17/24.
-//
+// titles cell 의 label등 모델로 옮기기 
 
 import UIKit
 
@@ -11,10 +11,11 @@ import RxCocoa
 import RxSwift
 import SnapKit
 
-class BaseTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BaseTableViewController: UIViewController {
   
   let tableView = UITableView(frame: .zero, style: .insetGrouped)
   let disposeBag = DisposeBag()
+  let addAlarmData = AddAlarm()
   var titles = [String]()
   
   override func viewDidLoad() {
@@ -58,10 +59,12 @@ class BaseTableViewController: UIViewController, UITableViewDelegate, UITableVie
     print("데이터 저장")
   }
   
-  //override 메서드
   func configureUI() {
     
   }
+}
+
+extension BaseTableViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return titles.count

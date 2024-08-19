@@ -4,7 +4,6 @@
 //
 //  Created by 김윤홍 on 8/12/24.
 //
-//편집시 rxDataSources사용 하기
 
 import UIKit
 
@@ -30,22 +29,10 @@ class AlarmViewController: UIViewController {
     alarmView.alarmList.register(AlarmListCell.self,
                                  forCellReuseIdentifier: AlarmListCell.identifier)
     initNavigation()
+    navigationBind()
     bind()
   }
-  
-  //ViewModel transForm input, output으로 설정해야함
-  func compareTimes(_ time1: String, _ time2: String) -> Bool {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "HH:mm"
-    
-    guard let date1 = dateFormatter.date(from: time1),
-          let date2 = dateFormatter.date(from: time2) else {
-      return false
-    }
-    return date1 < date2
-  }
-  
-  //navigationBar 랑 viewModel q분리하면 깔끔해질것 같은뎨>
+
   private func bind() {
     alarmView.alarmList.rx.itemSelected
       .subscribe(onNext: { indexPath in
@@ -59,7 +46,7 @@ class AlarmViewController: UIViewController {
       .debug()
       .observe(on: MainScheduler.instance)
       .map { dictionary -> [(time: String, days: [Int])] in
-        let sortedKeys = dictionary.keys.sorted { self.compareTimes($0, $1) }
+        let sortedKeys = dictionary.keys.sorted { self.alarmViewModel.sortTimes($0, $1) }
         return sortedKeys.map { (time: String) -> (time: String, days: [Int]) in
           (time: time, days: dictionary[time] ?? [])
         }
@@ -78,7 +65,9 @@ class AlarmViewController: UIViewController {
             }
           }.disposed(by: cell.disposeBag)
       }.disposed(by: disposeBag)
-    
+  }
+  
+  private func navigationBind() {
     guard let right = navigationItem.rightBarButtonItem?.customView as? UIButton else { return }
     right.rx.tap.bind { [weak self] in
       guard let self = self else { return }

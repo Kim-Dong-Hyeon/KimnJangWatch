@@ -33,6 +33,17 @@ class AlarmViewModel {
     savedTimes.onNext(times)
   }
   
+  func sortTimes(_ time1: String, _ time2: String) -> Bool {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "HH:mm"
+    
+    guard let date1 = dateFormatter.date(from: time1),
+          let date2 = dateFormatter.date(from: time2) else {
+      return false
+    }
+    return date1 < date2
+  }
+  
   private func saveTimes() {
     UserDefaults.standard.set(times, forKey: "times")
   }
