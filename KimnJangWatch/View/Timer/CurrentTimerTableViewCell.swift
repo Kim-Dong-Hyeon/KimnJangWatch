@@ -69,7 +69,9 @@ class CurrentTimerTableViewCell: UITableViewCell {
     disposeBag = DisposeBag()
     
     timer.remainingTime
-      .map { String(format: "%02d:%02d", Int($0)/60, Int($0)%60) }
+      .map { [weak self] time in
+        return self?.timerViewModel.formatTime(time: time) ?? "00:00"
+      }
       .bind(to: timeLabel.rx.text)
       .disposed(by: disposeBag)
     
