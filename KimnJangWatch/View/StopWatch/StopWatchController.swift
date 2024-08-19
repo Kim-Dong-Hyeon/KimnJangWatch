@@ -37,13 +37,19 @@ final class StopWatchController: UIViewController {
     return button
   }()
   private let timeLabTableView = UITableView()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.viewModel.onTimeUpdate = { [weak self] timeString in
-      self?.timeLabel.text = timeString }
     self.configureUI()
     self.makeConstraints()
+    
+    self.viewModel.onTimeUpdate = { [weak self] timeString in
+      self?.timeLabel.text = timeString }
     self.setupActions()
+  }
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
+    self.configureButtons()
   }
   private func setupActions() {
     self.lapResetButton.addTarget(self, action: #selector(didTapLapResetButton), for: .touchUpInside)
@@ -87,37 +93,44 @@ final class StopWatchController: UIViewController {
     }
   }
   private func configureButtons() {
-    let isRunning = viewModel.watchStatus == .stop
-    self.startStopButton.setTitle(isRunning ? "중단" : "시작", for: .normal)
-    self.startStopButton.backgroundColor = isRunning ? UIColor.dangn : UIColor.dangn.withAlphaComponent(0.7)
-    if isRunning {
+
+    switch viewModel.watchStatus {
+    case .start:
+      self.startStopButton.setTitle("중단", for: .normal)
+      self.startStopButton.backgroundColor = UIColor.dangn
       self.lapResetButton.setTitle("랩", for: .normal)
       self.lapResetButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
       self.lapResetButton.isEnabled = true
-    } else {
+    case .stop:
+      self.startStopButton.setTitle("시작", for: .normal)
+      self.startStopButton.backgroundColor = UIColor.dangn.withAlphaComponent(0.7)
       self.lapResetButton.setTitle("재시작", for: .normal)
       self.lapResetButton.backgroundColor = UIColor.lightGray
       self.lapResetButton.isEnabled = true
     }
+   
+
+   
+      
+   
+      
+    
   }
 }
 extension StopWatchController {
   @objc private func didTapStartStopButton() {
-    self.viewModel.didTapStartButton()
+    self.viewModel.didTapStartOrStopButton()
     self.configureButtons()
-
   }
   @objc private func didTapLapResetButton() {
     switch viewModel.watchStatus {
     case .start:
+      self.viewModel.didTapLapButton()
+      self.timeLabTableView.reloadData()
+    case .stop:
       self.viewModel.didTapResetButton()
       self.configureButtons()
       self.timeLabTableView.reloadData()
-    case .stop:
-      self.viewModel.didTapLapButton()
-      let lastRow = self.viewModel.recordList.count - 1
-      let indexPath = IndexPath(row: lastRow, section: 0)
-      self.timeLabTableView.insertRows(at: [indexPath], with: .automatic)
     }
   }
 }
