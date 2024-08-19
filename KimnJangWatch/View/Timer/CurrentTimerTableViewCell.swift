@@ -14,7 +14,9 @@ import SnapKit
 class CurrentTimerTableViewCell: UITableViewCell {
   
   static let id = "currentTimerViewCell"
+  private var timerViewModel = TimerViewModel.shared
   private var disposeBag = DisposeBag()
+  private var actionDisposeBag = DisposeBag()
   
   private let timeLabel: UILabel = {
     let label = UILabel()
@@ -26,10 +28,11 @@ class CurrentTimerTableViewCell: UITableViewCell {
   private let startButton: UIButton = {
     let button = UIButton()
     button.setImage(UIImage(named: "currentStartButton"), for: .normal)
+    button.isHidden = true
     return button
   }()
   
-  private let stopButton: UIButton = {
+  private let pauseButton: UIButton = {
     let button = UIButton()
     button.setImage(UIImage(named: "currentStopButton"), for: .normal)
     return button
@@ -45,7 +48,7 @@ class CurrentTimerTableViewCell: UITableViewCell {
   }
   
   private func setCell() {
-    [timeLabel, startButton].forEach { contentView.addSubview($0) }
+    [timeLabel, startButton, pauseButton].forEach { contentView.addSubview($0) }
     
     timeLabel.snp.makeConstraints {
       $0.centerY.equalToSuperview()
@@ -57,13 +60,48 @@ class CurrentTimerTableViewCell: UITableViewCell {
       $0.width.height.equalTo(50)
       $0.centerY.equalTo(timeLabel)
     }
+    pauseButton.snp.makeConstraints {
+      $0.edges.equalTo(startButton)
+    }
   }
   
   func configCurrentCell(with timer: TimerModel) {
+    disposeBag = DisposeBag()
+    
     timer.remainingTime
-      .map { String(format: "%02d:%02d", Int($0)/60, Int($0)%60) }
+      .map { [weak self] time in
+        return self?.timerViewModel.formatTime(time: time) ?? "00:00"
+      }
       .bind(to: timeLabel.rx.text)
       .disposed(by: disposeBag)
+    
+    timer.isRunning
+      .subscribe(onNext: { [weak self] isRunning in
+        self?.startButton.isHidden = isRunning
+        self?.pauseButton.isHidden = !isRunning
+      }).disposed(by: disposeBag)
+    
+    setButtonAction(timer: timer)
   }
-
+    
+  private func setButtonAction(timer: TimerModel) {
+    actionDisposeBag = DisposeBag()
+    
+    pauseButton.rx.tap
+      .subscribe(onNext: { [weak self] in
+        guard let self else { return }
+        timer.isRunning.accept(false)
+        self.timerViewModel.pauseTimer(id: timer.id)
+        self.disposeBag = DisposeBag()
+      }).disposed(by: actionDisposeBag)
+    
+    startButton.rx.tap
+      .subscribe(onNext: { [weak self] in
+        guard let self else { return }
+        timer.isRunning.accept(true)
+        self.timerViewModel.startTimer(id: timer.id)
+        self.configCurrentCell(with: timer)
+      }).disposed(by: actionDisposeBag)
+  }
+  
 }

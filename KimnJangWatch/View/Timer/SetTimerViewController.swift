@@ -60,8 +60,6 @@ class SetTimerViewController: UIViewController {
       .subscribe(onNext: { [weak self] _ in
         guard let self else { return }
         self.viewModel.setNewTimer(time: self.timerPicker.countDownDuration)
-        print("start button tapped")
-        print("Current timers in ViewModel: \(self.viewModel.timers.value.map { $0.remainingTime.value })")
       }).disposed(by: disposeBag)
     
     cancelButton.rx.tap

@@ -33,6 +33,7 @@
 		DD0DC5362C6B16270090B1DF /* AddAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0DC5352C6B16270090B1DF /* AddAlarmViewController.swift */; };
 		DD0DC5382C6B34910090B1DF /* AddAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0DC5372C6B34910090B1DF /* AddAlarmView.swift */; };
 		DD0DC53A2C6B4B910090B1DF /* AlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0DC5392C6B4B910090B1DF /* AlarmViewModel.swift */; };
+		DD0DC53B2C6B94980090B1DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E17442C69C7C7004C0163 /* AppDelegate.swift */; };
 		DD0DC5612C6F758D0090B1DF /* TimeSetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0DC5602C6F758D0090B1DF /* TimeSetCell.swift */; };
 		DD73EEB72C70A46300F6773B /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEB62C70A46300F6773B /* BaseTableViewController.swift */; };
 		DD73EEB92C70B5BE00F6773B /* DayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEB82C70B5BE00F6773B /* DayTableViewController.swift */; };
