@@ -8,45 +8,43 @@
 
 import UIKit
 
+import RxCocoa
 import RxSwift
 
 class AlarmViewModel {
-  var times: [String] = UserDefaults.standard.array(forKey: "times") as? [String] ?? []
-  let savedTimes: BehaviorSubject<[String]>
+  var times: [String: [Int]] = UserDefaults.standard.dictionary(forKey: "times") as? [String: [Int]] ?? [:]
+  let savedTimes: BehaviorSubject<[String : [Int]]>
   
   init() {
     self.savedTimes = BehaviorSubject(value: times)
   }
   
-  func addTime(_ time: String) {
-    times = transform(timeList: times, newTime: time)
-    UserDefaults.standard.set(times, forKey: "times")
+  func addTime(day: [Int], time: String) {
+    print(day, time)
+    times[time] = day
+    saveTimes()
+    print("저장된 데이터: \(times)")
     savedTimes.onNext(times)
   }
   
-  //아직 구현 안되어있음
-  func removeTime(at index: Int) {
-    guard times.indices.contains(index) else { return }
-    times.remove(at: index)
-    UserDefaults.standard.set(times, forKey: "times")
+  func removeTime(time: String) {
+    times.removeValue(forKey: time)
+    saveTimes()
     savedTimes.onNext(times)
   }
   
-  func transform(timeList: [String], newTime: String) -> [String] {
-    var newTimeList = timeList
+  func sortTimes(_ time1: String, _ time2: String) -> Bool {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "HH:mm"
     
-    for (index, time) in newTimeList.enumerated() {
-      let time1 = time.split(separator: ":")
-      let time2 = newTime.split(separator: ":")
-      
-      if time1[0] > time2[0] || (time1[0] == time2[0] && time1[1] > time2[1]) {
-        newTimeList.insert(newTime, at: index)
-        return newTimeList
-      } else if time1 == time2 {
-        return newTimeList
-      }
+    guard let date1 = dateFormatter.date(from: time1),
+          let date2 = dateFormatter.date(from: time2) else {
+      return false
     }
-    newTimeList.append(newTime)
-    return newTimeList
+    return date1 < date2
+  }
+  
+  private func saveTimes() {
+    UserDefaults.standard.set(times, forKey: "times")
   }
 }

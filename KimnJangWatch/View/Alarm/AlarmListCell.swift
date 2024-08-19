@@ -7,11 +7,14 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
 import SnapKit
 
 class AlarmListCell: UITableViewCell {
   
   static let identifier = "alarmCell"
+  let disposeBag = DisposeBag()
   
   //timeLabel 접근제한자 확인
   let timeLabel: UILabel = {
@@ -22,7 +25,7 @@ class AlarmListCell: UITableViewCell {
     return label
   }()
   
-  private let dayLabel: UILabel = {
+  let dayLabel: UILabel = {
     let label = UILabel()
     label.font = .systemFont(ofSize: 10)
     label.textColor = .lightGray
@@ -30,7 +33,7 @@ class AlarmListCell: UITableViewCell {
     return label
   }()
   
-  private let onOff: UISwitch = {
+  let onOff: UISwitch = {
     let onOff = UISwitch()
     onOff.onTintColor = UIColor.dangn
     return onOff
@@ -44,10 +47,39 @@ class AlarmListCell: UITableViewCell {
       onOff
     ].forEach { contentView.addSubview($0) }
     setConstraints()
+//    
+//    onOff.rx.isOn
+//      .subscribe(onNext: { [weak self] isOn in
+//        guard let self = self else { return }
+//        if isOn {
+//          print("clicked")
+//        } else {
+//          print("해제")
+//        }
+//      }).disposed(by: disposeBag)
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  private func StringDay(_ day: Int) -> String {
+    switch day {
+    case 0: return "일"
+    case 1: return "월"
+    case 2: return "화"
+    case 3: return "수"
+    case 4: return "목"
+    case 5: return "금"
+    case 6: return "토"
+    default: return ""
+    }
+  }
+  
+  func configure(time: String, days: [Int]) {
+    timeLabel.text = time
+    let dayStrings = days.map { StringDay($0) }
+    dayLabel.text = dayStrings.joined(separator: ", ")
   }
   
   private func setConstraints() {

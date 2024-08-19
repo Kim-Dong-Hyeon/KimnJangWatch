@@ -37,6 +37,8 @@
 		DD73EEB72C70A46300F6773B /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEB62C70A46300F6773B /* BaseTableViewController.swift */; };
 		DD73EEB92C70B5BE00F6773B /* DayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEB82C70B5BE00F6773B /* DayTableViewController.swift */; };
 		DD73EEBB2C70D4D700F6773B /* AlarmSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEBA2C70D4D700F6773B /* AlarmSongViewController.swift */; };
+		DD73EEBC2C71F33D00F6773B /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FDBD2C6F0F2C00D6ABE6 /* TimerModel.swift */; };
+		DD73EEBE2C725DCB00F6773B /* AlarmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD73EEBD2C725DCB00F6773B /* AlarmModel.swift */; };
 		DDC1F5FC2C69FD36003FCDB3 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1F5FB2C69FD36003FCDB3 /* AlarmView.swift */; };
 		DDC1F5FE2C69FD45003FCDB3 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1F5FD2C69FD45003FCDB3 /* AlarmViewController.swift */; };
 		DDC1F6002C6A0EAA003FCDB3 /* AlarmListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1F5FF2C6A0EAA003FCDB3 /* AlarmListCell.swift */; };
@@ -96,6 +98,7 @@
 		DD73EEB62C70A46300F6773B /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		DD73EEB82C70B5BE00F6773B /* DayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTableViewController.swift; sourceTree = "<group>"; };
 		DD73EEBA2C70D4D700F6773B /* AlarmSongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSongViewController.swift; sourceTree = "<group>"; };
+		DD73EEBD2C725DCB00F6773B /* AlarmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmModel.swift; sourceTree = "<group>"; };
 		DDC1F5FB2C69FD36003FCDB3 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
 		DDC1F5FD2C69FD45003FCDB3 /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		DDC1F5FF2C6A0EAA003FCDB3 /* AlarmListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListCell.swift; sourceTree = "<group>"; };
@@ -255,6 +258,7 @@
 				765E853A2C6A87F900F928D7 /* NotificationManager.swift */,
 				E797FDBD2C6F0F2C00D6ABE6 /* TimerModel.swift */,
 				F407753A2C6C5454009D05A2 /* TimeZoneID.swift */,
+				DD73EEBD2C725DCB00F6773B /* AlarmModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -469,6 +473,7 @@
 				DD73EEBB2C70D4D700F6773B /* AlarmSongViewController.swift in Sources */,
 				9FE1E0E92C6B1A48003C448E /* StopWatchViewModel.swift in Sources */,
 				F407753B2C6C5454009D05A2 /* TimeZoneID.swift in Sources */,
+				DD73EEBE2C725DCB00F6773B /* AlarmModel.swift in Sources */,
 				E797FDA92C6ADA9900D6ABE6 /* TimerViewController.swift in Sources */,
 				766E177D2C69C9CD004C0163 /* MainCommon.swift in Sources */,
 				765E853B2C6A87F900F928D7 /* NotificationManager.swift in Sources */,
