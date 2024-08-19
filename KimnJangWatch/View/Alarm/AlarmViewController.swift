@@ -42,7 +42,7 @@ class AlarmViewController: UIViewController {
     view.backgroundColor = .systemBackground
     alarmView.alarmList.register(AlarmListCell.self, forCellReuseIdentifier: AlarmListCell.identifier)
   }
-
+  
   private func fetchData() {
     let alarms = dataManager.readCoreData(entityType: Time.self)
     DispatchQueue.main.async { [weak self] in
@@ -136,7 +136,44 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
           let indexPath = alarmView.alarmList.indexPath(for: cell) else { return }
     
     let timeEntity = timeEntities[indexPath.row]
+    let identifier = timeEntity.id!.uuidString
+    
+    if sender.isOn {
+      // 알람이 켜졌을 때 알림 설정
+      let alarmTime = createDate(hour: timeEntity.hour, minute: timeEntity.minute)
+      NotificationManager.shared.scheduleNotification(
+        at: alarmTime,
+        with: timeEntity.message ?? "알람",
+        identifier: identifier,
+        repeats: timeEntity.repeatDays
+      )
+    } else {
+      // 알람이 꺼졌을 때 알림 취소
+      NotificationManager.shared.cancelNotification(identifier: identifier)
+    }
+    
+    // 상태 업데이트
     dataManager.updateAlarmStatus(id: timeEntity.id!, isOn: sender.isOn)
+  }
+  
+  private func createDate(hour: String, minute: String) -> Date {
+    let calendar = Calendar.current
+    var dateComponents = DateComponents()
+    dateComponents.hour = Int(hour)
+    dateComponents.minute = Int(minute)
+    dateComponents.year = calendar.component(.year, from: Date())
+    dateComponents.month = calendar.component(.month, from: Date())
+    dateComponents.day = calendar.component(.day, from: Date())
+    
+    // 오늘 날짜의 시간으로 Date 생성
+    var date = calendar.date(from: dateComponents) ?? Date()
+    
+    // 현재 시간보다 이전 시간이라면, 다음날로 설정
+    if date < Date() {
+      date = calendar.date(byAdding: .day, value: 1, to: date)!
+    }
+    
+    return date
   }
   
   func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -144,6 +181,11 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
       guard let self = self else { return }
       
       let timeEntity = self.timeEntities[indexPath.row]
+      let identifier = timeEntity.id!.uuidString
+      
+      // 알람 삭제 전에 알림 취소
+      NotificationManager.shared.cancelNotification(identifier: identifier)
+      
       self.alarmViewModel.removeTime(time: "\(timeEntity.hour):\(timeEntity.minute)")
       self.dataManager.deleteTime(id: timeEntity.id!)
       self.fetchData()

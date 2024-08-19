@@ -72,7 +72,7 @@ class DataManager {
     }
   }
   
-  private func saveContext() {
+  func saveContext() {
     if context.hasChanges {
       do {
         try context.save()

@@ -28,7 +28,7 @@ class TabBarController: UITabBarController {
     let testNotificationVC = UINavigationController(rootViewController: TestNotificationViewController())
     testNotificationVC.tabBarItem = UITabBarItem(title: "알림 Test", image: UIImage(systemName: "globe"), tag: 4)
     
-    self.setViewControllers([worldTimeVC, alarmVC, stopWatchVC, timerVC, testNotificationVC], animated: true)
+    self.setViewControllers([worldTimeVC, alarmVC, stopWatchVC, timerVC], animated: true)
     // Do any additional setup after loading the view.
     
   }
