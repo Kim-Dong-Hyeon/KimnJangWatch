@@ -105,6 +105,8 @@ final class StopWatchController: UIViewController {
       switch viewModel.watchStatus {
       case .start:
           startStopButton.setTitle("중지", for: .normal)
+        lapResetButton.setTitle("랩", for: .normal)
+        
           lapResetButton.isEnabled = true
       case .pause:
           startStopButton.setTitle("시작", for: .normal)
