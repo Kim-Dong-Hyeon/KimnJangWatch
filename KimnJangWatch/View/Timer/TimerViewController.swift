@@ -32,15 +32,16 @@ class TimerViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     recentTimerView.view.isHidden = true // 구현 완료되지 않아 hidden 해 놓았습니다.
+    TimerViewModel.shared.manageTimerState()
     configNavigationUI()
     setAllView()
   }
   
   // MARK: 버튼 액션
   @objc func editButtonTapped() {
-          currentTimerView.currentTableView
+    currentTimerView.currentTableView
       .setEditing(!currentTimerView.currentTableView.isEditing, animated: true)
-      }
+  }
   
   // MARK: UI
   private func configNavigationUI() {
