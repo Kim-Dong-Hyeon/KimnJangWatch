@@ -17,10 +17,13 @@ class AddAlarmViewController: UIViewController {
   var alarmViewModel = AlarmViewModel()
   private let hour: Int
   private let minute: Int
+  private var time: String
+  private var dayArray: [Int] = []
   
   init(time: String) {
     hour = Int(time.prefix(2)) ?? 0
     minute = Int(time.suffix(2)) ?? 0
+    self.time = time
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -67,7 +70,7 @@ class AddAlarmViewController: UIViewController {
       .subscribe(onNext: { indexPath in
         if self.addAlarmView.timeSetList.cellForRow(at: indexPath) is TimeSetCell {
           if indexPath.row == 0 {
-            self.navigationController?.pushViewController(DayTableViewController(), animated: true)
+            self.navigationController?.pushViewController(DayTableViewController(time: self.time), animated: true)
           } else if indexPath.row == 2 {
             self.navigationController?.pushViewController(AlarmSongViewController(), animated: true)
           }
@@ -80,8 +83,11 @@ class AddAlarmViewController: UIViewController {
       let dateFormatter = DateFormatter()
       dateFormatter.dateFormat = "HH:mm"
       let time = dateFormatter.string(from: selectedDate)
-      self.alarmViewModel.addTime(day: ["알람"], time: time)
-      self.dismiss(animated: true)
+      if let savedDayArray = UserDefaults.standard.dictionary(forKey: "times") as? [String: [Int]] {
+        dayArray = savedDayArray[time] ?? []
+        self.alarmViewModel.addTime(day: dayArray, time: time)
+      }
+      self.dismiss(animated: true, completion: nil)
     }.disposed(by: disposeBag)
     
     left.rx.tap.bind { [weak self] in

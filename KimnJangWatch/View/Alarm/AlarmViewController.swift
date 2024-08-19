@@ -42,7 +42,6 @@ class AlarmViewController: UIViewController {
           let date2 = dateFormatter.date(from: time2) else {
       return false
     }
-    
     return date1 < date2
   }
   
@@ -59,16 +58,26 @@ class AlarmViewController: UIViewController {
     alarmViewModel.savedTimes
       .debug()
       .observe(on: MainScheduler.instance)
-      .map { dictionary -> [(time: String, days: [String])] in
+      .map { dictionary -> [(time: String, days: [Int])] in
         let sortedKeys = dictionary.keys.sorted { self.compareTimes($0, $1) }
-        return sortedKeys.map { time in
+        return sortedKeys.map { (time: String) -> (time: String, days: [Int]) in
           (time: time, days: dictionary[time] ?? [])
         }
       }
-      .bind(to: alarmView.alarmList.rx.items(cellIdentifier: AlarmListCell.identifier, cellType: AlarmListCell.self)) { _, item, cell in
+      .bind(to: alarmView.alarmList.rx.items(cellIdentifier: AlarmListCell.identifier,
+                                             cellType: AlarmListCell.self)) { _, item, cell in
         cell.configure(time: item.time, days: item.days)
-      }
-      .disposed(by: disposeBag)
+        
+        cell.onOff.rx.isOn
+          .bind { isOn in
+            if isOn {
+              print(cell.timeLabel.text ?? "")
+              print("true")
+            } else {
+              print("해제")
+            }
+          }.disposed(by: cell.disposeBag)
+      }.disposed(by: disposeBag)
     
     guard let right = navigationItem.rightBarButtonItem?.customView as? UIButton else { return }
     right.rx.tap.bind { [weak self] in
@@ -122,9 +131,13 @@ class AlarmViewController: UIViewController {
 
 extension AlarmViewController: UITableViewDelegate {
   
-  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+  func tableView(
+    _ tableView: UITableView,
+    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath
+  ) -> UISwipeActionsConfiguration? {
     
-    let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { [weak self] (_, _, completionHandler) in
+    let deleteAction = UIContextualAction(style: .destructive,
+                                          title: "삭제") { [weak self] (_, _, completionHandler) in
       guard let self = self else { return }
       // 삭제할 시간을 찾기 위해 인덱스를 이용해 키를 가져옴
       if let cell = tableView.cellForRow(at: indexPath) as? AlarmListCell {
