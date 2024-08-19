@@ -16,6 +16,7 @@ class CurrentTimerTableViewCell: UITableViewCell {
   static let id = "currentTimerViewCell"
   private var timerViewModel = TimerViewModel.shared
   private var disposeBag = DisposeBag()
+  private var actionDisposeBag = DisposeBag()
   
   private let timeLabel: UILabel = {
     let label = UILabel()
@@ -65,6 +66,8 @@ class CurrentTimerTableViewCell: UITableViewCell {
   }
   
   func configCurrentCell(with timer: TimerModel) {
+    disposeBag = DisposeBag()
+    
     timer.remainingTime
       .map { String(format: "%02d:%02d", Int($0)/60, Int($0)%60) }
       .bind(to: timeLabel.rx.text)
@@ -76,19 +79,27 @@ class CurrentTimerTableViewCell: UITableViewCell {
         self?.pauseButton.isHidden = !isRunning
       }).disposed(by: disposeBag)
     
+    setButtonAction(timer: timer)
+  }
+    
+  private func setButtonAction(timer: TimerModel) {
+    actionDisposeBag = DisposeBag()
+    
     pauseButton.rx.tap
       .subscribe(onNext: { [weak self] in
         guard let self else { return }
         timer.isRunning.accept(false)
         self.timerViewModel.pauseTimer(id: timer.id)
-      }).disposed(by: disposeBag)
+        self.disposeBag = DisposeBag()
+      }).disposed(by: actionDisposeBag)
     
     startButton.rx.tap
       .subscribe(onNext: { [weak self] in
         guard let self else { return }
         timer.isRunning.accept(true)
         self.timerViewModel.startTimer(id: timer.id)
-      }).disposed(by: disposeBag)
+        self.configCurrentCell(with: timer)
+      }).disposed(by: actionDisposeBag)
   }
   
 }

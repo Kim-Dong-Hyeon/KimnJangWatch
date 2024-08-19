@@ -15,6 +15,7 @@ class TimerViewModel {
   
   var timers = BehaviorRelay<[TimerModel]>(value: [])
   let endTimer = PublishSubject<UUID>()
+  private var timerSubscription = [UUID:Disposable]()
   private var backgroundEntryTime = BehaviorRelay<Date?>(value: nil)
   private var disposeBag = DisposeBag()
     
@@ -44,38 +45,57 @@ class TimerViewModel {
                               remainingTime: BehaviorRelay<TimeInterval>(value: time),
                               isRunning: BehaviorRelay<Bool>(value: true))
     timers.accept(timers.value + [newTimer])
+    UserDefaults.standard.set(time, forKey: newTimer.id.uuidString)
     startTimer(id: newTimer.id)
-    print("New timer added with time: \(time)")
   }
   
   func startTimer(id: UUID) {
-    guard var timer = getTimer(id: id), timer.isRunning.value else { return }
-    timer.isRunning.accept(true)
-    timer.disposeBag = DisposeBag()
+    guard let timer = getTimer(id: id), timer.isRunning.value else { return }
     
-    let endTime = Date().addingTimeInterval(timer.remainingTime.value)
-    notification(id: id, endTime: endTime)
+    if let previousSubscription = timerSubscription[id] {
+      previousSubscription.dispose()
+      timerSubscription.removeValue(forKey: id)
+    }
     
-    Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
-      .take(until: { _ in
-        timer.remainingTime.value <= 0
-      })
+    let subscription = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
       .subscribe(onNext: { [weak self] _ in
-        guard let self else { return }
-        let currentTime = timer.remainingTime.value - 1
+        guard let self = self else { return }
+        let currentTime = max(timer.remainingTime.value - 1, 0)
         timer.remainingTime.accept(currentTime)
+        UserDefaults.standard.set(currentTime, forKey: id.uuidString)
+        
         if currentTime <= 0 {
           self.endTimer(id: id)
+          self.timerSubscription[id]?.dispose()
+          self.timerSubscription.removeValue(forKey: id)
         }
-      }).disposed(by: timer.disposeBag!)
+      })
+    timerSubscription[id] = subscription
   }
   
   func pauseTimer(id: UUID) {
-    guard var timer = getTimer(id: id) else { return }
+    guard let timer = getTimer(id: id) else { return }
     timer.isRunning.accept(false)
-    timer.disposeBag = nil
     
-    // 알림취소 메서드 추가 예정
+    let remainingTime = timer.remainingTime.value
+    UserDefaults.standard.set(remainingTime, forKey: id.uuidString)
+    NotificationManager.shared.cancelNotification(identifier: id.uuidString)
+    timerSubscription[id]?.dispose()
+    timerSubscription.removeValue(forKey: id)
+  }
+  
+  func resumeTimer(id: UUID) {
+    guard let timer = getTimer(id: id) else { return }
+            
+    if let remainingTime = UserDefaults.standard.value(forKey: id.uuidString) as? TimeInterval {
+      timer.remainingTime.accept(remainingTime)
+      timer.isRunning.accept(true)
+      
+      let newEndTime = Date().addingTimeInterval(remainingTime)
+      notification(id: id, endTime: newEndTime)
+      
+      startTimer(id: timer.id)
+    }
   }
   
   func cancelTimer(id: UUID) {
@@ -83,14 +103,14 @@ class TimerViewModel {
     pauseTimer(id: id)
     timer.remainingTime.accept(0)
     
-    // 알림 취소
     NotificationManager.shared.cancelNotification(identifier: id.uuidString)
-    
     removeTimer(id: id)
+    UserDefaults.standard.removeObject(forKey: id.uuidString)
   }
   
   func endTimer(id: UUID) {
     removeTimer(id: id)
+    UserDefaults.standard.removeObject(forKey: id.uuidString)
   }
   
   func notification(id: UUID, endTime: Date) {
@@ -100,7 +120,6 @@ class TimerViewModel {
       with: message,
       identifier: id.uuidString
     )
-    print("Notification scheduled for timer with ID: \(id) at \(endTime)")
   }
   
   func removeTimer(id: UUID) {

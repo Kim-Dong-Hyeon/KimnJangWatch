@@ -14,5 +14,4 @@ struct TimerModel {
   let id: UUID
   let remainingTime: BehaviorRelay<TimeInterval>
   let isRunning: BehaviorRelay<Bool>
-  var disposeBag: DisposeBag?
 }
