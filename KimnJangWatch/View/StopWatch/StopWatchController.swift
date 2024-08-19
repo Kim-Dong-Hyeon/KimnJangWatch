@@ -42,14 +42,13 @@ final class StopWatchController: UIViewController {
     super.viewDidLoad()
     self.configureUI()
     self.makeConstraints()
-    
     self.viewModel.onTimeUpdate = { [weak self] timeString in
       self?.timeLabel.text = timeString }
     self.viewModel.onLapUpdate = { [weak self] _ in
       self?.timeLabTableView.reloadData() }
     self.setupActions()
   }
-
+  
   private func setupActions() {
     self.lapResetButton.addTarget(self, action: #selector(didTapLapResetButton), for: .touchUpInside)
     self.startStopButton.addTarget(self, action: #selector(didTapStartStopButton), for: .touchUpInside)
@@ -57,9 +56,10 @@ final class StopWatchController: UIViewController {
     self.timeLabTableView.dataSource = self
     self.timeLabTableView.delegate = self
   }
+  
   private func configureUI() {
     self.view.backgroundColor = .white
-    navigationItem.title = "스톱워치"
+    self.navigationItem.title = "스톱워치"
     self.navigationController?.navigationBar.prefersLargeTitles = true
     self.navigationItem.largeTitleDisplayMode = .always
     [
@@ -70,52 +70,54 @@ final class StopWatchController: UIViewController {
     ].forEach
     { self.view.addSubview($0) }
   }
+  
   private func makeConstraints() {
-    timeLabel.snp.makeConstraints {
+    self.timeLabel.snp.makeConstraints {
       $0.centerX.equalToSuperview()
       $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(60)
     }
-    lapResetButton.snp.makeConstraints {
+    self.lapResetButton.snp.makeConstraints {
       $0.leading.equalTo(self.view.safeAreaLayoutGuide).inset(60)
       $0.top.equalTo(timeLabel.snp.bottom).offset(60)
       $0.height.width.equalTo(70)
     }
-    startStopButton.snp.makeConstraints {
+    self.startStopButton.snp.makeConstraints {
       $0.trailing.equalTo(self.view.safeAreaLayoutGuide).inset(60)
       $0.top.equalTo(timeLabel.snp.bottom).offset(60)
       $0.height.width.equalTo(70)
     }
-    timeLabTableView.snp.makeConstraints {
+    self.timeLabTableView.snp.makeConstraints {
       $0.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(30)
       $0.leading.trailing.equalTo(self.view.safeAreaLayoutGuide).inset(15)
       $0.height.equalTo(300)
     }
   }
+  
   @objc private func didTapStartStopButton() {
     viewModel.didTapStartStopButton()
-    updateButtonStates()
+    self.updateButtonStates()
   }
   
   @objc private func didTapLapResetButton() {
     viewModel.didTapLapResetButton()
-    updateButtonStates()
+    self.updateButtonStates()
   }
-
+  
   private func updateButtonStates() {
-      switch viewModel.watchStatus {
-      case .start:
-          startStopButton.setTitle("중지", for: .normal)
-        lapResetButton.setTitle("랩", for: .normal)
-        
-          lapResetButton.isEnabled = true
-      case .pause:
-          startStopButton.setTitle("시작", for: .normal)
-          lapResetButton.setTitle("재시작", for: .normal)
-      case .stop:
-          startStopButton.setTitle("시작", for: .normal)
-          lapResetButton.setTitle("랩", for: .normal)
-          lapResetButton.isEnabled = false
-      }
+    switch viewModel.watchStatus {
+    case .start:
+      self.startStopButton.setTitle("중지", for: .normal)
+      self.lapResetButton.setTitle("랩", for: .normal)
+      
+      self.lapResetButton.isEnabled = true
+    case .pause:
+      self.startStopButton.setTitle("시작", for: .normal)
+      self.lapResetButton.setTitle("재시작", for: .normal)
+    case .stop:
+      self.startStopButton.setTitle("시작", for: .normal)
+      self.lapResetButton.setTitle("랩", for: .normal)
+      self.lapResetButton.isEnabled = false
+    }
   }
 }
 
