@@ -19,13 +19,9 @@ class AddAlarmView: UIView {
     return datePicker
   }()
   
-  private let timeSetList: UIStackView = {
-    let stackView = UIStackView()
-    stackView.backgroundColor = .lightGray
-    stackView.layer.cornerRadius = 10
-    stackView.distribution = .fillEqually
-    stackView.axis = .vertical
-    return stackView
+  let timeSetList: UITableView = {
+    let tableView = UITableView()
+    return tableView
   }()
   
   override init(frame: CGRect) {

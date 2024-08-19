@@ -4,6 +4,7 @@
 //
 //  Created by 김윤홍 on 8/13/24.
 //
+//Model과 ViewModel분리
 
 import UIKit
 

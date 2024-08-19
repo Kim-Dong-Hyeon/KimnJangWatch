@@ -4,37 +4,53 @@
 //
 //  Created by Soo Jang on 8/13/24.
 //
-
 import Foundation
 
 import RxSwift
 
 class TimeZoneModalViewModel {
-  var identifiers = [(eng: String, kor: String)]()
-
+  
+  var identifiers = TimeZone.getEngKor()
+  var identifiersSearching = [TimeZoneID]()
+  
   init() {
-    getAllTimeZone()
-  }
-
-  func getAllTimeZone() {
-    let engIdentifiers = TimeZone.knownTimeZoneIdentifiers
-    let korIdentifiers = engIdentifiers.compactMap {
-      TimeZone(identifier: $0)?.localizedName(for: .shortGeneric ,locale: Locale(identifier: "ko_KR"))
-    }
-
-    identifiers = engIdentifiers.enumerated().map { index, eng -> (eng: String, kor: String) in
-      return (eng: eng, kor: korIdentifiers[index])
-    }.sorted { $0.kor < $1.kor }
-    identifiers.remove(at: 0) // GMT 삭제
+    orderKoreanIdentifiers()
   }
   
-  func addTimeZone(id: String) {
-    if UserDefaults.standard.array(forKey: "city") == nil {
-      UserDefaults.standard.set([id], forKey: "city")
+  func orderKoreanIdentifiers() {
+    identifiers.sort {
+      $0.kor < $1.kor
+    }
+  }
+  
+  func getTableViewItems() -> [TimeZoneID] {
+    if identifiersSearching.isEmpty {
+      return identifiers
     } else {
-      var currentTimeZone = UserDefaults.standard.array(forKey: "city")
-      currentTimeZone?.append(id)
-      UserDefaults.standard.set(currentTimeZone, forKey: "city")
+      return identifiersSearching
+    }
+  }
+  
+  func getSearchedIDs(searchText: String) {
+    identifiersSearching = identifiers.filter { $0.kor.contains(searchText) }
+  }
+  
+  func clearSearchedIDs() {
+    identifiersSearching = []
+  }
+  
+  func addTimeZone(identifier: TimeZoneID) {
+    var currentList = TimeZoneList.shared.added.value
+    var flag = true
+    currentList.forEach {
+      if $0.eng == identifier.eng {
+        flag = false
+        return
+      }
+    }
+    if flag {
+      currentList.append(identifier)
+      TimeZoneList.shared.added.accept(currentList)
     }
   }
 }

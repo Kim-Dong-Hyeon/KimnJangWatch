@@ -11,9 +11,23 @@ import SnapKit
 
 class WorldTimeCell: UITableViewCell {
   
-  let countryLabel: UILabel = {
+  let cityLabel: UILabel = {
     let label = UILabel()
-    label.text = "abc"
+    label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
+    return label
+  }()
+  
+  let meridiemLabel: UILabel = {
+    let label = UILabel()
+    label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
+    return label
+  }()
+  
+  let timeLabel: UILabel = {
+    let label = UILabel()
+    label.font = UIFont.systemFont(ofSize: 56, weight: .light)
+    label.text = "11:11"
+    label.textAlignment = .left
     return label
   }()
   
@@ -29,13 +43,24 @@ class WorldTimeCell: UITableViewCell {
   func setLayout() {
     self.backgroundColor = .systemBackground
     
-    [countryLabel]
+    [cityLabel, meridiemLabel, timeLabel]
       .forEach {
         self.addSubview($0)
       }
     
-    countryLabel.snp.makeConstraints {
-      $0.center.equalToSuperview()
+    cityLabel.snp.makeConstraints {
+      $0.leading.equalToSuperview().offset(16)
+      $0.firstBaseline.equalTo(timeLabel.snp.firstBaseline)
+    }
+    
+    meridiemLabel.snp.makeConstraints {
+      $0.trailing.equalTo(timeLabel.snp.leading).offset(-8)
+      $0.firstBaseline.equalTo(timeLabel.snp.firstBaseline)
+    }
+    
+    timeLabel.snp.makeConstraints {
+      $0.trailing.equalToSuperview().offset(-16)
+      $0.centerY.equalToSuperview()
     }
   }
   

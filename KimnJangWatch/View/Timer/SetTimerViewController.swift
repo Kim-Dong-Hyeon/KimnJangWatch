@@ -1,5 +1,5 @@
 //
-//  MainTimerViewController.swift
+//  SetTimerViewController.swift
 //  KimnJangWatch
 //
 //  Created by 김승희 on 8/14/24.

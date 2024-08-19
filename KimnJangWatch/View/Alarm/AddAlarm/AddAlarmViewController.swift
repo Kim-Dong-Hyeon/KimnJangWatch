@@ -15,6 +15,18 @@ class AddAlarmViewController: UIViewController {
   private var addAlarmView = AddAlarmView(frame: .zero)
   private let disposeBag = DisposeBag()
   var alarmViewModel = AlarmViewModel()
+  private let hour: Int
+  private let minute: Int
+  
+  init(time: String) {
+    hour = Int(time.prefix(2)) ?? 0
+    minute = Int(time.suffix(2)) ?? 0
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   override func loadView() {
     addAlarmView = AddAlarmView(frame: UIScreen.main.bounds)
@@ -24,19 +36,43 @@ class AddAlarmViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
-    initNavigation()
+    addAlarmView.timeSetList.register(TimeSetCell.self,
+                                      forCellReuseIdentifier: TimeSetCell.identifier)
+    addAlarmView.timeSetList.dataSource = self
+    addAlarmView.timeSetList.delegate = self
+    configureUI()
     bind()
   }
   
-  private func initNavigation() {
+  private func configureUI() {
     navigationItem.title = "알람 편집"
     navigationItem.rightBarButtonItem = saveButton()
     navigationItem.leftBarButtonItem = cancelButton()
+    
+    let calendar = Calendar.current
+    var dateComponents = DateComponents()
+    dateComponents.hour = hour
+    dateComponents.minute = minute
+    
+    if let time = calendar.date(from: dateComponents) {
+      addAlarmView.timeView.date = time
+    }
   }
   
   private func bind() {
     guard let right = navigationItem.rightBarButtonItem?.customView as? UIButton else { return }
     guard let left = navigationItem.leftBarButtonItem?.customView as? UIButton else { return }
+    
+    addAlarmView.timeSetList.rx.itemSelected
+      .subscribe(onNext: { indexPath in
+        if self.addAlarmView.timeSetList.cellForRow(at: indexPath) is TimeSetCell {
+          if indexPath.row == 0 {
+            self.navigationController?.pushViewController(DayTableViewController(), animated: true)
+          } else if indexPath.row == 2 {
+            self.navigationController?.pushViewController(AlarmSongViewController(), animated: true)
+          }
+        }
+      }).disposed(by: disposeBag)
     
     right.rx.tap.bind { [weak self] in
       guard let self = self else { return }
@@ -66,5 +102,19 @@ class AddAlarmViewController: UIViewController {
     button.setTitle("취소", for: .normal)
     button.setTitleColor(UIColor.dangn, for: .normal)
     return UIBarButtonItem(customView: button)
+  }
+}
+
+extension AddAlarmViewController: UITableViewDelegate, UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    4
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let cell = tableView.dequeueReusableCell(
+      withIdentifier: TimeSetCell.identifier,
+      for: indexPath) as? TimeSetCell else { return UITableViewCell() }
+    cell.configureCell(indexPath: indexPath.row)
+    return cell
   }
 }

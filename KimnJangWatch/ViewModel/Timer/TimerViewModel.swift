@@ -82,6 +82,10 @@ class TimerViewModel {
     guard let timer = getTimer(id: id) else { return }
     pauseTimer(id: id)
     timer.remainingTime.accept(0)
+    
+    // 알림 취소
+    NotificationManager.shared.cancelNotification(identifier: id.uuidString)
+    
     removeTimer(id: id)
   }
   
@@ -91,7 +95,11 @@ class TimerViewModel {
   
   func notification(id: UUID, endTime: Date) {
     let message = "타이머가 종료되었습니다."
-    NotificationManager.shared.scheduleNotification(at: endTime, with: message)
+    NotificationManager.shared.scheduleNotification(
+      at: endTime,
+      with: message,
+      identifier: id.uuidString
+    )
     print("Notification scheduled for timer with ID: \(id) at \(endTime)")
   }
   
