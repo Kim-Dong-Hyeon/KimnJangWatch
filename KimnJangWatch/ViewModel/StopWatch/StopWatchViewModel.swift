@@ -92,6 +92,7 @@ extension StopWatchViewModel {
     self.timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
     if let timer = timer {
       RunLoop.current.add(timer, forMode: .common) }
+    updateTime()
   }
   @objc private func updateTime() {
     elapsedTime = Date().timeIntervalSince(startTime)
@@ -116,16 +117,20 @@ extension StopWatchViewModel {
     defaults.set(self.watchStatus == .start ? "start" : "stop", forKey: UDKeys.timeStatus.rawValue)
     defaults.set(self.recordList, forKey: UDKeys.recordList.rawValue)
     defaults.set(self.lapcounts, forKey: UDKeys.lapCounts.rawValue)
+    defaults.set(self.lapcount, forKey: "lapCount")
   }
+  
   private func restoreState() {
     let defaults = UserDefaults.standard
     guard let savedTimeStatus = defaults.string(forKey: UDKeys.timeStatus.rawValue),
           let savedStartTime = defaults.object(forKey: UDKeys.startTime.rawValue)
             as? Date else { return }
+    
     let savedElapsedTime = defaults.double(forKey: UDKeys.elapsTime.rawValue)
     self.elapsedTime = savedElapsedTime
     self.recordList = defaults.stringArray(forKey: UDKeys.recordList.rawValue) ?? []
     self.lapcounts = defaults.array(forKey: UDKeys.lapCounts.rawValue) as? [Int] ?? []
+    self.lapcount = defaults.integer(forKey: "lapCount")
     
     if savedTimeStatus == "stop" {
       let addtionalTime = Date().timeIntervalSince(savedStartTime)
@@ -136,10 +141,7 @@ extension StopWatchViewModel {
       self.watchStatus = .start
       self.updateTimeUI()
     }
-    
-  }
-  private func updateLapTableView() {
-    
+    self.updateTimeUI()
   }
   private func updateTimeUI() {
     let timeString = formattedTime(from: self.elapsedTime)
