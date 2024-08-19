@@ -45,12 +45,11 @@ final class StopWatchController: UIViewController {
     
     self.viewModel.onTimeUpdate = { [weak self] timeString in
       self?.timeLabel.text = timeString }
+    self.viewModel.onLapUpdate = { [weak self] _ in
+      self?.timeLabTableView.reloadData() }
     self.setupActions()
   }
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(true)
-    self.configureButtons()
-  }
+
   private func setupActions() {
     self.lapResetButton.addTarget(self, action: #selector(didTapLapResetButton), for: .touchUpInside)
     self.startStopButton.addTarget(self, action: #selector(didTapStartStopButton), for: .touchUpInside)
@@ -92,48 +91,32 @@ final class StopWatchController: UIViewController {
       $0.height.equalTo(300)
     }
   }
-  private func configureButtons() {
-
-    switch viewModel.watchStatus {
-    case .start:
-      self.startStopButton.setTitle("중단", for: .normal)
-      self.startStopButton.backgroundColor = UIColor.dangn
-      self.lapResetButton.setTitle("랩", for: .normal)
-      self.lapResetButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-      self.lapResetButton.isEnabled = true
-    case .stop:
-      self.startStopButton.setTitle("시작", for: .normal)
-      self.startStopButton.backgroundColor = UIColor.dangn.withAlphaComponent(0.7)
-      self.lapResetButton.setTitle("재시작", for: .normal)
-      self.lapResetButton.backgroundColor = UIColor.lightGray
-      self.lapResetButton.isEnabled = true
-    }
-   
-
-   
-      
-   
-      
-    
-  }
-}
-extension StopWatchController {
   @objc private func didTapStartStopButton() {
-    self.viewModel.didTapStartOrStopButton()
-    self.configureButtons()
+    viewModel.didTapStartStopButton()
+    updateButtonStates()
   }
+  
   @objc private func didTapLapResetButton() {
-    switch viewModel.watchStatus {
-    case .start:
-      self.viewModel.didTapLapButton()
-      self.timeLabTableView.reloadData()
-    case .stop:
-      self.viewModel.didTapResetButton()
-      self.configureButtons()
-      self.timeLabTableView.reloadData()
-    }
+    viewModel.didTapLapResetButton()
+    updateButtonStates()
+  }
+
+  private func updateButtonStates() {
+      switch viewModel.watchStatus {
+      case .start:
+          startStopButton.setTitle("중지", for: .normal)
+          lapResetButton.isEnabled = true
+      case .pause:
+          startStopButton.setTitle("시작", for: .normal)
+          lapResetButton.setTitle("재시작", for: .normal)
+      case .stop:
+          startStopButton.setTitle("시작", for: .normal)
+          lapResetButton.setTitle("랩", for: .normal)
+          lapResetButton.isEnabled = false
+      }
   }
 }
+
 extension StopWatchController: UITableViewDelegate,UITableViewDataSource {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     50
@@ -145,7 +128,7 @@ extension StopWatchController: UITableViewDelegate,UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: LapViewCell.id, for: indexPath) as? LapViewCell
     guard let safecell = cell else { return UITableViewCell() }
     safecell.timeLabel.text = viewModel.recordList[indexPath.row]
-    safecell.lapCountLabel.text = "랩 \(viewModel.lapcounts[indexPath.row])"
+    safecell.lapCountLabel.text = "랩 \(viewModel.lapCounts[indexPath.row])"
     return safecell
   }
 }
