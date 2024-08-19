@@ -38,8 +38,9 @@ class TimerViewController: UIViewController {
   
   // MARK: 버튼 액션
   @objc func editButtonTapped() {
-    
-  }
+          currentTimerView.currentTableView
+      .setEditing(!currentTimerView.currentTableView.isEditing, animated: true)
+      }
   
   // MARK: UI
   private func configNavigationUI() {
