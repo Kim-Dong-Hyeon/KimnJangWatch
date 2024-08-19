@@ -78,7 +78,7 @@ extension RecentTimerViewController: UITableViewDelegate {
 
 extension RecentTimerViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return viewModel.getRecentTimers().count
+    return 5
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,9 +86,12 @@ extension RecentTimerViewController: UITableViewDataSource {
       .dequeueReusableCell(withIdentifier: RecentTimerTableViewCell.id, for: indexPath)
             as? RecentTimerTableViewCell else {
       return UITableViewCell()
+      
     }
+    /*
     let recentTimers = viewModel.getRecentTimers().reversed()
     let timeString = recentTimers[recentTimers.index(recentTimers.startIndex, offsetBy: indexPath.row)]
+    */
     
     return cell
   }

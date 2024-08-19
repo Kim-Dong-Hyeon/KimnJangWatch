@@ -17,30 +17,9 @@ class TimerViewModel {
   let endTimer = PublishSubject<UUID>()
   private var timerSubscription = [UUID:Disposable]()
   private var backgroundEntryTime = BehaviorRelay<Date?>(value: nil)
-  private var recentTimers = [String]()
   private var disposeBag = DisposeBag()
-  
-  init() {
-    loadRecentTimers()
-  }
-    
-  func manageTimerState() {
-    let enterBackground = NotificationCenter.default
-      .rx.notification(UIApplication.didEnterBackgroundNotification)
-    let enterForeground = NotificationCenter.default
-      .rx.notification(UIApplication.willEnterForegroundNotification)
-    
-    enterBackground
-      .subscribe(onNext: { [weak self] _ in
-        self?.saveTimes()
-      }).disposed(by: disposeBag)
-    
-    enterForeground
-      .subscribe(onNext: { [weak self] _ in
-        self?.loadTimes()
-      }).disposed(by: disposeBag)
-  }
-  
+
+  // MARK: 타이머 상태 관리
   func getTimer(id: UUID) -> TimerModel? {
     return timers.value.first(where: { $0.id == id })
   }
@@ -51,43 +30,7 @@ class TimerViewModel {
                               isRunning: BehaviorRelay<Bool>(value: true))
     timers.accept(timers.value + [newTimer])
     UserDefaults.standard.set(time, forKey: newTimer.id.uuidString)
-    addRecentTimer(time: formatTime(time: time))
-    print(recentTimers)
     startTimer(id: newTimer.id)
-  }
-  
-  private func addRecentTimer(time: String) {
-    recentTimers.append(time)
-    if recentTimers.count > 5 {
-      recentTimers.removeFirst()
-    }
-    saveRecentTimers()
-  }
-  
-  func getRecentTimers() -> [String] {
-    return recentTimers
-  }
-  
-  private func saveRecentTimers() {
-    UserDefaults.standard.set(recentTimers, forKey: "RecentTimers")
-  }
-  
-  private func loadRecentTimers() {
-    if let savedTimers = UserDefaults.standard.array(forKey: "RecentTimers") as? [String] {
-      recentTimers = savedTimers
-    }
-  }
-  
-  func formatTime(time: TimeInterval) -> String {
-    let hours = Int(time) / 3600
-    let minutes = (Int(time) / 60) % 60
-    let seconds = Int(time) % 60
-    
-    if hours > 0 {
-      return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
-    } else {
-      return String(format: "%02d:%02d", minutes, seconds)
-    }
   }
   
   func startTimer(id: UUID) {
@@ -154,19 +97,28 @@ class TimerViewModel {
     UserDefaults.standard.removeObject(forKey: id.uuidString)
   }
   
-  func notification(id: UUID, endTime: Date) {
-    let message = "타이머가 종료되었습니다."
-    NotificationManager.shared.scheduleNotification(
-      at: endTime,
-      with: message,
-      identifier: id.uuidString
-    )
-  }
-  
   func removeTimer(id: UUID) {
     timers.accept(timers.value.filter { $0.id != id })
   }
-  
+
+  // MARK: 앱 상태 관리
+  func manageTimerState() {
+    let enterBackground = NotificationCenter.default
+      .rx.notification(UIApplication.didEnterBackgroundNotification)
+    let enterForeground = NotificationCenter.default
+      .rx.notification(UIApplication.willEnterForegroundNotification)
+    
+    enterBackground
+      .subscribe(onNext: { [weak self] _ in
+        self?.saveTimes()
+      }).disposed(by: disposeBag)
+    
+    enterForeground
+      .subscribe(onNext: { [weak self] _ in
+        self?.loadTimes()
+      }).disposed(by: disposeBag)
+  }
+
   private func saveTimes() {
     backgroundEntryTime.accept(Date())
   }
@@ -186,4 +138,52 @@ class TimerViewModel {
       }
     }
   }
+
+  // MARK: 시간 format
+  func formatTime(time: TimeInterval) -> String {
+    let hours = Int(time) / 3600
+    let minutes = (Int(time) / 60) % 60
+    let seconds = Int(time) % 60
+    
+    if hours > 0 {
+      return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    } else {
+      return String(format: "%02d:%02d", minutes, seconds)
+    }
+  }
+
+  // MARK: notification
+  func notification(id: UUID, endTime: Date) {
+    let message = "타이머가 종료되었습니다."
+    NotificationManager.shared.scheduleNotification(
+      at: endTime,
+      with: message,
+      identifier: id.uuidString
+    )
+  }
+  
+/*
+  private func addRecentTimer(time: String) {
+    recentTimers.append(time)
+    if recentTimers.count > 5 {
+      recentTimers.removeFirst()
+    }
+    saveRecentTimers()
+  }
+  
+  func getRecentTimers() -> [String] {
+    return recentTimers
+  }
+  
+  private func saveRecentTimers() {
+    UserDefaults.standard.set(recentTimers, forKey: "RecentTimers")
+  }
+  
+  private func loadRecentTimers() {
+    if let savedTimers = UserDefaults.standard.array(forKey: "RecentTimers") as? [String] {
+      recentTimers = savedTimers
+    }
+  }
+  */
+  
 }
