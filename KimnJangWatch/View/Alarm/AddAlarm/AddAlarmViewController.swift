@@ -91,24 +91,28 @@ class AddAlarmViewController: UIViewController {
     guard let right = navigationItem.rightBarButtonItem?.customView as? UIButton else { return }
     guard let left = navigationItem.leftBarButtonItem?.customView as? UIButton else { return }
     
-    // 반복 및 사운드 페이지로 이동하는 부분을 확인합니다.
     addAlarmView.timeSetList.rx.itemSelected
-      .subscribe(onNext: { [weak self] indexPath in
-        guard let self = self else { return }
-        
-        if indexPath.row == 0 {
-          // 반복 설정 페이지로 이동
-          let dayTableViewController = DayTableViewController(time: self.time)
-          self.navigationController?.pushViewController(dayTableViewController, animated: true)
-        } else if indexPath.row == 2 { // 사운드 선택 화면으로 이동
-          let soundVC = AlarmSongViewController()
-          soundVC.selectedSound = self.selectedSound
-          soundVC.onSoundSelected = { [weak self] soundFileName in
-            if let sound = self?.soundOptions.first(where: { $0.fileName == soundFileName }) {
-              self?.selectedSound = sound
+      .subscribe(onNext: { indexPath in
+        if self.addAlarmView.timeSetList.cellForRow(at: indexPath) is TimeSetCell {
+          if indexPath.row == 0 {
+            let dayVC = DayTableViewController(time: self.time)
+            dayVC.markChanged = { [weak self] selectedDays in
+              
+              if let cell = self?.addAlarmView.timeSetList.cellForRow(at: IndexPath(row: 0, section: 0)) as? TimeSetCell {
+                cell.subLabel.text = selectedDays.joined(separator: ", ")
+              }
             }
+            self.navigationController?.pushViewController(dayVC, animated: true)
+          } else if indexPath.row == 2 {
+            let soundVC = AlarmSongViewController()
+            soundVC.selectedSound = self.selectedSound
+            soundVC.onSoundSelected = { [weak self] soundFileName in
+              if let sound = self?.soundOptions.first(where: { $0.fileName == soundFileName }) {
+                self?.selectedSound = sound
+              }
+            }
+            self.navigationController?.pushViewController(soundVC, animated: true)
           }
-          self.navigationController?.pushViewController(soundVC, animated: true)
         }
       }).disposed(by: disposeBag)
     
@@ -116,6 +120,19 @@ class AddAlarmViewController: UIViewController {
     right.rx.tap.bind { [weak self] in
       guard let self = self else { return }
       self.saveAlarm()
+      let selectedDate = self.addAlarmView.timeView.date
+      let dateFormatter = DateFormatter()
+      dateFormatter.dateFormat = "HH:mm"
+      let time = dateFormatter.string(from: selectedDate)
+      
+      if let labelCell = self.addAlarmView.timeSetList.cellForRow(at: IndexPath(row: 1, section: 0)) as? TimeSetCell,
+         let switchCell = self.addAlarmView.timeSetList.cellForRow(at: IndexPath(row: 3, section: 0)) as? TimeSetCell {
+        let message = labelCell.getMessage()
+        let repeatAlarm = switchCell.getRepeat()
+      }
+      
+      self.onSave?()
+      self.dismiss(animated: true, completion: nil)
     }.disposed(by: disposeBag)
     
     left.rx.tap.bind { [weak self] in
@@ -169,6 +186,7 @@ class AddAlarmViewController: UIViewController {
     button.setTitle("저장", for: .normal)
     button.setTitleColor(UIColor.dangn, for: .normal)
     dataManager.deleteUserDefault(key: "day")
+    dataManager.deleteUserDefault(key: "selectedDays")
     return UIBarButtonItem(customView: button)
   }
   

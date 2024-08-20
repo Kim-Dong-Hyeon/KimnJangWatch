@@ -16,7 +16,6 @@ class AlarmListCell: UITableViewCell {
   static let identifier = "alarmCell"
   let disposeBag = DisposeBag()
   
-  //timeLabel 접근제한자 확인
   let timeLabel: UILabel = {
     let label = UILabel()
     label.font = .systemFont(ofSize: 50, weight: .thin)
@@ -47,16 +46,6 @@ class AlarmListCell: UITableViewCell {
       onOff
     ].forEach { contentView.addSubview($0) }
     setConstraints()
-//    
-//    onOff.rx.isOn
-//      .subscribe(onNext: { [weak self] isOn in
-//        guard let self = self else { return }
-//        if isOn {
-//          print("clicked")
-//        } else {
-//          print("해제")
-//        }
-//      }).disposed(by: disposeBag)
   }
   
   required init?(coder: NSCoder) {

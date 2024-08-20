@@ -32,7 +32,7 @@ class AlarmViewModel {
     saveTimes()
     savedTimes.onNext(times)
   }
-  
+
   func sortTimes(_ time1: String, _ time2: String) -> Bool {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "HH:mm"
