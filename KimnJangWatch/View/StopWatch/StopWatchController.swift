@@ -112,7 +112,7 @@ final class StopWatchController: UIViewController {
       self.lapResetButton.isEnabled = true
     case .pause:
       self.startStopButton.setTitle("시작", for: .normal)
-      self.lapResetButton.setTitle("재시작", for: .normal)
+      self.lapResetButton.setTitle("재설정", for: .normal)
     case .stop:
       self.startStopButton.setTitle("시작", for: .normal)
       self.lapResetButton.setTitle("랩", for: .normal)
