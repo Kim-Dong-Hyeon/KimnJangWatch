@@ -17,7 +17,7 @@ class CurrentTimerViewController: UIViewController {
   private let disposeBag = DisposeBag()
   
   // MARK: currentTimerView 영역
-  private lazy var currentLabel: UILabel = {
+  private let currentLabel: UILabel = {
     let label = UILabel()
     label.text = "현재 타이머"
     label.font = .systemFont(ofSize: 24, weight: .bold)
@@ -90,7 +90,7 @@ extension CurrentTimerViewController: UITableViewDelegate {
       NotificationManager.shared.cancelNotification(identifier: timer.id.uuidString)
       viewModel.removeTimer(id: timer.id)
     }
-  }
+  }      
 }
   
 extension CurrentTimerViewController: UITableViewDataSource {

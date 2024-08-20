@@ -28,7 +28,7 @@ class SetTimerViewController: UIViewController {
   private var minutes = 0
   private var seconds = 0
   
-  private lazy var startButton: UIButton = {
+  private var startButton: UIButton = {
     let button = UIButton()
     button.setTitle("시작", for: .normal)
     button.setTitleColor(.dangn, for: .normal)
@@ -37,7 +37,7 @@ class SetTimerViewController: UIViewController {
     return button
   }()
   
-  private lazy var cancelButton: UIButton = {
+  private var cancelButton: UIButton = {
     let button = UIButton()
     button.setTitle("취소", for: .normal)
     button.setTitleColor(.darkGray, for: .normal)
@@ -48,7 +48,7 @@ class SetTimerViewController: UIViewController {
   }()
   
   
-  private lazy var buttonStackView: UIStackView = {
+  private var buttonStackView: UIStackView = {
     let stackView = UIStackView()
     stackView.axis = .horizontal
     stackView.spacing = 150
