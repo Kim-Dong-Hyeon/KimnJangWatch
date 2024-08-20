@@ -87,6 +87,7 @@ extension CurrentTimerViewController: UITableViewDelegate {
                  forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       let timer = viewModel.timers.value[indexPath.row]
+      NotificationManager.shared.cancelNotification(identifier: timer.id.uuidString)
       viewModel.removeTimer(id: timer.id)
     }
   }
