@@ -43,6 +43,11 @@ class TimeZoneModalViewController: UIViewController {
     tableViewTapped()
   }
   
+  // 키보드 닫기
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true)
+  }
+  
   private func tableViewTapped() {
     tableView.rx.itemSelected
       .subscribe(onNext: { [weak self] indexPath in
