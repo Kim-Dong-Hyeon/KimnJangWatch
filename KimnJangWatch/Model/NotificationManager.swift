@@ -67,8 +67,6 @@ class NotificationManager {
       )
       UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
       
-      print("🔔 [알림 생성됨] Identifier: \(identifier), Date: \(dateString), Message: \(message)")
-      
       // 다시 알림 (snooze) 설정이 true라면, 9분 뒤에 추가 알림을 생성
       if snooze {
         let snoozeDate = Calendar.current.date(byAdding: .minute, value: 9, to: finalDate)!
@@ -88,8 +86,6 @@ class NotificationManager {
           trigger: snoozeTrigger
         )
         UNUserNotificationCenter.current().add(snoozeRequest, withCompletionHandler: nil)
-        
-        print("🔔 [다시 알림 생성됨] Identifier: \(snoozeIdentifier), Date: \(dateFormatter.string(from: snoozeDate)), Message: \(message)")
       }
     } else {
       for weekday in repeats {
@@ -105,8 +101,6 @@ class NotificationManager {
           trigger: trigger
         )
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        
-        print("🔔 [반복 알림 생성됨] Identifier: \(weekdayIdentifier), Weekday: \(dateComponents.weekday!), Time: \(dateComponents.hour!):\(dateComponents.minute!), Message: \(message)")
         
         // 반복 알림에서도 다시 알림 (snooze) 설정이 true라면, 9분 뒤에 추가 알림을 생성
         if snooze {
@@ -124,8 +118,6 @@ class NotificationManager {
             trigger: snoozeTrigger
           )
           UNUserNotificationCenter.current().add(snoozeRequest, withCompletionHandler: nil)
-          
-          print("🔔 [반복 알림 다시 알림 생성됨] Identifier: \(snoozeIdentifier), Weekday: \(dateComponents.weekday!), Time: \(snoozeComponents.hour!):\(snoozeComponents.minute!), Message: \(message)")
         }
       }
     }
@@ -139,20 +131,13 @@ class NotificationManager {
     center.getPendingNotificationRequests { requests in
       let identifiersToCancel = requests
         .filter { $0.identifier.hasPrefix(identifier) }.map { $0.identifier }
-      
-      if identifiersToCancel.isEmpty {
-        print("❌ [알림 취소 실패] Identifiers: \(identifier) 관련된 알림 없음")
-      } else {
-        center.removePendingNotificationRequests(withIdentifiers: identifiersToCancel)
-        print("❌ [알림 취소] Identifiers: \(identifiersToCancel.joined(separator: ", "))")
-      }
+      center.removePendingNotificationRequests(withIdentifiers: identifiersToCancel)
     }
   }
   
   /// 모든 예약된 알림을 삭제합니다.
   func removeAllNotifications() {
     UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-    print("🗑️ [모든 알림 삭제됨]")
   }
   
   /// 현재 예약된 알림 목록을 조회합니다.
@@ -160,7 +145,6 @@ class NotificationManager {
   func getPendingNotifications(completion: @escaping ([UNNotificationRequest]) -> Void) {
     UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
       completion(requests)
-      print("📋 [예약된 알림 조회] Count: \(requests.count)")
     }
   }
 }
