@@ -858,8 +858,7 @@
 				76FC68C62C749BFE00E6DFE7 /* KimnJangWatch.xcdatamodel */,
 			);
 			currentVersion = 76FC68C62C749BFE00E6DFE7 /* KimnJangWatch.xcdatamodel */;
-			name = KimnJangWatch.xcdatamodeld;
-			path = /Users/kdh/Desktop/Swift/KimnJangWatch/KimnJangWatch/KimnJangWatch.xcdatamodeld;
+			path = KimnJangWatch.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
