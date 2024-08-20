@@ -136,6 +136,3 @@ extension StopWatchController: UITableViewDelegate,UITableViewDataSource {
     return safecell
   }
 }
-
-
-
