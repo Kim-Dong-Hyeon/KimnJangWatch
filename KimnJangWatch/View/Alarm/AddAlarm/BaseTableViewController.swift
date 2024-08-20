@@ -1,5 +1,5 @@
 //
-//  BaseTableView.swift
+//  BaseTableViewController.swift
 //  KimnJangWatch
 //
 //  Created by 김윤홍 on 8/17/24.

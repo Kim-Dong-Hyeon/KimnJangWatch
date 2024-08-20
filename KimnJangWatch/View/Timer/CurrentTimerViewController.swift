@@ -107,4 +107,3 @@ extension CurrentTimerViewController: UITableViewDataSource {
     return cell
   }
 }
-
