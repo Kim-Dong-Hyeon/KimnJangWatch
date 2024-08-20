@@ -5,8 +5,8 @@
 //  Created by 김윤홍 on 8/19/24.
 //
 
-import UIKit
 import CoreData
+import UIKit
 
 class DataManager {
   let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
