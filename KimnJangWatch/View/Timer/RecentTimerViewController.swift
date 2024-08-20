@@ -96,4 +96,3 @@ extension RecentTimerViewController: UITableViewDataSource {
     return cell
   }
 }
-

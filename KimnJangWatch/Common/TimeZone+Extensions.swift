@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  TimeZone+Extensions.swift
 //  KimnJangWatch
 //
 //  Created by Soo Jang on 8/17/24.

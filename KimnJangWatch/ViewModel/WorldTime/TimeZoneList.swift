@@ -1,5 +1,5 @@
 //
-//  AddedTimeZoneList.swift
+//  TimeZoneList.swift
 //  KimnJangWatch
 //
 //  Created by Soo Jang on 8/14/24.
