@@ -13,7 +13,7 @@ final class LapViewCell: UITableViewCell {
   static let id = "LabViewCell"
   let lapCountLabel = UILabel()
   let timeLabel = UILabel()
-
+  
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     self.configureUI()
@@ -23,19 +23,19 @@ final class LapViewCell: UITableViewCell {
   }
   
   private func configureUI() {
-    lapCountLabel.textAlignment = .left
-    lapCountLabel.font = UIFont.systemFont(ofSize: 18)
-    timeLabel.textAlignment = .right
-    timeLabel.font = UIFont.systemFont(ofSize: 18)
+    self.lapCountLabel.textAlignment = .left
+    self.lapCountLabel.font = UIFont.systemFont(ofSize: 18)
+    self.timeLabel.textAlignment = .right
+    self.timeLabel.font = UIFont.systemFont(ofSize: 18)
     [
       lapCountLabel,
       timeLabel
     ].forEach{ self.addSubview($0) }
-    lapCountLabel.snp.makeConstraints {
+    self.lapCountLabel.snp.makeConstraints {
       $0.leading.equalTo(contentView).inset(20)
       $0.centerY.equalToSuperview()
     }
-    timeLabel.snp.makeConstraints {
+    self.timeLabel.snp.makeConstraints {
       $0.trailing.equalTo(contentView).inset(20)
       $0.centerY.equalToSuperview()
     }
