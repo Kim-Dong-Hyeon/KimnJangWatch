@@ -21,7 +21,15 @@ class NotificationManager {
   ///   - identifier: 알림의 고유 식별자
   ///   - repeats: 알람이 반복될 요일 배열 (1: 일요일, 2: 월요일, ..., 7: 토요일)
   ///   - snooze: 다시 알림 기능 활성화 여부
-  func scheduleNotification(at date: Date, with message: String, identifier: String, repeats: [Int] = [], snooze: Bool = false, soundFile: String = "default") {
+  ///   - soundName: 알림음 이름
+  func scheduleNotification(
+    at date: Date,
+    with message: String,
+    identifier: String,
+    repeats: [Int] = [],
+    snooze: Bool = false,
+    soundName: String = "default"
+  ) {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     let dateString = dateFormatter.string(from: date)
@@ -29,8 +37,10 @@ class NotificationManager {
     let content = UNMutableNotificationContent()
     content.title = "Kim&Jang"
     content.body = message
-    if soundFile != "default" {
-      content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "\(soundFile).mp3"))
+    if soundName != "default" {
+      content.sound = UNNotificationSound(
+        named: UNNotificationSoundName(rawValue: "\(soundName).mp3")
+      )
     } else {
       content.sound = UNNotificationSound.default
     }
@@ -44,10 +54,17 @@ class NotificationManager {
     }
     
     if repeats.isEmpty {
-      let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: finalDate)
+      let triggerDate = Calendar.current.dateComponents(
+        [.year, .month, .day, .hour, .minute, .second],
+        from: finalDate
+      )
       let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
       
-      let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+      let request = UNNotificationRequest(
+        identifier: identifier,
+        content: content,
+        trigger: trigger
+      )
       UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
       
       print("🔔 [알림 생성됨] Identifier: \(identifier), Date: \(dateString), Message: \(message)")
@@ -56,10 +73,20 @@ class NotificationManager {
       if snooze {
         let snoozeDate = Calendar.current.date(byAdding: .minute, value: 9, to: finalDate)!
         let snoozeIdentifier = identifier + "_snooze"
-        let snoozeTriggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: snoozeDate)
-        let snoozeTrigger = UNCalendarNotificationTrigger(dateMatching: snoozeTriggerDate, repeats: false)
+        let snoozeTriggerDate = Calendar.current.dateComponents(
+          [.year, .month, .day, .hour, .minute, .second],
+          from: snoozeDate
+        )
+        let snoozeTrigger = UNCalendarNotificationTrigger(
+          dateMatching: snoozeTriggerDate,
+          repeats: false
+        )
         
-        let snoozeRequest = UNNotificationRequest(identifier: snoozeIdentifier, content: content, trigger: snoozeTrigger)
+        let snoozeRequest = UNNotificationRequest(
+          identifier: snoozeIdentifier,
+          content: content,
+          trigger: snoozeTrigger
+        )
         UNUserNotificationCenter.current().add(snoozeRequest, withCompletionHandler: nil)
         
         print("🔔 [다시 알림 생성됨] Identifier: \(snoozeIdentifier), Date: \(dateFormatter.string(from: snoozeDate)), Message: \(message)")
@@ -72,7 +99,11 @@ class NotificationManager {
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         let weekdayIdentifier = "\(identifier)_\(weekday + 1)"
         
-        let request = UNNotificationRequest(identifier: weekdayIdentifier, content: content, trigger: trigger)
+        let request = UNNotificationRequest(
+          identifier: weekdayIdentifier,
+          content: content,
+          trigger: trigger
+        )
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         
         print("🔔 [반복 알림 생성됨] Identifier: \(weekdayIdentifier), Weekday: \(dateComponents.weekday!), Time: \(dateComponents.hour!):\(dateComponents.minute!), Message: \(message)")
@@ -83,8 +114,15 @@ class NotificationManager {
           snoozeComponents.minute! += 9
           let snoozeIdentifier = "\(weekdayIdentifier)_snooze"
           
-          let snoozeTrigger = UNCalendarNotificationTrigger(dateMatching: snoozeComponents, repeats: true)
-          let snoozeRequest = UNNotificationRequest(identifier: snoozeIdentifier, content: content, trigger: snoozeTrigger)
+          let snoozeTrigger = UNCalendarNotificationTrigger(
+            dateMatching: snoozeComponents,
+            repeats: true
+          )
+          let snoozeRequest = UNNotificationRequest(
+            identifier: snoozeIdentifier,
+            content: content,
+            trigger: snoozeTrigger
+          )
           UNUserNotificationCenter.current().add(snoozeRequest, withCompletionHandler: nil)
           
           print("🔔 [반복 알림 다시 알림 생성됨] Identifier: \(snoozeIdentifier), Weekday: \(dateComponents.weekday!), Time: \(snoozeComponents.hour!):\(snoozeComponents.minute!), Message: \(message)")
@@ -99,7 +137,8 @@ class NotificationManager {
     let center = UNUserNotificationCenter.current()
     
     center.getPendingNotificationRequests { requests in
-      let identifiersToCancel = requests.filter { $0.identifier.hasPrefix(identifier) }.map { $0.identifier }
+      let identifiersToCancel = requests
+        .filter { $0.identifier.hasPrefix(identifier) }.map { $0.identifier }
       
       if identifiersToCancel.isEmpty {
         print("❌ [알림 취소 실패] Identifiers: \(identifier) 관련된 알림 없음")

@@ -145,7 +145,7 @@ class AddAlarmViewController: UIViewController {
         identifier: newAlarmID,
         repeats: dataManager.readUserDefault(key: "day") ?? [],
         snooze: repeatAlarm,
-        soundFile: selectedSound.fileName  // 선택한 사운드를 사용
+        soundName: selectedSound.fileName  // 선택한 사운드를 사용
       )
       
       dataManager.createTime(
