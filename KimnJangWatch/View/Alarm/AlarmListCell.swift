@@ -7,8 +7,8 @@
 
 import UIKit
 
-import RxSwift
 import RxCocoa
+import RxSwift
 import SnapKit
 
 class AlarmListCell: UITableViewCell {

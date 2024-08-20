@@ -7,15 +7,21 @@
 
 import UIKit
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
 class AlarmViewController: UIViewController {
   
   private var alarmView = AlarmView(frame: .zero)
   private let disposeBag = DisposeBag()
   private let alarmViewModel = AlarmViewModel()
-  private var time = String()
+  let dataManager = DataManager()
+  
+  private var timeEntities: [Time] = [] {
+    didSet {
+      alarmView.alarmList.reloadData()
+    }
+  }
   
   override func loadView() {
     alarmView = AlarmView(frame: UIScreen.main.bounds)
@@ -24,61 +30,24 @@ class AlarmViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    alarmView.alarmList.delegate = self
-    view.backgroundColor = .systemBackground
-    alarmView.alarmList.register(AlarmListCell.self,
-                                 forCellReuseIdentifier: AlarmListCell.identifier)
+    setupView()
     initNavigation()
-    navigationBind()
-    bind()
-  }
-
-  private func bind() {
-    alarmView.alarmList.rx.itemSelected
-      .subscribe(onNext: { indexPath in
-        if let cell = self.alarmView.alarmList.cellForRow(at: indexPath) as? AlarmListCell {
-          self.time = cell.timeLabel.text ?? "00:00"
-          self.showModal(time: self.time)
-        }
-      }).disposed(by: disposeBag)
-    
-    alarmViewModel.savedTimes
-      .debug()
-      .observe(on: MainScheduler.instance)
-      .map { dictionary -> [(time: String, days: [Int])] in
-        let sortedKeys = dictionary.keys.sorted { self.alarmViewModel.sortTimes($0, $1) }
-        return sortedKeys.map { (time: String) -> (time: String, days: [Int]) in
-          (time: time, days: dictionary[time] ?? [])
-        }
-      }
-      .bind(to: alarmView.alarmList.rx.items(cellIdentifier: AlarmListCell.identifier,
-                                             cellType: AlarmListCell.self)) { _, item, cell in
-        cell.configure(time: item.time, days: item.days)
-        
-        cell.onOff.rx.isOn
-          .bind { isOn in
-            if isOn {
-              print(cell.timeLabel.text ?? "")
-              print("true")
-            } else {
-              print("해제")
-            }
-          }.disposed(by: cell.disposeBag)
-      }.disposed(by: disposeBag)
+    fetchData()
+    bindButtons()
   }
   
-  private func navigationBind() {
-    guard let right = navigationItem.rightBarButtonItem?.customView as? UIButton else { return }
-    right.rx.tap.bind { [weak self] in
-      guard let self = self else { return }
-      self.showModal(time: self.time)
-    }.disposed(by: disposeBag)
-    
-    guard let left = navigationItem.leftBarButtonItem?.customView as? UIButton else { return }
-    left.rx.tap.bind { [weak self] in
-      guard let self = self else { return }
-      self.edit()
-    }.disposed(by: disposeBag)
+  private func setupView() {
+    alarmView.alarmList.delegate = self
+    alarmView.alarmList.dataSource = self
+    view.backgroundColor = .systemBackground
+    alarmView.alarmList.register(AlarmListCell.self, forCellReuseIdentifier: AlarmListCell.identifier)
+  }
+  
+  private func fetchData() {
+    let alarms = dataManager.readCoreData(entityType: Time.self)
+    DispatchQueue.main.async { [weak self] in
+      self?.timeEntities = alarms
+    }
   }
   
   private func initNavigation() {
@@ -103,44 +72,129 @@ class AlarmViewController: UIViewController {
     return UIBarButtonItem(customView: button)
   }
   
-  private func showModal(time: String) {
-    let addAlarmVC = AddAlarmViewController(time: time)
+  private func bindButtons() {
+    guard let rightButton = navigationItem.rightBarButtonItem?.customView as? UIButton,
+          let leftButton = navigationItem.leftBarButtonItem?.customView as? UIButton else { return }
+    
+    rightButton.rx.tap
+      .bind { [weak self] in
+        self?.showModal()
+      }
+      .disposed(by: disposeBag)
+    
+    leftButton.rx.tap
+      .bind { [weak self] in
+        self?.toggleEditingMode()
+      }
+      .disposed(by: disposeBag)
+    
+  }
+  
+  private func showModal() {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "HH mm"
+    let currentTime = formatter.string(from: Date())
+    
+    let addAlarmVC = AddAlarmViewController(time: currentTime)
     addAlarmVC.alarmViewModel = self.alarmViewModel
+    addAlarmVC.onSave = { [weak self] in
+      self?.fetchData()
+    }
     let modal = UINavigationController(rootViewController: addAlarmVC)
     present(modal, animated: true, completion: nil)
   }
   
-  private func edit() {
-    let shouldBeEdited = !alarmView.alarmList.isEditing
-    alarmView.alarmList.setEditing(shouldBeEdited, animated: true)
-    let newTitle = shouldBeEdited ? "완료" : "편집"
+  private func toggleEditingMode() {
+    let isEditing = !alarmView.alarmList.isEditing
+    alarmView.alarmList.setEditing(isEditing, animated: true)
+    let newTitle = isEditing ? "완료" : "편집"
     (navigationItem.leftBarButtonItem?.customView as? UIButton)?.setTitle(newTitle, for: .normal)
   }
 }
 
-extension AlarmViewController: UITableViewDelegate {
+extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
   
-  func tableView(
-    _ tableView: UITableView,
-    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath
-  ) -> UISwipeActionsConfiguration? {
-    
-    let deleteAction = UIContextualAction(style: .destructive,
-                                          title: "삭제") { [weak self] (_, _, completionHandler) in
-      guard let self = self else { return }
-      // 삭제할 시간을 찾기 위해 인덱스를 이용해 키를 가져옴
-      if let cell = tableView.cellForRow(at: indexPath) as? AlarmListCell {
-        // 셀의 timeLabel.text를 이용해 삭제할 시간 값을 가져옴
-        let time = cell.timeLabel.text ?? ""
-        // ViewModel을 통해 해당 시간을 삭제
-        self.alarmViewModel.removeTime(time: time)
-      }
-      completionHandler(true)  // 삭제 완료 후 콜백 호출
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return timeEntities.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: AlarmListCell.identifier, for: indexPath) as? AlarmListCell else {
+      return UITableViewCell()
     }
     
-    // 액션을 포함하는 UISwipeActionsConfiguration을 반환
+    let timeEntity = timeEntities[indexPath.row]
+    cell.configure(time: "\(timeEntity.hour):\(timeEntity.minute)", days: timeEntity.repeatDays)
+    cell.onOff.isOn = timeEntity.isOn
+    cell.onOff.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
+    
+    return cell
+  }
+  
+  @objc private func switchValueChanged(_ sender: UISwitch) {
+    guard let cell = sender.superview?.superview as? AlarmListCell,
+          let indexPath = alarmView.alarmList.indexPath(for: cell) else { return }
+    
+    let timeEntity = timeEntities[indexPath.row]
+    let identifier = timeEntity.id!.uuidString
+    
+    if sender.isOn {
+      // 알람이 켜졌을 때 알림 설정
+      let alarmTime = createDate(hour: timeEntity.hour, minute: timeEntity.minute)
+      NotificationManager.shared.scheduleNotification(
+        at: alarmTime,
+        with: timeEntity.message ?? "알람",
+        identifier: identifier,
+        repeats: timeEntity.repeatDays
+      )
+    } else {
+      // 알람이 꺼졌을 때 알림 취소
+      NotificationManager.shared.cancelNotification(identifier: identifier)
+    }
+    
+    // 상태 업데이트
+    dataManager.updateAlarmStatus(id: timeEntity.id!, isOn: sender.isOn)
+  }
+  
+  private func createDate(hour: String, minute: String) -> Date {
+    let calendar = Calendar.current
+    var dateComponents = DateComponents()
+    dateComponents.hour = Int(hour)
+    dateComponents.minute = Int(minute)
+    dateComponents.year = calendar.component(.year, from: Date())
+    dateComponents.month = calendar.component(.month, from: Date())
+    dateComponents.day = calendar.component(.day, from: Date())
+    
+    // 오늘 날짜의 시간으로 Date 생성
+    var date = calendar.date(from: dateComponents) ?? Date()
+    
+    // 현재 시간보다 이전 시간이라면, 다음날로 설정
+    if date < Date() {
+      date = calendar.date(byAdding: .day, value: 1, to: date)!
+    }
+    
+    return date
+  }
+  
+  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { [weak self] (_, _, completionHandler) in
+      guard let self = self else { return }
+      
+      let timeEntity = self.timeEntities[indexPath.row]
+      let identifier = timeEntity.id!.uuidString
+      
+      // 알람 삭제 전에 알림 취소
+      NotificationManager.shared.cancelNotification(identifier: identifier)
+      
+      self.alarmViewModel.removeTime(time: "\(timeEntity.hour):\(timeEntity.minute)")
+      self.dataManager.deleteTime(id: timeEntity.id!)
+      self.fetchData()
+      
+      completionHandler(true)
+    }
+    
     let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-    configuration.performsFirstActionWithFullSwipe = true  // 전체 스와이프시 자동으로 삭제 실행
+    configuration.performsFirstActionWithFullSwipe = true
     return configuration
   }
 }

@@ -7,9 +7,9 @@
 
 import UIKit
 
-import SnapKit
 import RxCocoa
 import RxSwift
+import SnapKit
 
 class TimeZoneModalViewController: UIViewController {
   
@@ -101,7 +101,10 @@ extension TimeZoneModalViewController: UISearchBarDelegate {
 
 extension UIViewController {
   func hideKeyboard() {
-    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+    let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+      target: self,
+      action: #selector(UIViewController.dismissKeyboard)
+    )
     view.addGestureRecognizer(tap)
   }
   @objc func dismissKeyboard() {

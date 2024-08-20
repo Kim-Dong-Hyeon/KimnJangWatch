@@ -164,7 +164,9 @@ class TimerViewModel {
     NotificationManager.shared.scheduleNotification(
       at: endTime,
       with: message,
-      identifier: id.uuidString
+      identifier: id.uuidString,
+      repeats: [],
+      snooze: false // 타이머에서는 다시 알림을 비활성화
     )
   }
   
