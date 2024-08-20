@@ -47,6 +47,8 @@ class AlarmViewController: UIViewController {
     let alarms = dataManager.readCoreData(entityType: Time.self)
     DispatchQueue.main.async { [weak self] in
       self?.timeEntities = alarms
+      self?.sortTimes()
+      self?.alarmView.alarmList.reloadData()
     }
   }
   
@@ -84,7 +86,7 @@ class AlarmViewController: UIViewController {
     
     leftButton.rx.tap
       .bind { [weak self] in
-        self?.toggleEditingMode()
+        self?.edit()
       }
       .disposed(by: disposeBag)
     
@@ -104,11 +106,19 @@ class AlarmViewController: UIViewController {
     present(modal, animated: true, completion: nil)
   }
   
-  private func toggleEditingMode() {
+  private func edit() {
     let isEditing = !alarmView.alarmList.isEditing
     alarmView.alarmList.setEditing(isEditing, animated: true)
     let newTitle = isEditing ? "완료" : "편집"
     (navigationItem.leftBarButtonItem?.customView as? UIButton)?.setTitle(newTitle, for: .normal)
+  }
+  
+  func sortTimes() {
+    timeEntities.sort { (time1, time2) -> Bool in
+      let timeString1 = "\(time1.hour):\(time1.minute)"
+      let timeString2 = "\(time2.hour):\(time2.minute)"
+      return alarmViewModel.sortTimes(timeString1, timeString2)
+    }
   }
 }
 

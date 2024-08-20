@@ -14,7 +14,7 @@ class TimeSetCell: UITableViewCell {
   static let identifier = "timeSetCell"
   
   private let label = UILabel()
-  private let subLabel = UILabel()
+  let subLabel = UILabel()
   
   let alarmSwitch: UISwitch = {
     let alarmSwitch = UISwitch()
@@ -75,7 +75,7 @@ class TimeSetCell: UITableViewCell {
   
   func configureCell(indexPath: Int) {
     let labelArray = ["반복", "레이블", "사운드", "다시 알림"]
-    let subLabelArray = ["안 함 >", "래디얼 >"]
+    let subLabelArray = ["안 함 ", "노래"]
     label.text = labelArray[indexPath]
     subLabel.text = subLabelArray[Int(indexPath / 2)]
     

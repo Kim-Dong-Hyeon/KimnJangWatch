@@ -16,6 +16,7 @@ class DayTableViewController: BaseTableViewController {
   var checkedCell = BehaviorRelay<[IndexPath]>(value: [])
   let viewModel = AlarmViewModel()
   let dataManager = DataManager()
+  var markChanged: (([String]) -> Void)?
   
   init(time: String) {
     self.time = time
@@ -36,7 +37,7 @@ class DayTableViewController: BaseTableViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    reloadCheckedCells()
+    reloadCells()
   }
   
   private func dataBinding() {
@@ -66,13 +67,15 @@ class DayTableViewController: BaseTableViewController {
   override func saveData() {
     let dayArray = checkedCell.value.map { $0.row }
     UserDefaults.standard.set(dayArray, forKey: "day")
+    let selectedDays = dayArray.map { String(titles[$0].prefix(1)) }
+    markChanged?(selectedDays)
   }
   
   override func configureUI() {
     navigationItem.title = "반복"
   }
   
-  private func reloadCheckedCells() {
+  private func reloadCells() {
     if let dayArray = UserDefaults.standard.dictionary(forKey: "times") as? [String: [Int]],
        let savedDays = dayArray[time] {
       let indexPaths = savedDays.map { IndexPath(row: $0, section: 0) }

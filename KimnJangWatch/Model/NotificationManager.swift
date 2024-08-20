@@ -32,7 +32,7 @@ class NotificationManager {
   ) {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    let dateString = dateFormatter.string(from: date)
+    let _ = dateFormatter.string(from: date)
     
     let content = UNMutableNotificationContent()
     content.title = "Kim&Jang"

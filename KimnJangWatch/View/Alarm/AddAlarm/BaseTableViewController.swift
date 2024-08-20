@@ -56,7 +56,6 @@ class BaseTableViewController: UIViewController {
   }
   
   func saveData() {
-    print("데이터 저장")
   }
   
   func configureUI() {

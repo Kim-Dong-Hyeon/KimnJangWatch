@@ -36,27 +36,6 @@ class DataManager {
       return []
     }
   }
-//
-//  func updateTime(id: UUID, newHour: String, newMinute: String, newRepeatDays: [Int], newMessage: String, isOn: Bool, repeatAlarm: Bool) {
-//    let fetchRequest: NSFetchRequest<Time> = Time.fetchRequest()
-//    fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-//    
-//    do {
-//      let times = try context.fetch(fetchRequest)
-//      if let timeToUpdate = times.first {
-//        timeToUpdate.hour = newHour
-//        timeToUpdate.minute = newMinute
-//        timeToUpdate.repeatDays = newRepeatDays
-//        timeToUpdate.message = newMessage
-//        timeToUpdate.isOn = isOn
-//        timeToUpdate.repeatAlarm = repeatAlarm
-//        
-//        saveContext()
-//      }
-//    } catch {
-//      print("Failed to update data: \(error)")
-//    }
-//  }
 
   func deleteTime(id: UUID) {
     let fetchRequest: NSFetchRequest<Time> = Time.fetchRequest()
