@@ -120,17 +120,6 @@ class AddAlarmViewController: UIViewController {
     right.rx.tap.bind { [weak self] in
       guard let self = self else { return }
       self.saveAlarm()
-      let selectedDate = self.addAlarmView.timeView.date
-      let dateFormatter = DateFormatter()
-      dateFormatter.dateFormat = "HH:mm"
-      let time = dateFormatter.string(from: selectedDate)
-      
-      if let labelCell = self.addAlarmView.timeSetList.cellForRow(at: IndexPath(row: 1, section: 0)) as? TimeSetCell,
-         let switchCell = self.addAlarmView.timeSetList.cellForRow(at: IndexPath(row: 3, section: 0)) as? TimeSetCell {
-        let message = labelCell.getMessage()
-        let repeatAlarm = switchCell.getRepeat()
-      }
-      
       self.onSave?()
       self.dismiss(animated: true, completion: nil)
     }.disposed(by: disposeBag)
