@@ -24,7 +24,7 @@ class CurrentTimerViewController: UIViewController {
     return label
   }()
   
-  private lazy var currentTableView: UITableView = {
+  lazy var currentTableView: UITableView = {
     let tableView = UITableView()
     tableView.register(CurrentTimerTableViewCell.self, forCellReuseIdentifier: CurrentTimerTableViewCell.id)
     tableView.delegate = self
@@ -81,6 +81,14 @@ class CurrentTimerViewController: UIViewController {
 extension CurrentTimerViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 100
+  }
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
+                 forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      let timer = viewModel.timers.value[indexPath.row]
+      viewModel.removeTimer(id: timer.id)
+    }
   }
 }
   

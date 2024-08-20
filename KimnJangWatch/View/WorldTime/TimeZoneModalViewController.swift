@@ -7,9 +7,9 @@
 
 import UIKit
 
-import SnapKit
 import RxCocoa
 import RxSwift
+import SnapKit
 
 class TimeZoneModalViewController: UIViewController {
   
@@ -41,6 +41,11 @@ class TimeZoneModalViewController: UIViewController {
     tableView.dataSource = self
     setLayout()
     tableViewTapped()
+  }
+  
+  // 키보드 닫기
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true)
   }
   
   private func tableViewTapped() {
@@ -101,7 +106,10 @@ extension TimeZoneModalViewController: UISearchBarDelegate {
 
 extension UIViewController {
   func hideKeyboard() {
-    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+    let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+      target: self,
+      action: #selector(UIViewController.dismissKeyboard)
+    )
     view.addGestureRecognizer(tap)
   }
   @objc func dismissKeyboard() {

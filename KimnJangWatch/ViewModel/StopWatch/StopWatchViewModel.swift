@@ -4,99 +4,126 @@
 //
 //  Created by bloom on 8/13/24.
 //
-
 import Foundation
-import UIKit
 
 enum WatchStatus {
   case start
+  case pause
   case stop
-}
-enum UserDefaultsKeys: String {
-  case startTime = "savedStartTime"
-  case elapsTime = "savedElapsTime"
 }
 
 class StopWatchViewModel {
-  var watchStatus: WatchStatus = .start
-  var timer: Timer?
-  var startTime = Date()
-  var lapcounts: [Int] = []
-  var lapcount = 1
-///화면이 꺼지거나 앱이 꺼졌을때 시간을 담을 변수
+  var watchStatus: WatchStatus = .stop
+  var stopWatchTimer: Timer?
+  var lapTimer: Timer?
+  
+  var startTime: Date?
   var elapsedTime: TimeInterval = 0
+  var lapStartTime: Date?
+  var lapElapsedTime: TimeInterval = 0
   var recordList: [String] = []
+  var lapCounts: [Int] = []
+  var lapCount: Int = 0
   var onTimeUpdate: ((String) -> Void)?
+  var onLapUpdate: ((String) -> Void)?
   
-  init() {
-    NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-  }
-  
-  func didTapStartButton() {
+  func didTapStartStopButton() {
     switch self.watchStatus {
-    case .start:
-      self.watchStatus = .stop
-      startTime = Date() - elapsedTime
-      self.timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
-    case .stop:
-      self.watchStatus = .start
-      timer?.invalidate()
+    case .stop://초기에 시작버튼을 누를경우
+      self.startTimer()
+    case .start://시작상태에서 정지버튼을 누를경우
+      self.stopTimer()
+    case .pause://정지상태에서 시작버튼을 누를경우
+      self.restartTimer()
     }
   }
-  @objc func didTapLapButton() {//랩추가버튼탭
-    let timeString = formattedTime(from: elapsedTime)
-    self.recordList.append(timeString)
-    self.lapcounts.append(lapcount)
-    self.lapcount += 1
+  
+  func didTapLapResetButton() {
+    switch self.watchStatus {
+    case .stop: break
+    case .start: //타이머가 구동되는동안 랩버튼을 누를경우
+      self.saveLapRecord()
+    case .pause: //타이머가 멈춰있는동안 재시작을 누를경우
+      self.resetAllData()
+    }
   }
-  @objc func didTapResetButton() {//리셋버튼탭
-    self.timer?.invalidate()
+  
+  private func startTimer() {
     self.watchStatus = .start
+    self.startTime = Date()
+    self.stopWatchTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.updateTime), userInfo: nil, repeats: true)
+    RunLoop.current.add(self.stopWatchTimer!, forMode: .common)
+    self.lapStartTime = Date()
+    self.startLapTimer()
+  }
+  
+  private func stopTimer() {
+    self.watchStatus = .pause
+    self.stopWatchTimer?.invalidate()
+    self.lapTimer?.invalidate()
+    self.stopWatchTimer = nil
+    self.lapTimer = nil
+  }
+  
+  private func restartTimer() {
+    self.watchStatus = .start
+    self.startTime = Date().addingTimeInterval(-self.elapsedTime)
+    self.stopWatchTimer = Timer(timeInterval: 0.01, target: self, selector: #selector(self.updateTime), userInfo: nil, repeats: true)
+    RunLoop.current.add(self.stopWatchTimer!, forMode: .common)
+    self.lapStartTime = Date().addingTimeInterval(-self.lapElapsedTime)
+    self.startLapTimer()
+  }
+  
+  private func saveLapRecord() {
+    if let lapStartTime = self.lapStartTime {
+      self.lapElapsedTime = Date().timeIntervalSince(lapStartTime)
+      let lapTimeString = timeToString(from: self.lapElapsedTime)
+      self.recordList.insert(lapTimeString, at: 0)
+      self.lapCount += 1
+      self.lapCounts.insert(lapCount, at: 0)
+      self.onLapUpdate?(lapTimeString)
+    }
+    self.lapStartTime = Date()
+    self.startLapTimer()
+  }
+  
+  private func startLapTimer() {
+    self.lapTimer?.invalidate()
+    self.lapTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.updateLapTime), userInfo: nil, repeats: true)
+    RunLoop.current.add(self.lapTimer!, forMode: .common)
+  }
+  
+  private func resetAllData() {
+    self.stopTimer()
+    self.watchStatus = .stop
     self.elapsedTime = 0
+    self.lapElapsedTime = 0
     self.recordList.removeAll()
-    self.onTimeUpdate?("00:00:00.00")
-    self.lapcounts.removeAll()
-    self.lapcount = 1
-    UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.startTime.rawValue)
+    self.lapCounts.removeAll()
+    self.lapCount = 0
+    self.onTimeUpdate?("00:00.00")
+    self.onLapUpdate?("00:00.00")
   }
-
-
- 
-}
-extension StopWatchViewModel {
-  @objc private func updateTime() {
-    elapsedTime = Date().timeIntervalSince(startTime)
-    let timeString = formattedTime(from: elapsedTime)
-    onTimeUpdate?(timeString)
+  
+  @objc func updateTime() {
+    guard let startTime = self.startTime else { return }
+    self.elapsedTime = Date().timeIntervalSince(startTime)
+    let timeString = timeToString(from: self.elapsedTime)
+    self.onTimeUpdate?(timeString)
   }
-  private func formattedTime(from timeInterval: TimeInterval) -> String {//시간을 문자열로반환
-    let hour = Int(timeInterval) / 3600
-    let minutes = (Int(timeInterval) / 60) % 60
+  
+  @objc func updateLapTime() {
+    guard let lapStartTime = self.lapStartTime else { return }
+    self.lapElapsedTime = Date().timeIntervalSince(lapStartTime)
+    let lapTimeString = timeToString(from: self.lapElapsedTime)
+    self.onLapUpdate?(lapTimeString)
+  }
+  
+  private func timeToString(from timeInterval: TimeInterval) -> String {
+    let minutes = Int(timeInterval) / 60 % 60
     let seconds = Int(timeInterval) % 60
     let milliseconds = Int(timeInterval * 100) % 100
-    return String(format: "%02d:%02d:%02d.%02d", hour, minutes, seconds, milliseconds)
-  }
-}
-
-extension StopWatchViewModel {
-///앱이 백그라운드로 전환될때 현재시간을 저장
-  @objc private func appWillEnterBackground() {
-    UserDefaults.standard.set(Date(), forKey: UserDefaultsKeys.startTime.rawValue)
-    UserDefaults.standard.set(elapsedTime, forKey: UserDefaultsKeys.elapsTime.rawValue)
-    if watchStatus == .stop {
-      timer?.invalidate()
-    }
-  }
-///앱으로 다시 돌아왔을때 시간을 추가해서 타이머의 시간을 변경함
-  @objc private func appWillEnterForeground() {
-    guard let savedStartTime = UserDefaults.standard.object(forKey: UserDefaultsKeys.startTime.rawValue) as? Date else { return }
-    let savedElapsedTime = UserDefaults.standard.double(forKey: UserDefaultsKeys.elapsTime.rawValue)
-    self.elapsedTime = savedElapsedTime + Date().timeIntervalSince(savedStartTime)
-    if watchStatus == .stop {
-      startTime = Date() - elapsedTime
-      timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
-    }
+    return String(format: "%02d:%02d.%02d", minutes, seconds, milliseconds)
   }
   
 }

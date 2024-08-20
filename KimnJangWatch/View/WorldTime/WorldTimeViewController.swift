@@ -7,9 +7,9 @@
 
 import UIKit
 
-import SnapKit
 import RxCocoa
 import RxSwift
+import SnapKit
 
 class WorldTimeViewController: UIViewController {
   
@@ -47,7 +47,12 @@ class WorldTimeViewController: UIViewController {
     //
     //      }
     //      .disposed(by: disposeBag)
-    let plusButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: nil)
+    let plusButton = UIBarButtonItem(
+      image: UIImage(systemName: "plus"),
+      style: .plain,
+      target: self,
+      action: nil
+    )
     plusButton.tintColor = .dangn
     
     plusButton.rx.tap
@@ -110,7 +115,10 @@ class WorldTimeViewController: UIViewController {
 }
 
 extension WorldTimeViewController: UITableViewDelegate {
-  func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+  func tableView(
+    _ tableView: UITableView,
+    titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath
+  ) -> String? {
     return "삭제"
   }
 }
