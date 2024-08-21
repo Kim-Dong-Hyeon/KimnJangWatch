@@ -47,7 +47,6 @@ class SetTimerViewController: UIViewController {
     return button
   }()
   
-  
   private var buttonStackView: UIStackView = {
     let stackView = UIStackView()
     stackView.axis = .horizontal

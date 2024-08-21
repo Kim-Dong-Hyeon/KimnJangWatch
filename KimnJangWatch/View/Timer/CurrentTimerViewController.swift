@@ -39,7 +39,7 @@ class CurrentTimerViewController: UIViewController {
     setView()
     bind()
   }
-
+  
   private func tableViewHeight() -> CGFloat {
     let rowsCount = tableView(currentTableView, numberOfRowsInSection: 0)
     return CGFloat(rowsCount) * 100
@@ -77,7 +77,7 @@ class CurrentTimerViewController: UIViewController {
     }
   }
 }
-  
+
 extension CurrentTimerViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 100
@@ -90,7 +90,7 @@ extension CurrentTimerViewController: UITableViewDelegate {
       NotificationManager.shared.cancelNotification(identifier: timer.id.uuidString)
       viewModel.removeTimer(id: timer.id)
     }
-  }      
+  }
 }
   
 extension CurrentTimerViewController: UITableViewDataSource {
