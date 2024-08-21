@@ -17,13 +17,18 @@ class SetTimerViewController: UIViewController {
   private let disposeBag = DisposeBag()
   
   // MARK: mainTimerView UI 영역
-  private lazy var timerPicker: UIDatePicker = {
-    let timerPicker = UIDatePicker()
-    timerPicker.datePickerMode = .countDownTimer
+  private lazy var timerPicker: UIPickerView = {
+    let timerPicker = UIPickerView()
+    timerPicker.delegate = self
+    timerPicker.dataSource = self
     return timerPicker
   }()
   
-  private lazy var startButton: UIButton = {
+  private var hours = 0
+  private var minutes = 0
+  private var seconds = 0
+  
+  private var startButton: UIButton = {
     let button = UIButton()
     button.setTitle("시작", for: .normal)
     button.setTitleColor(.dangn, for: .normal)
@@ -32,7 +37,7 @@ class SetTimerViewController: UIViewController {
     return button
   }()
   
-  private lazy var cancelButton: UIButton = {
+  private var cancelButton: UIButton = {
     let button = UIButton()
     button.setTitle("취소", for: .normal)
     button.setTitleColor(.darkGray, for: .normal)
@@ -42,24 +47,27 @@ class SetTimerViewController: UIViewController {
     return button
   }()
   
-  private lazy var buttonStackView: UIStackView = {
+  private var buttonStackView: UIStackView = {
     let stackView = UIStackView()
     stackView.axis = .horizontal
     stackView.spacing = 150
     return stackView
   }()
 
+  // MARK: 뷰 생애주기 관리
   override func viewDidLoad() {
     super.viewDidLoad()
     setView()
     bind()
   }
   
+  // MARK: 로직
   private func bind() {
     startButton.rx.tap
       .subscribe(onNext: { [weak self] _ in
         guard let self else { return }
-        self.viewModel.setNewTimer(time: self.timerPicker.countDownDuration)
+        let timerTime = setTime()
+        self.viewModel.setNewTimer(time: timerTime)
       }).disposed(by: disposeBag)
     
     cancelButton.rx.tap
@@ -75,9 +83,14 @@ class SetTimerViewController: UIViewController {
       .disposed(by: disposeBag)
   }
   
+  private func setTime() -> TimeInterval {
+    let time = (hours * 3600) + (minutes * 60) + seconds
+    return TimeInterval(time)
+  }
+  
+  // MARK: 제약조건
   private func setView() {
-    view.addSubview(timerPicker)
-    view.addSubview(buttonStackView)
+    [timerPicker, buttonStackView].forEach { view.addSubview($0) }
     [cancelButton, startButton].forEach { buttonStackView.addArrangedSubview($0) }
     
     timerPicker.snp.makeConstraints {
@@ -96,6 +109,41 @@ class SetTimerViewController: UIViewController {
     buttonStackView.snp.makeConstraints {
       $0.top.equalTo(timerPicker.snp.bottom).offset(20)
       $0.centerX.equalToSuperview()
+    }
+  }
+}
+
+extension SetTimerViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    return 3
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    switch component {
+    case 0: return 24
+    case 1: return 60
+    case 2: return 60
+    default: return 0
+    }
+  }
+  
+  func pickerView(_ pickerView: UIPickerView,
+                  titleForRow row: Int,
+                  forComponent component: Int) -> String? {
+    switch component {
+    case 0: return "\(row)시간"
+    case 1: return "\(row)분"
+    case 2: return "\(row)초"
+    default: return nil
+    }
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    switch component {
+    case 0: hours = row
+    case 1: minutes = row
+    case 2: seconds = row
+    default: break
     }
   }
 }

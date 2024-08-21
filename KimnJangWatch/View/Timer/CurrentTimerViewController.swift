@@ -17,7 +17,7 @@ class CurrentTimerViewController: UIViewController {
   private let disposeBag = DisposeBag()
   
   // MARK: currentTimerView 영역
-  private lazy var currentLabel: UILabel = {
+  private let currentLabel: UILabel = {
     let label = UILabel()
     label.text = "현재 타이머"
     label.font = .systemFont(ofSize: 24, weight: .bold)
@@ -39,7 +39,7 @@ class CurrentTimerViewController: UIViewController {
     setView()
     bind()
   }
-
+  
   private func tableViewHeight() -> CGFloat {
     let rowsCount = tableView(currentTableView, numberOfRowsInSection: 0)
     return CGFloat(rowsCount) * 100
@@ -77,7 +77,7 @@ class CurrentTimerViewController: UIViewController {
     }
   }
 }
-  
+
 extension CurrentTimerViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 100
@@ -87,6 +87,7 @@ extension CurrentTimerViewController: UITableViewDelegate {
                  forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       let timer = viewModel.timers.value[indexPath.row]
+      NotificationManager.shared.cancelNotification(identifier: timer.id.uuidString)
       viewModel.removeTimer(id: timer.id)
     }
   }

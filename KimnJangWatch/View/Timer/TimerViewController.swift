@@ -39,8 +39,9 @@ class TimerViewController: UIViewController {
   
   // MARK: 버튼 액션
   @objc func editButtonTapped() {
-    currentTimerView.currentTableView
-      .setEditing(!currentTimerView.currentTableView.isEditing, animated: true)
+    let isEditing = !currentTimerView.currentTableView.isEditing
+    navigationItem.leftBarButtonItem?.title = isEditing ? "완료" : "편집"
+    currentTimerView.currentTableView.setEditing(isEditing, animated: true)
   }
   
   // MARK: UI
