@@ -14,11 +14,10 @@ class TimerViewModel {
   static let shared = TimerViewModel()
   
   var timers = BehaviorRelay<[TimerModel]>(value: [])
-  let endTimer = PublishSubject<UUID>()
   private var timerSubscription = [UUID:Disposable]()
   private var backgroundEntryTime = BehaviorRelay<Date?>(value: nil)
   private var disposeBag = DisposeBag()
-
+  
   // MARK: 타이머 상태 관리
   func getTimer(id: UUID) -> TimerModel? {
     return timers.value.first(where: { $0.id == id })
@@ -29,7 +28,6 @@ class TimerViewModel {
                               remainingTime: BehaviorRelay<TimeInterval>(value: time),
                               isRunning: BehaviorRelay<Bool>(value: true))
     timers.accept(timers.value + [newTimer])
-    UserDefaults.standard.set(time, forKey: newTimer.id.uuidString)
     startTimer(id: newTimer.id)
   }
   
@@ -50,7 +48,6 @@ class TimerViewModel {
         guard let self = self else { return }
         let currentTime = max(timer.remainingTime.value - 0.1, 0)
         timer.remainingTime.accept(currentTime)
-        UserDefaults.standard.set(currentTime, forKey: id.uuidString)
         
         if currentTime <= 0 {
           self.endTimer(id: id)
@@ -66,7 +63,6 @@ class TimerViewModel {
     timer.isRunning.accept(false)
     
     let remainingTime = timer.remainingTime.value
-    UserDefaults.standard.set(remainingTime, forKey: id.uuidString)
     NotificationManager.shared.cancelNotification(identifier: id.uuidString)
     timerSubscription[id]?.dispose()
     timerSubscription.removeValue(forKey: id)
@@ -74,16 +70,13 @@ class TimerViewModel {
   
   func resumeTimer(id: UUID) {
     guard let timer = getTimer(id: id) else { return }
-            
-    if let remainingTime = UserDefaults.standard.value(forKey: id.uuidString) as? TimeInterval {
-      timer.remainingTime.accept(remainingTime)
-      timer.isRunning.accept(true)
-      
-      let newEndTime = Date().addingTimeInterval(remainingTime)
-      notification(id: id, endTime: newEndTime)
-      
-      startTimer(id: timer.id)
-    }
+    let remainingTime = timer.remainingTime.value
+    timer.isRunning.accept(true)
+    
+    let newEndTime = Date().addingTimeInterval(remainingTime)
+    notification(id: id, endTime: newEndTime)
+    
+    startTimer(id: timer.id)
   }
   
   func cancelTimer(id: UUID) {
@@ -93,16 +86,14 @@ class TimerViewModel {
     
     NotificationManager.shared.cancelNotification(identifier: id.uuidString)
     removeTimer(id: id)
-    UserDefaults.standard.removeObject(forKey: id.uuidString)
   }
   
   func endTimer(id: UUID) {
     removeTimer(id: id)
-    UserDefaults.standard.removeObject(forKey: id.uuidString)
   }
   
   func removeTimer(id: UUID) {
-    timers.accept(timers.value.filter { $0.id != id })
+    timers.accept(timers.value.filter { $0.id != id } )
   }
 
   // MARK: 앱 상태 관리 - viewController에서 호출 필요
@@ -169,29 +160,4 @@ class TimerViewModel {
       snooze: false // 타이머에서는 다시 알림을 비활성화
     )
   }
-  
-/*
-  private func addRecentTimer(time: String) {
-    recentTimers.append(time)
-    if recentTimers.count > 5 {
-      recentTimers.removeFirst()
-    }
-    saveRecentTimers()
-  }
-  
-  func getRecentTimers() -> [String] {
-    return recentTimers
-  }
-  
-  private func saveRecentTimers() {
-    UserDefaults.standard.set(recentTimers, forKey: "RecentTimers")
-  }
-  
-  private func loadRecentTimers() {
-    if let savedTimers = UserDefaults.standard.array(forKey: "RecentTimers") as? [String] {
-      recentTimers = savedTimers
-    }
-  }
-  */
-  
 }
